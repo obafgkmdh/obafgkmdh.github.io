@@ -1,0 +1,309 @@
+/* Reflects the same structure as modern_theme_user.css */
+
+/* Links */
+
+a, dt, .optionsRibbon ul li a:hover, .optionsRibbon ul li a.hover, .optionsRibbon ul li a:focus,
+nav#leftColumn li a.centreIcon span, header .dropDown a:hover, header .dropDown a:focus,
+#rightColumn a *, #rightColumn ul.largeImgs li > a, #rightColumn a.sectionLink,
+.rightColumn a *, .rightColumn ul.largeImgs li > a, .rightColumn a.sectionLink, #TableA a span, #TableB a span,
+nav#leftColumn ol li a:not(.centreIcon):hover, nav#leftColumn ol li a:not(.centreIcon):hover span, nav#leftColumn ol li a.selected,
+.messagesHolder .dropDown ul li .ms-user, .notificationsHolder .dropDown ul li .ms-user, nav#leftColumn .scroll a:hover span, #facebox #complete_signup h2, .primaryColorText, #fixedSectionHeader a.sectionLink:hover span,  #courseToolbar a.sectionLink:hover span
+{
+	color: #730805;
+}
+
+/* Tile headings */
+
+#centreColumn .catalog_boxes h2 * {
+	color: #0F0961;
+}
+
+/* Hover */
+
+a:hover, .rightColumn ul li a:hover *, .rightColumn a:hover, .rightColumn ul.largeImgs li > a:hover, table a span, table span a,
+#rightColumn ul li a:hover *, #rightColumn a:hover, #rightColumn ul.largeImgs li > a:hover, .catalog_courses .footer > a:hover span, div.materialStyle table a:hover, div.materialStyle table a:hover *, a.tableLink1:hover, a.tableLink1:hover *, a.tableLink2:hover, a.tableLink2:hover *, .remainingPts span, h2.playerLevel span
+{
+	color: #0D1582;
+}
+
+/* h3, h5 */
+
+h3, h5, #facebox h2
+{
+	color: #374854;
+}
+
+/* h2 and metadata */
+
+#centreColumn h2, #courseToolbar h2, #tinymce h2, #facebox form#resources_form .search-metadata
+{
+	color: #0D1369;
+}
+
+/* Top bar hover */
+
+.dropDownHolder > a:hover, .quickLinks a.username:hover, .dropDownHolder > a:focus, .quickLinks a.username:focus, .highlight
+{
+	background: #6f9bb8;
+}
+
+/* Top bar */
+
+.difSignIn, input[type="submit"], input[type="button"], button, .mainNav .cta a, header, #facebox .header, #chatContainer .header, .chatHeader, .mobileSearch, .ui-datepicker .ui-datepicker-buttonpane button, .ui-datepicker .ui-widget-header, .select2-results .select2-highlighted, .select2-container-multi .select2-choices .select2-search-choice, .messageOptions li a, .optionsRibbon ul.inverted li a, .catalog_boxes div.price, .catalog_boxes div.label, .catalog_categories a .footer, .section-intro p.number, .jconfirm .jconfirm-box div.title
+{
+	background: #5B87A4;
+}
+
+/* Footer */
+
+footer
+{
+  background: #6F7882;
+}
+
+/* Alert box */
+
+header .quickLinks a .newAlert, a.rightMobileBar .newAlert
+{
+  border: 1px solid #df584b;
+  background-color: #cb4437;
+}
+
+/* Table row selection */
+
+.studentModuleView tr.highlight div.ellipsis:after, .studentModuleView tr.current_lesson div.ellipsis:after, form#lessons #lesson_list tr.current_lesson div.ellipsis:after {
+	background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), to(#dbebe4), color-stop(50%, #dbebe4));
+	background: -moz-linear-gradient(to right, rgba(255, 255, 255, 0), #dbebe4 50%, #dbebe4);
+	background: -o-linear-gradient(to right, rgba(255, 255, 255, 0), #dbebe4 50%, #dbebe4);
+	background: -ms-linear-gradient(to right, rgba(255, 255, 255, 0), #dbebe4 50%, #dbebe4);
+	background: linear-gradient(to right, rgba(255, 255, 255, 0), #dbebe4 50%, #dbebe4);
+}
+table tr.highlight td, table tr.current_lesson td,
+.lt-ie10 .studentModuleView tr.highlight div.ellipsis:after, .lt-ie10 form#lessons #lesson_list tr.current_lesson div.ellipsis:after, .badgeOptions a.highlight {
+	background: #dbebe4;
+}
+
+table tr td.highlight {
+	background: #effff8;
+}
+
+table tr.highlight td {
+  border-color: #c7d7d0;
+}
+
+/* Tinymce */
+
+.mce-window-head, .mce-foot .mce-btn button, .mce-menu-item:hover, .mce-menu-item.mce-selected, .mce-menu-item:focus {
+	background: #5B87A4 !important;
+}
+
+/* Course Price */
+
+.catalog_courses div.price.free { /* use secondary text colour */
+	background: #0D1369;
+}
+
+/* ----- NEW ----- */
+
+#centreColumn h1, h2, h3, h4, h5, h6, #centreColumn .centerHeading, #courseToolbar .centerHeading, .catalog_class #leftColumn h1 {
+  font-family: 'Roboto Slab', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale
+}
+
+body, html {
+  background-color: #cacaca
+}
+
+  /* For the iOS native app */
+  #courseToolbar {
+    background: #fff;
+  }
+
+.highcharts-container .highcharts-background {
+  fill: none
+}
+
+  nav .icon {
+    fill: #fff
+  }
+
+/* Left column */
+
+#contentWrap.hasLeftColumn:before,
+nav#leftColumn ol.thinMainNav.hoverMainNav, nav#leftColumn ol.hoverMainNav:before, .closeNavTrigger a, [dir=rtl] .user #contentWrap.hasLeftColumn:after {
+  background-color: #505861;
+  border-color: #505861
+}
+@media screen and (max-width: 1024px) {
+  /* same as media query styles below, but without body class */
+  nav#leftColumn ol.staticMainNav > li > ul {
+    background: #3c444d;
+    border-color: #3c444d
+  }
+  nav#leftColumn ol.staticMainNav > li > ul li a.selected, nav#leftColumn ol.staticMainNav > li > ul li a:hover {
+    border-color: #505861;
+  }
+}
+@media screen and (min-width: 1025px) {
+/* same as media query styles above, but with body class */
+  .keep_tablet_nav nav#leftColumn ol.staticMainNav > li > ul {
+    background: #3c444d;
+    border-color: #3c444d
+  }
+  .keep_tablet_nav nav#leftColumn ol.staticMainNav > li > ul li a.selected, .keep_tablet_nav nav#leftColumn ol.staticMainNav > li > ul li a:hover {
+    border-color: #505861;
+  }
+}
+[dir=rtl] nav#leftColumn ol.hoverMainNav:before {border-left: 0; right: 0}
+
+nav#leftColumn ol:not(.largeImgs) > li > a:not(.centreIcon), nav#leftColumn ol:not(.largeImgs) > li > a:not(.centreIcon):hover, nav#leftColumn a:not(.centreIcon).highlight, nav#leftColumn ol:not(.largeImgs) > li > a.selected {
+  padding-top: 8px; padding-bottom: 9px
+}
+
+  nav#leftColumn ol > li > a > span, nav#leftColumn ol > li > a:not(.normalLink), nav#leftColumn ol > li > a:not(.centreIcon):hover span, nav#leftColumn a:not(.centreIcon).highlight span, nav#leftColumn ol li a.selected span, nav#leftColumn ol li ul.subClasses li a, nav#leftColumn ol li ul.subClasses li a span {
+    color: #fff !important
+  }
+  nav#leftColumn ol > li > a i:after, nav#leftColumn i.ellipsis:after, nav#leftColumn ol > li > a:not(.centreIcon):hover i:after, nav#leftColumn > ol > li:hover > a:not(:hover) i:after, nav#leftColumn ol > li > a:not(.centreIcon).highlight i:after, nav#leftColumn ol > li > a.selected i:after, nav#leftColumn ol.thinMainNav > li > a i:after, nav#leftColumn ol.thinMainNav.hoverMainNav > li > a:hover i:after, .closeNavTrigger a i:after, .closeNavTrigger a:hover i:after, nav#leftColumn li > ul > li > a i:after, nav#leftColumn > ol > li:hover > a:not(:hover) i:after {
+    left: -40px
+  }
+
+nav#leftColumn ol > li > a:not(.centreIcon):hover, nav#leftColumn ol > li > a:not(.centreIcon).highlight, nav#leftColumn ol > li > a.selected,
+nav#leftColumn li > ul > li > a:not(.centreIcon):hover, nav#leftColumn li > ul > li > a.selected {
+  background: #871407;
+  background: -moz-linear-gradient(left,  #871407 0%, #9b281b 100%);
+  background: -webkit-linear-gradient(left,  #871407 0%, #9b281b 100%);
+  background: linear-gradient(to right,  #871407 0%, #9b281b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#871407', endColorstr='#9b281b', GradientType=1);
+  border-color: #505861;
+}
+.no-touch nav#leftColumn > ol > li:not(.dropDownHolder) a.highlight + .dropDown, .touch nav#leftColumn > ol > li:not(.dropDownHolder):hover .dropDown {
+  border-left: 4px solid #9b281b
+}
+[dir=rtl] nav#leftColumn ol > li > a:not(.centreIcon):hover, [dir=rtl] nav#leftColumn ol > li > a:not(.centreIcon).highlight, [dir=rtl] nav#leftColumn ol > li > a.selected, [dir=rtl] nav#leftColumn li > ul > li > a:not(.centreIcon):hover, [dir=rtl] nav#leftColumn li > ul > li > a.selected {
+  background: #871407;
+  background: -moz-linear-gradient(left,  #9b281b 0%, #871407 100%);
+  background: -webkit-linear-gradient(left,  #9b281b 0%, #871407 100%);
+  background: linear-gradient(to right,  #9b281b 0%, #871407 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9b281b', endColorstr='#871407', GradientType=1);
+  border-color: #505861; /* match left column colour */
+}
+[dir=rtl].no-touch nav#leftColumn > ol > li:not(.dropDownHolder) a.highlight + .dropDown, [dir=rtl].touch nav#leftColumn > ol > li:not(.dropDownHolder):hover .dropDown {
+  border-right: 4px solid #9b281b;
+  border-left: 0
+}
+nav#leftColumn ol.staticMainNav > li > a span:first-child, nav#leftColumn ol.staticMainNav > li > ul.student a span:first-child,
+.keep_tablet_nav nav#leftColumn ol.staticMainNav > li > a span:first-child, .keep_tablet_nav nav#leftColumn ol.staticMainNav > li > ul.student a span:first-child {
+  border-color: #fff
+}
+
+/* Left column no new_tiles */
+
+html:not([dir=rtl]) .catalog_class:not(.new_tiles) #contentWrap:before,
+[dir=rtl] .catalog_class:not(.new_tiles) #contentWrap:after,
+.catalog_class:not(.new_tiles) #leftColumn {background-color: #4a545d}
+
+/* Colorful tiles */
+
+.new_tiles .tile_color_1,
+html:not([dir=rtl]) .catalog_class.tile_color_1 #contentWrap:before,
+[dir=rtl] .catalog_class.tile_color_1 #contentWrap:after,
+.catalog_class.tile_color_1 #leftColumn,
+.new_tiles .people_boxes > a:nth-child(4n+1),
+.new_tiles .resources_boxes > a:nth-child(4n+1),
+.new_tiles .app_boxes > div:nth-child(4n+1),
+.new_tiles .dashboard_blocks > a:nth-child(4n+1),
+.new_tiles .lesson_boxes > div:nth-of-type(4n+1),
+.new_tiles .lesson_boxes > a:nth-of-type(4n+1) {background-color: #659c43}
+.new_tiles .tile_color_2,
+html:not([dir=rtl]) .catalog_class.tile_color_2 #contentWrap:before,
+[dir=rtl] .catalog_class.tile_color_2 #contentWrap:after,
+.catalog_class.tile_color_2 #leftColumn,
+.new_tiles .people_boxes > a:nth-child(4n+2),
+.new_tiles .resources_boxes > a:nth-child(4n+2),
+.new_tiles .app_boxes > div:nth-child(4n+2),
+.new_tiles .dashboard_blocks > a:nth-child(4n+2),
+.new_tiles .lesson_boxes > div:nth-of-type(4n+2),
+.new_tiles .lesson_boxes > a:nth-of-type(4n+2) {background-color: #4b8a31}
+.new_tiles .tile_color_3,
+.new_tiles .tile_color_3,
+html:not([dir=rtl]) .catalog_class.tile_color_3 #contentWrap:before,
+[dir=rtl] .catalog_class.tile_color_3 #contentWrap:after,
+.catalog_class.tile_color_3 #leftColumn,
+.new_tiles .people_boxes > a:nth-child(4n+3),
+.new_tiles .resources_boxes > a:nth-child(4n+3),
+.new_tiles .app_boxes > div:nth-child(4n+3),
+.new_tiles .dashboard_blocks > a:nth-child(4n+3),
+.new_tiles .lesson_boxes > div:nth-of-type(4n+3),
+.new_tiles .lesson_boxes > a:nth-of-type(4n+3) {background-color: #5e6671}
+.new_tiles .tile_color_4,
+html:not([dir=rtl]) .catalog_class.tile_color_4 #contentWrap:before,
+[dir=rtl] .catalog_class.tile_color_4 #contentWrap:after,
+.catalog_class.tile_color_4 #leftColumn,
+.new_tiles .people_boxes > a:nth-child(4n+4),
+.new_tiles .resources_boxes > a:nth-child(4n+4),
+.new_tiles .app_boxes > div:nth-child(4n+4),
+.new_tiles .dashboard_blocks > a:nth-child(4n+4),
+.new_tiles .lesson_boxes > div:nth-of-type(4n+4),
+.new_tiles .lesson_boxes > a:nth-of-type(4n+4) {background-color: #424950}
+
+/* Dashboard blocks */
+
+body:not(.new_tiles) .dashboard_blocks a:nth-child(4n+1):before {background-color: #5B87A4}
+body:not(.new_tiles) .dashboard_blocks a:nth-child(4n+2):before {background-color: #6D9BB9}
+body:not(.new_tiles) .dashboard_blocks a:nth-child(4n+3):before {background-color: #505861}
+body:not(.new_tiles) .dashboard_blocks a:nth-child(4n+4):before {background-color: #e6de8a}
+
+/* White backgrounds */
+
+.optionsRibbon ul, .post_form_flag .optionsRibbon ul li, .dashboard_blocks a, body:not(.new_tiles) .catalog_categories > a, body:not(.new_tiles) .catalog_boxes > div, #Table, #TableB, table td, table.calendar_small, .calendars-picker, #Table2 table th, .studentModuleView.new_studentModuleView.new_background > table > tbody.highlightLesson > tr:first-child:not(.highlight):not(.current_lesson) > td, form#lessons.new_teacher_lessons #lesson_list.new_background > table > tbody.highlightLesson > tr:first-child td {
+  background-color: #fff
+}
+#Table table tr:first-child td, #TableA table tr:first-child td, #TableA td.assignment {
+  background-color: #fff !important
+}
+.materialStyle table td, .rightColumn table td {
+  background-color: initial;
+}
+
+/* Borders */
+
+input[type="text"], input[type="number"], input[type="tel"], input[type="url"], input[type="password"], input[type="email"], input[type="date"], input[type="file"], textarea, select, div.selectWrap, input[type="checkbox"] + label:before, input[type="radio"] + label:before, input[type="file"]:after {
+  background-color: #fff;
+  border-color: #909090
+}
+
+.studentModuleView.new_studentModuleView.new_background > table > tbody.highlightLesson > tr:first-child:not(.highlight):not(.current_lesson) > td,
+form#lessons.new_teacher_lessons #lesson_list.new_background > table > tbody.highlightLesson > tr:first-child td,
+form#lessons.new_teacher_lessons #lesson_list.new_background > table > tbody > tr:first-child td {border-bottom-width: 0}
+form#lessons.new_teacher_lessons #lesson_list.new_background > table > tbody.highlightLesson > tr:last-child > td,
+form#lessons #lesson_list table tr.current_lesson + tr > td {padding-left: 31px}
+form#lessons.new_teacher_lessons #lesson_list.new_background > table > tbody.highlightLesson > tr:first-child > td {padding-left: 8px}
+
+/* Text */
+
+#centreColumn .rightColumn h2, #centreColumn .centerHeading a {
+  color: #222
+}
+
+.dashboard_blocks ul, .comment .metadata .comment_date, ul.tabnav > li > a, ul.tabnav .dropDown a:hover, nav#leftColumn ul.tabnav a, ul.tabnav li a span, .calendar-agenda-day .event-heading span, .remainingPts, .remainingPts span, ul.playerStatusSml li.level span {
+  color: #7d7d7d
+}
+
+.resourceDetails {
+  color: #fff
+}
+
+/* From base-colours-user.css */
+
+table th, nav.mainNav .dropDownHeading, table .tableDropdown > a:hover, table .tableDropdown > a.highlight, .optionsRibbonTable .dropDownHolder > a.highlight, .optionsRibbonTable .dropDownHolder > a:hover {
+  background: #e0e2e4
+}
+
+.comment {
+  border-color: #d2d2d2
+}
+
+.rightColumn a.sectionLink {
+  padding-top: 14px;
+}

@@ -1,0 +1,1364 @@
+/* Author: Glasshouse
+ Index:
+ 1. Main Nav Form
+ 2. RelatedLinks - Active link
+ 3. Init Modals
+ 4. Alert Boxes
+ 5. Fix title wrapping in mobile view, we are also calling this in the mobile app
+ 6. Dropdowns
+ 7. Toggle Hidden Content
+ 8. Add a label after each checkbox / radio button if none
+ 9. Lesson Nav Show/Hide
+ 10. Select Rubric Radio Button
+ 11. iPad Keyboard and Fixed Position Header Fix
+ 12. Scroll animation
+ 13. FIx for options in the right on Chrome
+ 14. Auto-scroll to hide the address bar on iphone safari iOS < 7
+ 15. Toggle game status detail tables
+ 16. Mobile Functions
+ 17. Left Nav Flyouts
+ 18. Init mobile menu
+ 19. Toggle student/teacher lessons
+ 20. Disable fixed position for header and section toolbar on zoom - mobile devices
+ 21. Resize functions
+ 22. Add iframe to z-index elements in IE
+ 23. Load SVG icon sprite
+ 24. make wider images responsive
+ 25. add focus trap to facebox
+ 26. Stop jwplayer when closing facebox
+ */
+
+// This is called at 6.
+// But we also need to call this in the mobile app.
+function dropdownClickEvents() {
+	// inbox dropdown
+	$('.messagesHolder > a').on('click', function(e) {
+		toggledDownShow(e, this);
+
+		if ( $('.messagesHolder > .dropDown').css('left') === '0px') {
+			if($('html').attr('dir') == 'RTL'){
+				var left = $('#wrapper').offset().left - $('.messagesHolder > .dropDown').offset().left;
+				$('.messagesHolder > .dropDown').css('left', left + 'px');
+			}else{
+				if(is_mobile_app_mode()){
+					var left = Math.abs((is_mobile_app_mode() ? globalWindowWidth : $(window).width()) - ($('.messagesHolder > .dropDown').offset().left + $('.messagesHolder > .dropDown').width()));
+				}else{
+					var left = Math.abs(($('#wrapper').offset().left + $('#wrapper').width()) - ($('.messagesHolder > .dropDown').offset().left + $('.messagesHolder > .dropDown').width()));
+				}
+				$('.messagesHolder > .dropDown').css('left', '-' + left + 'px');
+			}
+		}
+
+		hideDropdown(e, '.linksHolder .dropDown');
+		hideDropdown(e, '.searchHolder .dropDown');
+		hideDropdown(e, '.notificationsDropDown');
+		call_for_messages('.messagesHolder', 'inbox');
+		notification_system_status(this);
+	});
+
+	$('.notificationsHolder > a').on('click', function(e) {
+		toggledDownShow(e, this);
+
+		if ( $('.notificationsHolder > .dropDown').css('left') === '0px') {
+			if($('html').attr('dir') == 'RTL') {
+				var left = $('#wrapper').offset().left - $('.notificationsHolder > .dropDown').offset().left;
+				$('.notificationsHolder > .dropDown').css('left', left + 'px');
+			}else{
+				if(is_mobile_app_mode()){
+					var left = Math.abs((is_mobile_app_mode() ? globalWindowWidth : $(window).width()) - ($('.notificationsHolder > .dropDown').offset().left + $('.notificationsHolder > .dropDown').width()));
+				}else{
+					var left = Math.abs(($('#wrapper').offset().left + $('#wrapper').width()) - ($('.notificationsHolder > .dropDown').offset().left + $('.notificationsHolder > .dropDown').width()));
+				}
+				$('.notificationsHolder > .dropDown').css('left', '-' + left + 'px');
+			}
+		}
+
+		hideDropdown(e, '.linksHolder .dropDown');
+		hideDropdown(e, '.searchHolder .dropDown');
+		hideDropdown(e, '.messagesDropDown');
+		call_for_messages('.notificationsHolder', 'notifications');
+		notification_system_status(this);
+	});
+
+	$('.searchHolder > a').on('click', function(e) {
+		toggledDownShow(e, this);
+		$('.searchHolder input[type="text"]').focus();
+		hideDropdown(e, '.messagesHolder .dropDown');
+		hideDropdown(e, '.notificationsHolder .dropDown');
+		hideDropdown(e, '.linksHolder .dropDown');
+	});
+
+	$('.linksHolder > a').on('click', function(e) {
+		toggledDownShow(e, this);
+		hideDropdown(e, '.messagesHolder .dropDown');
+		hideDropdown(e, '.notificationsHolder .dropDown');
+		hideDropdown(e, '.searchHolder .dropDown');
+	});
+
+	$('nav#leftColumn .dropDownHolder > a').on('click', function(e) {
+		hideSiblingDropdowns($(this).parent().siblings('li.dropDownHolder'));
+		toggledDownShow(e, this);
+	});
+
+	$('#Table .dropDownHolder > a').on('click', function(e) {
+		hideSiblingDropdowns($(this).closest('tr').siblings());
+		hideDropdown(e, '#TableA .dropDown');
+		hideDropdown(e, '#TableB .dropDown');
+		toggledDownShow(e, this);
+	});
+
+	$('body').on('click', 'table .tableDropdown > a', function(e) {
+		hideSiblingDropdowns($(this).closest('tr').siblings());
+		toggledDownShow(e, this);
+
+		$(this).parent().css('z-index', '5')		;
+		// Change the z-index of the next 2 dropdown holders so that the don't show on top of the current dropdown
+		$(this).closest('tr').next().find('.tableDropdown').css('z-index', '4');
+		$(this).closest('tr').next().next().find('.tableDropdown').css('z-index', '4');
+
+		// If the space between the dropdown and the footer is < the dropdown's height then open it upwards instead of downwards
+		if (($('footer').offset().top - $(this).siblings('.dropDown').offset().top) < $(this).siblings('.dropDown').outerHeight()) {
+			$(this).siblings('.dropDown').css({
+				'top' : 'auto', 'bottom' : '21px'
+			});
+		}
+	});
+
+	$('.optionsRibbon .dropDownHolder > a').on('click', function(e) {
+		toggledDownShow(e, this);
+	});
+
+	$('.calendar-item .dropDownHolder > a').on('click', function(e) {
+		hideSiblingDropdowns($(this).closest('.calendar-item').siblings());
+		toggledDownShow(e, this);
+	});
+
+	function toggledDownShow(e, target) {
+		e.preventDefault();
+		e.stopPropagation();
+		$(target).siblings('.dropDown').toggleClass('dDownShow');
+		$(target).toggleClass('highlight');
+		if(is_mobile_app_mode()){
+			if($(target).siblings('.dropDown').hasClass('dDownShow')){
+				$(target).siblings('.dropDown').show();
+			}else{
+				$(target).siblings('.dropDown').hide();
+			}
+		}
+	}
+
+	$('body, #wrapper').on('click', function(e) { /* change 'document' to 'body' for wide screen clicks on white space and '#wrapper' for iPad */
+		if ($('#facebox').has(e.target).length == 0) {
+			// Triggers when pressing Enter too so exclude leftColumn so that it doesn't interfere with the flyouts
+			hideDropdown(e, 'header .dropDown');
+			hideDropdown(e, '#centreColumn .dropDown');
+		}
+	});
+
+	/* prevent focus highlight on mousedown in the portal - doesn't interfere with tabbing highlight */
+	$('.portal #contentWrap').mousedown(function(e) {
+		if(!$(e.target).is("input, textarea, select")){
+			e.preventDefault();
+		}
+	})
+
+	// Same as click function above, but just for Esc key presses in header and #centreColumn
+	$(document).keydown(function(e) {
+		if (e.keyCode == 27) {
+			// Close dropDown if controlling link has focus
+			$('header a.highlight:focus, #centreColumn a.highlight:focus').removeClass('highlight').siblings('.dropDown').removeClass('dDownShow');
+			// Close dropDown & reset focus if an element inside the dropDown has focus
+			$('header .dropDown :focus, #centreColumn .dropDown :focus').closest('.dropDown').removeClass('dDownShow').siblings('a').removeClass('highlight').focus();
+		}
+	});
+
+	function hideSiblingDropdowns(dropdownHolder) {
+		$(dropdownHolder).find('.dropDown').removeClass('dDownShow');
+		$(dropdownHolder).find('a').removeClass('highlight');
+	}
+
+	function hideDropdown(e, dropdownHolder) {
+		/* Hides dropdowns when clicking outside them */
+		if ($(dropdownHolder).has(e.target).length == 0) {
+			$(dropdownHolder).removeClass('dDownShow');
+			$(dropdownHolder).siblings('a').removeClass('highlight');
+		}
+	}
+}
+
+// This is called at 10.
+// But we also need to call this in the mobile app.
+function lessonNavEvents() {
+	var navMoving = false;
+	var leftWhileAnimating = false;
+	var navHeight = $('header').outerHeight() + 1;
+	var timeoutDelay;
+	var animateNavSpeed = 500;
+
+	function hideNav() {
+		navMoving = true;
+		$('nav.lessonNav').addClass('disableNav');
+		$('nav.lessonNav > h2').animate({marginTop: 0}, animateNavSpeed);
+		$('nav.lessonNav > ol').animate({top: navHeight}, animateNavSpeed, function() {
+			navMoving = false;
+		});
+	}
+
+	function callNavTimeout() {
+		window.clearTimeout(timeoutDelay);
+		timeoutDelay = window.setTimeout(hideNav, 2000); // hide nav after 2 seconds
+		leftWhileAnimating = false;
+	}
+
+	if ($('nav.lessonNav').length == 1) {
+		if ($('nav.disableNav').length == 1) {
+			// Show Heading First		
+			$('nav.lessonNav > ol').css({'top': navHeight + 'px'}); // set position based on navHeight
+		} else {
+			// Show Navigation First
+			$('nav.lessonNav > ol').css({'top':0});
+			$('nav.lessonNav > h2').css({'margin-top': "-" + navHeight + 'px'}); // set position based on navHeight
+			timeoutDelay = window.setTimeout(hideNav, 700);  // initially hide nav after 0.7 seconds
+		}
+
+		$('nav.mainNav > ol').on('mouseenter', function(e) {
+			if (navMoving) {
+				leftWhileAnimating = false;
+			} else {
+				window.clearTimeout(timeoutDelay);
+			}
+		});
+
+		$('nav.mainNav > ol').on('mouseleave', function(e) {
+			if (navMoving) {
+				leftWhileAnimating = true;
+			} else {
+				callNavTimeout();
+			}
+		});
+
+		$('nav.lessonNav > h2').on('mouseenter', function(e) {
+			if (!navMoving) {
+				//Hide Lesson, Show Nav
+				navMoving = true;
+				$('nav.lessonNav > h2').animate({marginTop: "-" + navHeight + 'px'}, animateNavSpeed);
+				$('nav.lessonNav > ol').animate({top: 0}, animateNavSpeed, function() {
+					$('nav.lessonNav').removeClass('disableNav');
+					navMoving = false;
+
+					if (leftWhileAnimating) {
+						callNavTimeout();
+					}
+				});
+			}
+		});
+	};
+}
+
+$(function() {
+
+// 1. Main Nav Form 
+	$('form.searchSchoolForm input[type="button"]').on('click', function (e) {
+		inputValidation($(this).parent(), e);
+	});
+	$('body').on('click', 'form.loginForm input[type="button"]', function (e) {
+		inputValidation($(this).parent().parent(), e);
+	});
+	$('body').on('click', 'form.loginFormPopup input[type="button"]', function (e) {
+		inputValidation($(this).parent().parent().parent(), e);
+	});
+
+	// Press 'return' key to submit login form
+	$('body').on('keydown', "form.loginForm", function (e) {
+		if (e.which == 13) {
+			inputValidation(this, e);
+		}
+	});
+	$('body').on('keydown', "form.loginFormPopup", function (e) {
+		if (e.which == 13) {
+			inputValidation(this, e);
+		}
+	});
+
+	function inputValidation(elementName, e) {
+		var $textInput = $(elementName).find('input[type="text"]');
+		var $textPwd = $(elementName).find('input[type="password"]');
+
+		if ($textInput.val() == '') {
+			$textInput.css('border', '1px solid red');
+			$textInput.focus();
+		} else if ($textPwd.val() == '') {
+			$textInput.css('border', '1px solid #C6C5C5');
+			$textPwd.css('border', '1px solid red');
+			$textPwd.focus();
+		} else {
+			$(elementName).submit();
+			if (typeof e != 'undefined') {
+				e.preventDefault();
+			}
+		}
+	}
+
+// 2. Active Link
+	var activeData = $('body').data('active');
+
+// 3. Init Modals
+	//jQuery('a[rel*=facebox]').facebox(); 
+	jQuery('a[rel*=facebox]').each(function () {
+		if (!jQuery(this).hasClass("_processed")) {
+			jQuery(this).addClass("_processed").facebox();
+		}
+	});
+
+// 4. Alert Boxes
+	$('.error.closeAlert > a, .warning.closeAlert > a, .info.closeAlert > a').on('click', function (e) {
+		$(this).parent().nextAll('.optionsRibbon.optionsRight').hide();
+		$(this).parent().animate({
+			height: '0', opacity: '0'
+		}, 500, function () {
+			$(this).css('display', 'none');
+			$(this).nextAll('.optionsRibbon.optionsRight').css('top', 15).show();
+		});
+
+		e.preventDefault();
+	});
+
+	var msgHide = setInterval(function () {
+		$('div.info:not(.keepopen) + .pageHeading.mobile_only + .optionsRibbon.optionsRight').hide();
+		$('div.info:not(.keepopen)').animate({
+			height: '0', opacity: '0'
+		}, 500, function () {
+			$(this).css('display', 'none');
+			$('div.info:not(.keepopen) + .pageHeading.mobile_only + .optionsRibbon.optionsRight').css('top', 15).show();
+			clearInterval(msgHide);
+		});
+	}, 3000);
+
+});
+
+// 5. Fix title wrapping in mobile view, we are also calling this in the mobile app
+
+function fix_mobile_title_wrapping(){
+	//fix wrapping for title in mobile mode
+	$mobileTitleSpan = $('header .mobileBar .middleMobileBar > span');
+	if($mobileTitleSpan.height() > 25){
+		$mobileTitleSpan.css({marginTop: -8, fontSize: '14px'});
+	}else{
+		$mobileTitleSpan.removeAttr('style');
+	}
+}
+
+
+$(function(){
+// 6. Dropdowns
+	dropdownClickEvents();
+
+// 7. Toggle Hidden Content
+	$("body").delegate( "a.toggleList", "click", function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+
+		if ($(this).closest('ol').parent('div').length == 0) {
+			$(this).hide(); /* hide link */
+			$(this).parent().siblings('div').show(); /* show list */
+		} else {
+			$(this).closest('div').siblings().find('a.toggleList').show(); /* show link */
+			$(this).closest('div').hide();	/* hide list */
+		}
+	});
+
+	$('.threeColumnBlock > a').on('click', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+
+		if ($(this).siblings().find('div.toggleAssignment').is(':hidden')) {
+			$(this).find('i').removeClass('arrowDown').addClass('arrowUp');
+			$(this).siblings().find('div.toggleAssignment').show();
+		} else {
+			$(this).find('i').removeClass('arrowUp').addClass('arrowDown');
+			$(this).siblings().find('div.toggleAssignment').hide();
+		}
+	});
+
+	if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
+		// FF < 30 doesn't support position relative on table cells - add a class for altering styles in .columnBlock
+		var ffversion = new Number(RegExp.$1)
+		if (ffversion < 30) {
+			$('.columnBlock').addClass('firefox-pre-30');
+		}
+	}
+
+	$('.columnBlock .optionsRibbon.hide-768 a').on('click', function(e) {
+		e.preventDefault();
+		$(this).closest('.hasButton').find('.toggleAssignment').show();
+		$(this).closest('.optionsRibbon').hide();
+	});
+
+	$('.columnBlock .toggleAssignment a').on('click', function(e) {
+		e.preventDefault();
+		$(this).closest('.hasButton').find('.toggleAssignment').hide();
+		$(this).closest('.hasButton').find('.optionsRibbon.hide-768').show();
+	});
+
+// 8. Add a label after each checkbox / radio button if none
+	if(!is_mobile_app_mode()){
+		$("input[type='checkbox'], input[type='radio']").each(function(index) {
+			if (!$(this).next().is('label')) {
+				if($(this).attr('onclick') == 'toggle_all(this)'){
+					$(this).after('<label for="' + $(this).attr('id') + '"><span class="textOffScreen">Select all</span></label>');
+				}else{
+					$(this).after('<label for="' + $(this).attr('id') + '"></label>');
+				}
+
+				$(this).addClass('emptyLabel');
+			}
+		});
+	}
+
+// 9. Lesson Nav Show/Hide
+	lessonNavEvents();
+
+// 10. Select Rubric Radio Button
+	$('#rubric table td.rubricHover').on('click', function() {
+		$(this).find('input[type="radio"]').prop('checked', true);
+		$(this).siblings('td.rubricHover').removeClass("highlight");
+		$(this).addClass("highlight");
+	});
+
+// 11. iPad Keyboard and Fixed Position Header Fix
+	if (navigator.userAgent.match(/iPad/i) != null) {
+		var iOSKeyboardFix = {
+			targetElem: $('header'),
+			init: function(){
+				$("body").on("focus", "input, textarea", function() {
+					if($(this).parents('header').length == 0 && $(this).parents('#facebox').length == 0){
+						iOSKeyboardFix.targetElem.css({'position': 'absolute', 'top': 0, 'overflow': 'hidden'});
+						$('input, textarea').on('blur', iOSKeyboardFix.undo);
+						$('#ui-datepicker-div').on("click", "td a", iOSKeyboardFix.undo);
+					}
+				});
+			},
+			undo: function(){
+				iOSKeyboardFix.targetElem.css({'position': 'fixed', 'top': 0, 'overflow': 'visible'});
+			}
+		};
+
+		function facebox_ipad_fix(){
+			$(document).bind('reveal.facebox', function() {
+				iOSKeyboardFix.targetElem.css({'position': 'absolute', 'top': 0, 'width': (is_mobile_app_mode() ? globalWindowWidth : $(window).width()), 'overflow': 'hidden'});
+			});
+			$(document).bind('close.facebox', function() {
+				iOSKeyboardFix.targetElem.css({'position': 'fixed', 'top': 0, 'overflow': 'visible'});
+			});
+		}
+
+		on_ready(iOSKeyboardFix.init);
+		on_ready(facebox_ipad_fix);
+	};
+
+// 12. Scroll animation
+	if (window.location.href.split("#")[1]) {
+		custom_scroll(window.location.href.split("#")[1]);
+	}
+
+	if ($('a[href^="%23"]').length > 0){
+		$('a[href^="%23"]').each(function() {
+			$(this).attr('href', $(this).attr('href').replace('%23','#'));
+		});
+	}
+
+	if ($('a[href^="#"]').length > 0) {
+		$('a[href^="#"]').each(function() {
+			var el = $(this).attr('href').split('#')[1];
+
+			if (el != '') {
+				$(this).on('click', function(){custom_scroll(el);});
+			}
+		});
+	}
+
+	function custom_scroll(el) {
+		if ($('body').find('[name="' + el + '"]').length != '0') {
+			var top;
+
+			if ($(document).find('#fixedSectionHeader').length != '0') {
+				top = $('[name="' + el + '"]').offset().top - ($('header').outerHeight() + $('#fixedSectionHeader').outerHeight());
+			} else {
+				top = $('[name="' + el + '"]').offset().top - $('header').outerHeight();
+
+				if ($.browser.mozilla || $.browser.msie) {
+					top = top - 14;
+				}
+			}
+
+			$('body,html').animate({ scrollTop: top }, 'fast');
+		}
+	}
+
+	$('.skipToContent').on('click', function(e) {
+		$("html, body").animate({scrollTop: 0}, 10, 'easeOutExpo');
+	});
+
+// 13. Fix for options in the right on Chrome
+	if (/(Chrome|Webkit)/i.test(navigator.userAgent)) {
+		$('.optionsRight').css('display', 'table').height();
+		$('.optionsRight').css('display', 'block');
+	}
+// 14. Auto-scroll to hide the address bar on iphone safari iOS < 7
+	if (/iPhone;.*CPU.*OS 6_\d/i.test(navigator.userAgent)) {
+		addEventListener("load", function() { setTimeout(hideURLbar, 10); }, false);
+		function hideURLbar() {
+			window.scrollTo(0,1);
+		}
+	}
+
+// 15. Toggle game status detail tables
+	$('tr.expandTableRow a').on('click', function() {
+		var sliceEnd = $(this).closest('tr').siblings().length;
+		var $siblings = $(this).closest('tr').siblings().slice(6, sliceEnd);
+
+		if ($siblings.is(':visible') == false) {
+			$(this).find('i').addClass('arrowUp').removeClass('arrowDown');
+			$siblings.removeClass('hideRow');
+		} else {
+			$(this).find('i').addClass('arrowDown').removeClass('arrowUp');
+			$siblings.addClass('hideRow');
+		}
+	});
+
+// 16. Mobile Functions
+
+	/* Up/Down Menu */
+	function show_local_menu() {
+		$('#user-menu > ol > li.subMenu, #user-menu a#btn-root').show();
+		$('#user-menu > ol > li:not(.subMenu):not(.userQuicklinks), #user-menu a#btn-down').hide();
+	}
+	function hide_local_menu() {
+		$('#user-menu > ol > li:not(.subMenu), #user-menu a#btn-down').show();
+		$('#user-menu > ol > li.subMenu, #user-menu a#btn-root').hide();
+	}
+	$("body").delegate( "#user-menu a#btn-root", "click", function(e) {
+		hide_local_menu();
+		e.preventDefault();
+	});
+	$("body").delegate( "#user-menu a#btn-down", "click",function(e) {
+		show_local_menu();
+		e.preventDefault();
+	});
+
+	/* Show/Hide Search */
+	$("body").delegate( "#user-menu a#btn-search", "click", function(e) {
+		$("#user-menu .searchInput").slideDown(200);
+		e.preventDefault();
+	});
+	$("body").delegate( "#user-menu a#btn-cancel", "click", function(e) {
+		$("#user-menu .searchInput").slideUp(200);
+		e.preventDefault();
+	});
+
+// 17. Left Nav Flyouts
+	if(!is_mobile_app_mode()){
+		initLeftNav();
+	}
+});
+
+var openSubNav = false,
+	hasClickThrough = false,
+	thinNavLoaded = false,
+	mainNavLoaded = false,
+	thinMenuHoverTimeout,
+	thinMenuPopoutTimeout,
+	globalWindowHeight = $(window).height(),
+	globalWindowWidth = $(window).width(),
+	globalScrollTop = 0;
+	setFocusThinNav = false;
+
+function openThinNav() {
+	if($('html').hasClass('touch')){
+		setTimeout(function(){
+			$('div.navTrigger').addClass('closeNavTrigger');
+		}, 300);
+	}else{
+		$('div.navTrigger').addClass('closeNavTrigger');
+	}
+
+	$('html:not([dir=rtl]) nav#leftColumn ol.thinMainNav').removeClass('hide').addClass('hoverMainNav').stop(true, true).animate({width: 189, paddingLeft: $('body').hasClass('fullscreen') ? 28 : 15}, 300, 'easeOutExpo');
+	$('[dir=rtl] nav#leftColumn ol.thinMainNav').removeClass('hide').addClass('hoverMainNav').stop(true, true).animate({width: 189, paddingRight: $('body').hasClass('fullscreen') ? 28 : 15}, 300, 'easeOutExpo');
+
+	$(".catalog_class").addClass('hide_nicescroll');
+	$(".catalog_class nav#leftColumn").css('overflow','visible');
+
+	// For Accessbility
+	if (setFocusThinNav) {
+		$('nav#leftColumn ol.thinMainNav').focus();
+		setFocusThinNav = false;
+	}
+}
+function closeThinNav() {
+	$('div.navTrigger').removeClass('closeNavTrigger');
+	$('nav#leftColumn ol.thinMainNav li a').removeClass('selected');
+	$('html:not([dir=rtl]) nav#leftColumn ol.thinMainNav').removeClass('hoverMainNav').stop(true, true).animate({width: 0, paddingLeft: "0"}, 200, 'easeOutExpo', function() {
+		$(this).addClass('hide')
+	});
+	$('[dir=rtl] nav#leftColumn ol.thinMainNav').removeClass('hoverMainNav').stop(true, true).animate({width: 0, paddingRight: "0"}, 200, 'easeOutExpo', function() {
+		$(this).addClass('hide')
+	});
+
+	$(".catalog_class").removeClass('hide_nicescroll');
+	$(".catalog_class nav#leftColumn").css('overflow','hidden');
+}
+
+function openFlyOut(row) {
+	if ($(row).find(".dropDown").length) {
+		$(row).parent().find('li > a').removeClass('highlight');
+		$(row).parent().find('li > .dropDown').css('visibility', 'hidden');
+
+		var $thisDropDown = $(row).find(".dropDown");
+
+		$thisDropDown.css('visibility', 'visible');
+		$(row).find("> a").addClass("highlight");
+
+		fixFlyOut($thisDropDown);
+	}
+}
+function closeFlyOut(row) {
+	if ($(row).find(".dropDown").length) {
+		$(row).find(".dropDown").attr('style',''); // reset repositioning
+		$(".moveDropDownBefore").remove(); // reset repositioning
+		$(row).find(".dropDown").css('visibility', 'hidden');
+		$(row).find("> a").removeClass("highlight");
+
+		if($(row).parent().hasClass('staticMainNav')){
+			$thisNavContainer = $(row).parent();
+			$thisNavContainer.siblings('.largeImgs').first().removeAttr('style');
+			$thisNavContainer.removeAttr('style');
+		}
+
+		if(is_mobile_app_mode()){
+			console.log('hide');
+		}
+	}
+}
+function delayOpenFlyOut(row) {
+	if ($(row).parent().hasClass('hoverMainNav')) {
+		openFlyOut(row);
+	} else {
+		thinMenuPopoutTimeout = window.setTimeout(function() {if ($(row).parent().hasClass('hoverMainNav')) openFlyOut(row);}, 500);
+	}
+}
+function delayCloseFlyOut(row) {
+	window.clearTimeout(thinMenuPopoutTimeout);
+	if ($(row).parent().hasClass('hoverMainNav')) {
+		closeFlyOut(row);
+	}
+}
+function exitMainMenu(menu) {
+	window.clearTimeout(thinMenuPopoutTimeout);
+	$(menu).find(".highlight + .dropDown").css('visibility', 'hidden');
+	$(menu).find(".highlight").removeClass("highlight");
+	return true;
+}
+function fixFlyOut($thisDropDown){
+	var footerTop = is_mobile_app_mode() ? globalWindowHeight - 110 : $('footer').offset().top - $(window).scrollTop(),
+		dropDownBot = $thisDropDown.offset().top - $(window).scrollTop() + $thisDropDown.outerHeight(),
+		dropDownTopMargin = -parseInt($thisDropDown.css('marginTop'));
+	var dropDownSiblingAttr = $thisDropDown.siblings().attr('nav-item-id'),
+		parentNavClass = $thisDropDown.closest('ol').attr('class').replace(' ', ''),
+		newCoverTopMargin;
+
+	// reposition if running over footer
+	if (dropDownBot > footerTop && !$('#contentWrap').hasClass('gradebook')) {
+		$thisDropDown.css('margin-top', '-' + (dropDownBot - footerTop + dropDownTopMargin + 8) + 'px');
+	}
+
+	// reposition if running over screen
+	var safeOffset = $(window).height() - $thisDropDown.outerHeight();
+	if ($thisDropDown.offset().top - $(window).scrollTop() > safeOffset) {
+		var newTopMargin = ($thisDropDown.offset().top - $(window).scrollTop() - safeOffset) + dropDownTopMargin + 4;
+		$thisDropDown.css('margin-top', '-' + newTopMargin + 'px');
+	}
+
+	//fix down-right diagonal movement issue for last nav items
+	if($thisDropDown.parent().parent().hasClass('staticMainNav') && !$thisDropDown.parent().parent().hasClass('mobileSubMenu')){
+		$thisNavContainer = $thisDropDown.parent().parent();
+		var difference = ($thisDropDown.offset().top + $thisDropDown.outerHeight()) - ($thisNavContainer.offset().top + $thisNavContainer.outerHeight());
+		if (difference > 0) {
+			if ($thisDropDown.parent().width() < 100) {
+				$thisNavContainer.siblings('.largeImgs').first().css('margin-top', $thisNavContainer.outerHeight() + 2);
+			} else {
+				$thisNavContainer.siblings('.largeImgs').first().css('margin-top', $thisNavContainer.outerHeight() + ($thisNavContainer.siblings('img').length ? 12 : 2));
+			}
+			$thisNavContainer.css({'position': 'absolute', 'z-index': 10, 'height': ($thisNavContainer.outerHeight() + difference)});
+		}
+	}
+}
+function hookFlyOutEvents(container){
+	if($('nav#leftColumn ol.'+container).length == 0){
+		return;
+	}
+
+	if($('nav#leftColumn ol.'+container+' #flyout_classes ul.tabnav li').length < 2){
+		$('nav#leftColumn ol.'+container+' #flyout_classes ul.tabnav').hide();
+	}else{
+		$('nav#leftColumn ol.'+container+' #flyout_classes ul.tabnav li a').click(function(){
+			selectFlyOutTab($(this), 'nav#leftColumn ol.'+container+' #flyout_classes');
+		});
+		selectFlyOutTab($('nav#leftColumn ol.'+container+' #flyout_classes ul.tabnav li a').first(), 'nav#leftColumn ol.'+container+' #flyout_classes');
+	}
+
+	//add "switch to class" arrows
+	var classes_ids = [];
+	$('nav#leftColumn ol.'+container+' #flyout_classes #flyout_classes_tab_teaching li').each(function(index){
+		classes_ids[index] = $(this).attr('class-id');
+	});
+	var current_url_segments = document.URL.split('/');
+	var current_class_id = current_url_segments[current_url_segments.length - 1];
+	if($.inArray(current_class_id, classes_ids) > -1){
+		$('nav#leftColumn ol.'+container+' #flyout_classes #flyout_classes_tab_teaching li').each(function(index){
+			if(current_class_id != $(this).attr('class-id')){
+				$(this).append('<a href="/teacher_class/switch_to_class/'+current_class_id+'?class_id='+$(this).attr('class-id')+'&from='+encodeURIComponent(document.location.pathname)+'" class="sub_links desktop_only"><i class="return"></i></a>');
+			}
+		});
+	}
+
+	// non-touch screen events
+	if($('.no-touch').length > 0){
+		$(".no-touch nav#leftColumn > ol."+container).menuAim({
+			activate: container == 'staticMainNav' ? openFlyOut : delayOpenFlyOut,
+			deactivate: 'staticMainNav' ? closeFlyOut : delayCloseFlyOut,
+			exitMenu: exitMainMenu,
+			submenuDirection: $('html').attr('dir') == 'RTL' ? 'left' : 'right'
+		});
+
+		$('.no-touch nav#leftColumn ol.'+container+' a.mainNavArrow').on('click', function(e) {
+			e.preventDefault();
+			if ($(this).closest('ol').width() > 50) {
+				closeThinNav();
+			} else {
+				openThinNav();
+			}
+		});
+		
+		// Accessibility for .staticMainNav
+		// Close flyout
+		$(document).keydown(function(e) {
+			if (e.keyCode == 27 && $('ol.staticMainNav > li > a').hasClass('highlight')) {
+				if ($('ol.staticMainNav > li > a:focus').hasClass('highlight')) {
+					// Close dropDown if controlling link has focus
+					closeFlyOut($('ol.staticMainNav a.highlight:focus').parent());
+				} else {
+					// Close dropDown & reset focus if an element inside the dropDown has focus
+					closeFlyOut( $('ol.staticMainNav :focus').closest('.dropDown').parent() );
+					$('ol.staticMainNav :focus').closest('.dropDown').siblings('a').focus();
+				}
+			}
+		});
+		// Open flyout - needed after pressing Esc in order to open again
+		$('.no-touch nav#leftColumn > ol.staticMainNav > li > a').click(function(e){
+			openFlyOut($(this).closest('li'));
+		});
+	}
+
+	if(container == 'thinMainNav'){
+		// touch screen events
+		$('.touch nav#leftColumn ol.thinMainNav li a:not(.mainNavArrow)').on('mouseenter',function(e) {
+			if ($(this).siblings().length) {
+				e.preventDefault();
+				hasClickThrough = false;
+				openSubNav = true;
+				if (!$(this).closest('ol').hasClass('hoverMainNav')) {
+					openThinNav();
+				}
+			} else {
+				hasClickThrough = true;
+			}
+		});
+		$('.touch nav#leftColumn ol.thinMainNav li:has(.dropDown) a:not(.mainNavArrow)').on('mouseleave',function(e) {
+			e.preventDefault();
+			openSubNav = false;
+		});
+		touchDeviceTweaks();
+	}
+
+	if(container == 'staticMainNav'){
+		$('.'+container).click(function(){
+			$('.'+container).siblings('.largeImgs').first().removeAttr('style');
+			$('.'+container).removeAttr('style');
+		});
+	}
+
+	$(' nav#leftColumn ol.thinMainNav a.mainNavArrow').on('click',function(e){
+		e.preventDefault();
+		hasClickThrough = false;
+	});
+
+	$('nav#leftColumn ol.'+container+' .dropDown .columnListing:not(.menu_split_processed)').each(function(){
+		$(this).find('ul:not(.cta) li')
+			.slice(Math.ceil($(this).find('li').length / 2))
+			.insertAfter($(this).find('ul:not(.cta)'))
+			.wrapAll('<ul />');
+		$(this).addClass('menu_split_processed');
+	});
+
+	if(!is_mobile_app_mode() && navigator.userAgent.match(/iPad/i) == null){
+		$('nav#leftColumn .dropDown .scroll li').hover(
+			function(){
+				$(this).find('a i').show();
+			},
+			function(){
+				$(this).find('a i').hide();
+			}
+		);
+	}
+
+	$('.touch nav#leftColumn ol.'+container+' > li > a').hover(function(){
+		if($(this).siblings('.dropDown').length){
+			fixFlyOut($(this).siblings('.dropDown'));
+			$('.touch nav#leftColumn ol.'+container+' > li > a').removeClass('highlight');
+			$(this).addClass('highlight');
+		}
+	});
+
+	if(!is_mobile_app_mode()){
+		initLeftNavButton();
+	}
+
+	isolatedScroll($('nav#leftColumn ol.'+container+' .dropDown.dropDown .scroll'));
+	selectNavItem();
+}
+
+function initLeftNavButton(){
+	$('.no-touch .navTrigger:not(.closeNavTrigger)').mouseenter(function(e){
+		$('nav#leftColumn ol.thinMainNav').trigger('mouseenter');
+	});
+	$('.touch .navTrigger').click(function(e){ //remove :not(.closeNavTrigger) because it didn't work in the mobile app
+		if(!$(this).hasClass('closeNavTrigger')){
+			if(is_mobile_app_mode()){
+				openThinNav();
+			}else{
+				$('nav#leftColumn ol.thinMainNav').trigger('click');
+			}
+		}
+	});
+	$('.no-touch .navTrigger:not(.closeNavTrigger)').mouseleave(function(e){
+		var nextElement = e.toElement || e.relatedTarget;
+		if($(nextElement).parents('nav#leftColumn').length == 0){
+			$('nav#leftColumn ol.thinMainNav').trigger('mouseleave');
+		}
+	});
+	$('body').on('click', '.closeNavTrigger', function(e){
+		closeThinNav();
+	});
+
+	// Accessibility for .thinMainNav
+	$('.no-touch .navTrigger').click(function(e){
+		if ($(this).hasClass('closeNavTrigger')) {
+			$('nav#leftColumn ol.thinMainNav').trigger('mouseleave');
+		} else {
+			setFocusThinNav = true;
+			$('nav#leftColumn ol.thinMainNav').trigger('mouseenter');
+		}
+	});
+	$(document).keydown(function(e) {
+		if (e.keyCode == 27 && $('.navTrigger').hasClass('closeNavTrigger')) {
+			if ($('nav#leftColumn ol.thinMainNav > li > a').hasClass('highlight')) {
+				// Close the open .dropDown
+				if ($('ol.thinMainNav > li > a:focus').hasClass('highlight')) {
+					// Close dropDown if controlling link has focus
+					closeFlyOut($('ol.thinMainNav a.highlight:focus').parent());
+				} else {
+					// Close dropDown & reset focus if an element inside the dropDown has focus
+					closeFlyOut( $('ol.thinMainNav :focus').closest('.dropDown').parent() );
+					$('ol.thinMainNav :focus').closest('.dropDown').siblings('a').focus();
+				}
+			} else {
+				// Close the whole .thinMainNav
+				$('nav#leftColumn ol.thinMainNav').trigger('mouseleave');
+				$('.navTrigger a').focus();
+			}
+		}
+	});
+	// Open flyout - needed after pressing Esc in order to open again
+	$('.no-touch nav#leftColumn > ol.thinMainNav > li > a').click(function(e){
+		openFlyOut($(this).closest('li'));
+	});
+}
+
+function selectFlyOutTab($element, container){
+	$(container+' ul.tabnav li a').removeClass('selected');
+	$(container+' div.scroll').hide();
+	$(container+' #'+$element.attr('rel')).show();
+	$element.addClass('selected');
+}
+
+function selectNavItem(){
+	$('nav#leftColumn ol.staticMainNav li a[nav-item-id="'+$('nav#leftColumn ol.staticMainNav').attr('selected-item')+'"]').addClass('selected');
+}
+
+function touchDeviceTweaks(){
+	$('.touch nav#leftColumn ol.thinMainNav > li > a:not(.mainNavArrow)').each(function(){
+		if($(this).siblings('.dropDown').length == 0){
+			$(this).on('click', function(e){
+				if(!$('.touch nav#leftColumn ol.thinMainNav').hasClass('hoverMainNav')){
+					openThinNav();
+					$(this).addClass('selected');
+					return false;
+				}
+			});
+		}
+	});
+}
+
+//we're also calling this in the mobile app
+function initLeftNav(){
+	if($('nav#leftColumn > ol.staticMainNav li .dropDown').length){
+		$(".no-touch nav#leftColumn > ol.staticMainNav").menuAim({
+			activate: openFlyOut,
+			deactivate: closeFlyOut,
+			exitMenu: exitMainMenu,
+			submenuDirection: $('html').attr('dir') == 'RTL' ? 'left' : 'right'
+		});
+		$('nav#leftColumn ol.staticMainNav .dropDown .columnListing:not(.menu_split_processed)').each(function(){
+			$(this).find('ul:not(.cta) li')
+				.slice(Math.ceil($(this).find('li').length / 2))
+				.insertAfter($(this).find('ul:not(.cta)'))
+				.wrapAll('<ul />');
+				$(this).addClass('menu_split_processed');
+		});
+	}
+
+	//AJAX popouts
+	$('nav#leftColumn ol.staticMainNav li a.ajaxDropdown').hover(function(){
+		$this = $(this);
+		if($this.siblings('.dropDown').html().length == 0){
+			$.get($this.attr('href')+'?popout=true&from=' + encodeURIComponent(window.location.href), function(data){
+				$this.siblings('.dropDown').html(data);
+			});
+		}
+	});
+
+	// non-touch screen events
+	$('.no-touch nav#leftColumn ol.thinMainNav').hover(function() {
+		thinMenuHoverTimeout = window.setTimeout(openThinNav, 50);
+	}, function(e) {
+		var nextElement = e.toElement || e.relatedTarget;
+		if($(nextElement).parents('header').length == 0){
+			window.clearTimeout(thinMenuHoverTimeout);
+			if ($(this).hasClass('hoverMainNav'))
+				closeThinNav();
+		}
+	});
+
+	// touch screen events
+	$('.touch nav#leftColumn ol.thinMainNav').off('click');
+	$('.touch nav#leftColumn ol.thinMainNav').on('click',function(e) {
+		if ($(this).hasClass('hoverMainNav') && openSubNav == false && hasClickThrough == false) {
+			closeThinNav();
+		} else if (!$(this).hasClass('hoverMainNav') && hasClickThrough == false) {
+			openThinNav();
+		}
+	});
+	touchDeviceTweaks();
+
+	$('nav#leftColumn ol.staticMainNav + ol.thinMainNav').each(function(){
+		var $this = $(this);
+		$(window).scroll(function() {
+			var heightCondition = $this.siblings('img').length ? $this.siblings('img').outerHeight() + $this.siblings('.staticMainNav').outerHeight() : $this.siblings('.staticMainNav').outerHeight();
+			if ((is_mobile_app_mode() ? globalWindowWidth : $(window).width()) > 980 && $(this).scrollTop() > heightCondition) {
+				$this.fadeIn(200);
+				$('ol.thinMainNav ~ ol').addClass('narrowLists');
+			} else {
+				$this.fadeOut(100);
+				$('ol.thinMainNav ~ ol').removeClass('narrowLists');
+			}
+		});
+	});
+
+	selectNavItem();
+
+	//Load thin and main nav contents from local storage
+	if(!is_mobile_app_mode() && !is_visitor_mode()){
+		if(!thinNavLoaded){
+			if (Modernizr.localstorage) {
+				$('nav#leftColumn ol.thinMainNav').html(localStorage.getItem("left_nav_content"));
+				hookFlyOutEvents('thinMainNav');
+			}else{
+				$.get('/navigation/main_nav_full', {'thin_nav': true}, function(data){
+					$('nav#leftColumn ol.thinMainNav').html(data);
+					hookFlyOutEvents('thinMainNav');
+				});
+			}
+			thinNavLoaded = true;
+		}
+
+		initStaticMainNav();
+	}
+}
+
+function initStaticMainNav(){
+	if($('nav#leftColumn ol.staticMainNav li.flyoutContainer').length && !mainNavLoaded){
+		if(is_mobile_app_mode() || Modernizr.localstorage){
+			$('nav#leftColumn ol.staticMainNav').html(localStorage.getItem("left_nav_content"));
+			hookFlyOutEvents('staticMainNav');
+		}else{
+			$.get('/navigation/main_nav_full', function(data){
+				$('nav#leftColumn ol.staticMainNav').html(data);
+				hookFlyOutEvents('staticMainNav');
+			});
+		}
+		mainNavLoaded = true;
+	}
+}
+
+//18. Init mobile menu
+function initMobileMenuContent(data){
+	$('body').prepend(data);
+	$('nav#user-menu .dropDownHeading').wrapInner('<ul><li class="Label dropDownHeading"></li></ul>').find('ul').unwrap();
+
+	if ($('ol.mobileSubMenu').length) {
+		// Grab group/class menu and title
+		$('ol.mobileSubMenu').clone().prependTo($('nav#user-menu ol'))
+			.find(' > li').removeClass('dropDownHolder').unwrap().addClass('subMenu')
+			.find('a.highlight').removeClass('highlight').parent().addClass('selected');
+		$('nav#user-menu a.selected').removeClass('selected').parent().addClass('selected');
+		if($('header .sectionTitle h2').length){
+			$('nav#user-menu ol').prepend('<li class="Label subMenu">'+$('header .sectionTitle h2').html()+'</li>');
+		}
+		$('nav#user-menu').addClass('local_menu_visible').removeClass('lessonNav');
+	}
+
+	//add "help for this page" link
+	if(get_help_for_page()){
+		$('nav#user-menu ul.helpLinks').prepend(get_help_for_page());
+	}
+
+	// Adjust menu structure
+	$("nav#user-menu .dropDown .columnListing ul, nav#user-menu .dropDown .scroll ul").unwrap();
+	$("nav#user-menu .dropDown ul").unwrap();
+	$("nav#user-menu ol > li").each(function() {
+		// Merge lists into one ul
+		$(this).find('ul').wrapAll('<ul />').find('li').unwrap();
+	});
+
+	//highlight current section
+	$("nav#user-menu ol > li > ul > li > a, nav#user-menu ol > li > a").each(function(){
+		if(mobile_menu_highlight_override.length){
+			var document_url = mobile_menu_highlight_override;
+		}else{
+			var document_url = /(admin_dashboard|groups_dashboard|teacher_dashboard|enrolled_dashboard|completed_dashboard)/.test(document.URL) ? '/home_dashboard' : document.URL;
+		}
+		if(document_url.indexOf($(this).attr('href')) > -1 && document_url.indexOf($(this).attr('href')) == (document_url.length - $(this).attr('href').length)){
+			$(this).parent().addClass('mm-selected');
+			$("nav#user-menu ol > li").removeClass('mm-opened');
+			$(this).parent().parent().parent().addClass('mm-opened');
+		}
+	});
+
+	if(is_mobile_app_mode()){
+		mobile_nav_content = replace_relative_paths($('nav#user-menu').clone().wrap('<div/>').parent().html());
+		window.parent.postMessage('{"method": "mobileNavContent", "content": ' + JSON.stringify(mobile_nav_content) + '}', '*');
+	}
+	initMobileMenuEvents();
+}
+
+function setMobileAppLinks(container){
+	console.log('setMobileAppLinks('+container+')');
+	$(container+' a:not([onclick]):not([href=""]):not([href^="#"]):not([target="_blank"]), '+container+' button').each(function(index) {
+		var href = $(this).attr('href');
+		if ( (!$.hasData(this) || container == '#user-menu') && typeof $(this).attr('no-loader') == 'undefined' && !$(this).hasClass('no-loader') && ( typeof (href) != 'undefined' && href.substring(0, 10) != 'javascript' )) {
+			if ( typeof (href) == 'undefined' || ( typeof (href) != 'undefined' && (href.substring(0, 1) == '/' || href.substring(0, 4) == 'http' && href.indexOf(window.location.host) > -1
+				)
+				)) {
+				$(this).click(function() {
+					window.parent.postMessage("{\"method\": \"toggleLoader\", \"action\": \"start\"}", "*");
+				});
+			} else {
+				$(this).click(function() {
+					window.parent.postMessage("{\"method\": \"loadBrowser\", \"href\": \"" + href + "\"}", "*");
+					return false;
+				});
+			}
+		}
+	});
+}
+
+function initMobileMenuEvents(){
+	// Create mobile main menu
+	$("#user-menu").mmenu({
+		slidingSubmenus: false,
+		moveBackground: false,
+		zposition: 'next'
+	}, {
+		selectedClass: "selected"
+	});
+	if(is_mobile_app_mode()){
+		$('nav#user-menu').on('opening.mm', function() {
+			$("#user-menu").show();
+		});
+	}else{
+		$("#user-menu").show();
+	}
+
+	if(navigator.userAgent.match(/Android/i)) {
+		$("#user-menu").on("opened.mm", function () {
+			window.parent.postMessage("{\"method\": \"refreshBodyHeight\", \"value\": \"1\"}", "*");
+		});
+		$("#user-menu").on("closed.mm", function () {
+			window.parent.postMessage("{\"method\": \"refreshBodyHeight\", \"value\": \"1\"}", "*");
+		});
+	}
+
+	// Add Search Form and skip to content button
+	$("#user-menu").before('<a href="#centreColumn" class="skipToContent">Skip to content</a>');
+	if(is_mobile_app_mode() && typeof schoolProtocol != 'undefined' && typeof schoolDomain != 'undefined'){
+		var form_opening_tag = '<form target="contentFrame" action="' + schoolProtocol + '://' + schoolDomain + '/search_simple/summary" onsubmit="app.toggleLoader(true);" method="get">';
+	}else{
+		var form_opening_tag = '<form action="/search_simple/summary" method="get">';
+	}
+	$("#user-menu").prepend('\
+	<div class="mobileSearch quickLinks">\
+		<div class="searchLinks">\
+			<a href="" id="btn-root"><i class="home"></i></a>\
+			<a href="" id="btn-down"><i class="arrow-down"></i></a>\
+			<a href="#" id="btn-search"><i class="search"></i></a>\
+		</div>\
+		<div class="searchInput">\
+			' + form_opening_tag + '\
+				<input type="search" id="phrase" name="phrase" placeholder="Search">\
+			</form>\
+			<a href="#" id="btn-cancel"><i class="xCross inverted"></i></a>\
+		</div>\
+	</div>');
+	$('nav.mm-menu a').each(function(){
+		if($(this).attr('href') == '#' || $(this).attr('href') == ''){
+			$(this).attr('href', 'javascript:void(0)');
+		}
+	});
+
+	$("header").addClass('mm-fixed-top');
+
+	//disable href for parent menu items
+	$("nav#user-menu ol > li > a").each(function(){
+		if($(this).siblings('.mm-subopen').length > 0){
+			$(this).attr('href', 'javascript:void(0)');
+		}
+	});
+
+	if(navigator.userAgent.match(/Android/i)) {
+		$('#user-menu > ol > li.userQuicklinks:last-child').css('margin-bottom', 30);
+	}
+
+	//close menu when facebox is opened
+	$(document).bind('reveal.facebox', function() {
+		if ($("#user-menu").hasClass('mm-opened'))
+			$("#user-menu").trigger( "close.mm" );
+	});
+
+	$('.mm-subopen').siblings('a').click(function(e){
+		if($(this).attr('href').substring(0,10) == "javascript"){
+			$(this).parent().toggleClass('mm-opened');
+			$(this).parent().siblings('li').removeClass('mm-opened');
+		}else if(!$(this).parent().hasClass('mm-opened')){
+			$(this).parent().toggleClass('mm-opened');
+			$(this).parent().siblings('li').removeClass('mm-opened');
+		}
+		if($(this).parent().offset().top < 50){
+			$('nav#user-menu ol').scrollTop($('nav#user-menu ol').scrollTop() - (Math.abs($(this).parent().offset().top) + 50));
+		}
+	});
+	$('.mm-subopen').click(function(e){
+		$(this).siblings('a')[0].click();
+		$(this).parent().toggleClass('mm-opened');
+		$(this).parent().siblings('li').removeClass('mm-opened');
+	});
+
+	//scroll to current selected item
+	if($('nav#user-menu li.mm-selected').length && $('nav#user-menu li.mm-selected').offset().top > $(window).height() - 100){
+		$('nav#user-menu ol').scrollTop($('nav#user-menu li.mm-selected').offset().top - ($(window).height()/2) );
+	}
+
+	//remove arrow from lesson items
+	$("nav#user-menu .lessonItem").siblings('.mm-subopen').remove();
+
+	if(navigator.userAgent.match(/Android/i)) {
+		setMobileAppLinks('#user-menu');
+	}
+}
+
+$(function() {
+
+// 19. Toggle student/teacher lessons
+	function lessonsAccordion(row, toggleRow) {
+		$(row).on('click', function() {
+			var $siblings = $(this).closest('tbody').find(toggleRow);
+
+			if($siblings.length){
+				if ($siblings.is(':visible') == false) {
+
+					$(this).parent().addClass('highlightLesson');
+					if(is_mobile_device()){
+						$siblings.show();
+					}else{
+						$siblings.show(400);
+					}
+				} else {
+					$(this).parent().removeClass('highlightLesson');
+					$siblings.hide();
+				}
+			}
+		});
+
+		$(row + " a:not(.accordionLink)").on('click', function(e) {
+			e.stopPropagation();
+		});
+	}
+
+	lessonsAccordion('.studentModuleView.new_studentModuleView table tr:not(".lesson")', 'tr.lesson:not(.hide)');
+	lessonsAccordion('form#lessons.new_teacher_lessons #lesson_list > table > tbody > tr:first-child', 'tr:nth-child(2)');
+
+// 20. Disable fixed position for header and section toolbar on zoom - mobile devices
+	if(is_mobile_device() && $(window).width() > 980) {
+		$(window).resize(function () {
+			var zoom = document.documentElement.clientWidth / window.innerWidth;
+			if (zoom > 1) {
+				$('header, #fixedSectionHeader').css('position', 'absolute');
+			}else if(zoom == 1){
+				$('header, #fixedSectionHeader').css('position', 'fixed');
+			}
+		});
+	}
+
+// 21. Resize functions
+	// Toggle student/teacher lessons
+	function checkCatalogBoxHeadings() {
+		if ($('body:not(.new_tiles) .catalog_boxes h2 span').length) {
+			$('.catalog_boxes h2 span span, .catalog_boxes h2 a span').each(function() {
+				($(this).outerHeight() < 46) ? $(this).closest('h2').addClass('alignMiddle') : $(this).closest('h2').removeClass('alignMiddle');
+				if ($(this).css('opacity') == 0)
+					$(this).animate({opacity: 1}, 100);
+			});
+		}
+	}
+
+	// Catalog class left column height
+	function resizeCatalogClassLeftColumn() {
+		var leftcolumn_height = $(window).height() - $('.portal #contentHeader').outerHeight() - $('header').outerHeight();
+
+		if ($('#wrapper').outerHeight() <= $(window).height()) {
+			$('.catalog_class #leftColumn').css('max-height', leftcolumn_height - $('footer').outerHeight());
+		} else {
+			var scroll_pos = $('#contentWrap').outerHeight() - $(window).height() - $(window).scrollTop() + $('header').outerHeight() + $('.portal #contentHeader').outerHeight();
+
+			if ($(window).width() >= 768) {
+				if (scroll_pos < 0) {
+					// Footer is visible
+					$('.catalog_class #leftColumn').css('max-height', leftcolumn_height + scroll_pos);
+				} else {
+					// Footer isn't visible
+					$('.catalog_class #leftColumn').css('max-height', leftcolumn_height);
+				}
+			} else {
+				$('.catalog_class #leftColumn').attr('style', '');
+			}
+		}
+	}
+	// Catalog class show content and resize left column
+	$('.catalog_class .showLessons a, .catalog_class .showReviews a').on('click', function(e) {
+		e.preventDefault();
+
+		if ($(this).parent().siblings('.hide').length > 0) {
+				$(this).parent().siblings('.hide').each(function(index) {
+						$(this).addClass("show").removeClass("hide");
+					});
+				$(this).parent().addClass('removeLines');
+			} else {
+				$(this).parent().siblings('.show').each(function(index) {
+						$(this).addClass("hide").removeClass("show");
+					});
+				$(this).parent().removeClass('removeLines');
+			}
+		$(this).css('display','none').siblings().css('display','inline-block');
+
+		resizeCatalogClassLeftColumn();
+	});
+
+	//Resize user screen
+	$(window).resize(function(){
+		if (!$("body").hasClass('newSite')) {
+			checkCatalogBoxHeadings();
+			resizeCatalogClassLeftColumn();
+		}
+		if ($('.lesson_boxes.ui-sortable').length) {
+			$('.lesson_boxes').css('width', 'auto');
+			$('.lesson_boxes').css('width', $('.lesson_boxes').width());
+		}
+	});
+	$(window).scroll(function() {
+		resizeCatalogClassLeftColumn();
+	});
+	checkCatalogBoxHeadings();
+	resizeCatalogClassLeftColumn();
+
+// 22. Add iframe to z-index elements in IE
+	if(/MSIE|Trident/.test(navigator.userAgent)){
+		var iframe_element = '<iframe style="border:none; position:absolute; top:0; left:0; height:100%; width:100%; z-index:-1;" src="about:blank"></iframe>';
+		$(document).bind('reveal.facebox', function(){
+			$('#facebox').prepend(iframe_element);
+		});
+		$('header').prepend(iframe_element);
+		$('#fixedSectionHeader').prepend(iframe_element);
+	}
+
+	// 23. Load SVG icon sprite
+	$.get("/images/icons/main-icons-lrg.svg", function(data) {
+		var div = document.createElement("div");
+		div.style.display = 'none';
+		div.innerHTML = new XMLSerializer().serializeToString(data.documentElement);
+		document.body.insertBefore(div, document.body.childNodes[0]);
+	});
+
+	// 24. make wider images responsive
+	$('.materialStyle img[width]').each(function () {
+		var visible_width = 0;
+		if(parseInt($(this).css('width')) > 0){
+			visible_width = parseInt($(this).css('width'));
+		}else{
+			visible_width = parseInt($(this).attr('width'));
+		}
+		var parent_width = $(this).parents('.materialStyle').width();
+		if (parent_width > 0 && visible_width > parent_width) {
+			$(this).removeAttr('width');
+			$(this).removeAttr('height');
+			$(this).css({'width': '100%', 'height': 'auto'});
+		}
+	});
+
+	// 25. add focus trap to facebox
+	if(!is_mobile_app_mode() && $('html').hasClass('no-touch') && !$('body').hasClass('portal')) {
+		$(document).bind('reveal.facebox', function () {
+			focusTrap.activate('#facebox', {
+				initialFocus: '#facebox'
+			});
+			$('#facebox input, #facebox select').mousedown(deactivate_focus_trap);
+		});
+		$(document).bind('close.facebox', function () {
+			focusTrap.deactivate({returnFocus: false});
+		});
+
+		function deactivate_focus_trap(e){
+			focusTrap.deactivate({returnFocus: false});
+			$(e.target).focus();
+		}
+	}
+	// 26. Stop jwplayer when closing facebox
+	$(document).bind('close.facebox', function() {
+		$('#facebox div[id^="jwTarget"]').each(function(){
+			jwplayer($(this).attr('id')).stop();
+		});
+
+    $("#facebox div[id^='flowpv'], #facebox div[id^='flowpa']").each(function(index, element) {
+      flowplayer($(element)).stop();
+    });
+	});
+
+}); // END - Document ready
