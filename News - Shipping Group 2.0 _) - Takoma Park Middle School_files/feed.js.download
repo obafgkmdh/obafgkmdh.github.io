@@ -40,6 +40,14 @@ function add_feed_id() {
 	return (feed_id == null ? '' : '/' + feed_id);
 }
 
+// hide intro in news feed
+
+function hide_news_intro() {
+  if ($('.news_feed_intro_block').is(":visible")) {
+    $('.news_feed_intro_block').hide();
+  }
+}
+
 // post
 
 function hide_post() {
@@ -80,6 +88,7 @@ function submit_post() {
 				+ '?sticky=' + (sticky ? 'true' : 'false') 
 				+ '&message=' + encodeURIComponent(message) + attach_segment);
 		hide_post();
+    hide_news_intro();
 	}
 }
 
@@ -185,6 +194,7 @@ function submit_announcement(messages) {
 				+ '&messages=' + messages
 				+ '&message=' + encodeURIComponent(message) + attach_segment);
 		hide_announcement();
+    hide_news_intro();
 	}
 }
 
@@ -224,6 +234,7 @@ function submit_system_notice() {
 				+ '&administrators=' + (administrators ? 'true' : 'false') 
 				+ '&message=' + encodeURIComponent(message));
 		hide_system_notice();
+    hide_news_intro();
 	}
 }
 

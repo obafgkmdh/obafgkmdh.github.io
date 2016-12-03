@@ -13,7 +13,7 @@
     <meta name="csrf-param" content="authenticity_token">
 <meta name="csrf-token" content="+AaxwZ2Cg0c6TYuRwojeuIDPn2bSsSeGzV4VNWDdo/I=">
     
-<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"6383bda808","applicationID":"18161322","transactionName":"dlcKRkQODlxSE0xQEVpNFG1EBBFfQhMAUhAaVA1BQg==","queueTime":0,"applicationTime":47,"agent":""}</script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"6383bda808","applicationID":"18161322","transactionName":"dlcKRkQODlxSE0xQEVpNFG1EBBFfQhMAUhAaVA1BQg==","queueTime":0,"applicationTime":42,"agent":""}</script>
 <script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[(new Date).getTime()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=NREUM;"undefined"==typeof window.newrelic&&(newrelic=f);var s=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit"],l="api-",p=l+"ixn-";a(s,function(e,t){f[t]=o(l+t,!0,"api")}),f.addPageAction=o(l+"addPageAction",!0),f.setCurrentRouteName=o(l+"routeName",!0),t.exports=newrelic,f.interaction=function(){return(new r).get()};var d=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(p+"tracer",[Date.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[Date.now(),r,o],n),o)try{return t.apply(this,arguments)}finally{c.emit("fn-end",[Date.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){d[t]=o(p+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,(new Date).getTime()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o){if(!p.aborted){e&&e(n,r,o);for(var i=t(o),a=v(n),u=a.length,c=0;c<u;c++)a[c].apply(i,r);var f=s[w[n]];return f&&f.push([y,n,r,i]),i}}function d(e,t){b[e]=v(e).concat(t)}function v(e){return b[e]||[]}function g(e){return l[e]=l[e]||o(n)}function m(e,t){f(e,function(e,n){t=t||"feature",w[n]=t,t in s||(s[t]=[])})}var b={},w={},y={on:d,emit:n,get:g,listeners:v,context:t,buffer:m,abort:a,aborted:!1};return y}function i(){return new r}function a(){(s.api||s.feature)&&(p.aborted=!0,s=p.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},l={},p=t.exports=o();p.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!h++){var e=y.info=NREUM.info,t=l.getElementsByTagName("script")[0];if(setTimeout(f.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return f.abort();c(b,function(t,n){e[t]||(e[t]=n)}),u("mark",["onload",a()],null,"api");var n=l.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===l.readyState&&i()}function i(){u("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var u=e("handle"),c=e(2),f=e("ee"),s=window,l=s.document,p="addEventListener",d="attachEvent",v=s.XMLHttpRequest,g=v&&v.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:v,REQ:s.Request,EV:s.Event,PR:s.Promise,MO:s.MutationObserver},e(1);var m=""+location,b={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-998.min.js"},w=v&&g&&g[p]&&!/CriOS/.test(navigator.userAgent),y=t.exports={offset:a(),origin:m,features:{},xhrWrappable:w};l[p]?(l[p]("DOMContentLoaded",i,!1),s[p]("load",r,!1)):(l[d]("onreadystatechange",o),s[d]("onload",r)),u("mark",["firstbyte",a()],null,"api");var h=0},{}]},{},["loader"]);</script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1.5, user-scalable=yes">
@@ -190,7 +190,7 @@ ga('send', 'pageview');
       <div class="mobileNotificationsHolder">
         <a href="http://tpmsscience.edu20.org/notifications" title="Notifications" class="rightMobileBar">
 
-            <i class="notifications"></i>
+            <i class="notifications unread"></i>
         </a>
       </div>
 </div>
@@ -233,7 +233,7 @@ ga('send', 'pageview');
 </div>
 
     <div class="notificationsHolder dropDownHolder"> 
-    <a href="http://tpmsscience.edu20.org/notifications" title="Notifications"><i class="notifications"></i></a>
+    <a href="http://tpmsscience.edu20.org/notifications" title="Notifications"><i class="notifications unread"></i></a>
        
   <div class="dropDown notificationsDropDown">
     <div class="scroll">
@@ -293,7 +293,7 @@ ga('send', 'pageview');
     <div>
       <ul></ul>
         
-      <div class="notificationsBottom">
+      <div class="notificationsBottom" style="display: none;">
         <a href="javascript:notification_mute(this)" class="audioNotifications" data-enable="true">
           <i class="audioOff"></i>
         </a>
@@ -370,7 +370,7 @@ ga('send', 'pageview');
               <a href="http://tpmsscience.edu20.org/group/show/115375"><img src="./Resources - Shipping Group 2.0 _) - Takoma Park Middle School_files/english-literature.jpg" alt="" width="18" height="18"><span>La Grupa de Espanol (the Spanish Group)</span></a>
             </li>
             <li class="moderator">
-              <a href="http://tpmsscience.edu20.org/group/show/116026"><img src="./Resources - Shipping Group 2.0 _) - Takoma Park Middle School_files/Lifetitle(2).jpg" alt="" width="18" height="18"><span>Life</span></a>
+              <a href="http://tpmsscience.edu20.org/group/show/116026"><img src="./Resources - Shipping Group 2.0 _) - Takoma Park Middle School_files/Life.gif" alt="" width="18" height="18"><span>Life</span></a>
             </li>
             <li class="moderator">
               <a href="http://tpmsscience.edu20.org/group/show/112898"><img src="./Resources - Shipping Group 2.0 _) - Takoma Park Middle School_files/download(2).jpg" alt="" width="18" height="18"><span>pd5 HydroPUNics &amp; Ko.</span></a>
@@ -836,7 +836,7 @@ ga('send', 'pageview');
 	        </li>
 	        <li>
 	          <a href="http://tpmsscience.edu20.org/group/show/116026">
-	  	        <img src="./Resources - Shipping Group 2.0 _) - Takoma Park Middle School_files/Lifetitle(2).jpg" width="32" height="32" alt="">
+	  	        <img src="./Resources - Shipping Group 2.0 _) - Takoma Park Middle School_files/Life.gif" width="32" height="32" alt="">
 	  	        <span>Life</span>
 	          </a>	
 	        </li>
@@ -926,6 +926,28 @@ ga('send', 'pageview');
 
     
     
+
+
+
+
+<ol class="largeImgs">
+  <h3>Online</h3>
+  
+	  <li>
+	    <a href="http://tpmsscience.edu20.org/user/show/3916723">
+	  	  <img src="./Resources - Shipping Group 2.0 _) - Takoma Park Middle School_files/youtube(2).png" class="avatar" width="32" height="32" alt="Profile image">
+	  	  <span>Lydia Melkamu</span>
+	    </a>	
+	  </li>	
+	  <li>
+	    <a href="http://tpmsscience.edu20.org/user/show/3921642">
+	  	  <img src="./Resources - Shipping Group 2.0 _) - Takoma Park Middle School_files/download(1).jpg" class="avatar" width="32" height="32" alt="Profile image">
+	  	  <span>Steven Su</span>
+	    </a>	
+	  </li>	
+  
+</ol>
+
     
 </nav>
 
@@ -958,7 +980,7 @@ ga('send', 'pageview');
 
 <form accept-charset="UTF-8" action="http://tpmsscience.edu20.org/group_resources/list/115432" class="tableForm" id="resources" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="+AaxwZ2Cg0c6TYuRwojeuIDPn2bSsSeGzV4VNWDdo/I="></div><div class="optionsRibbon optionsRibbonTable" style="overflow: visible;"><ul><li><a href="http://tpmsscience.edu20.org/group_resources/remove/115432" onclick="submit_form_with_confirm(&#39;resources&#39;, this, &#39;Are you sure?&#39;); return false;"><i class="remove"></i>Remove</a></li><li class="mobile_only" style="display: none;"><div class="dropDownHolder"><a href="http://tpmsscience.edu20.org/group_resources/list/115432"><i class="cog"></i><i class="arrowDown"></i></a><div class="dropDown" style="right: auto; left: -1px;"><ul></ul></div></div></li></ul></div><table width="100%">
   <tbody><tr>
-    <th align="center" scope="col" width="18"><input id="14895" name="selected" onclick="toggle_all(this)" type="checkbox" value="true" class="emptyLabel"><label for="14895"><span class="textOffScreen">Select all</span></label></th>
+    <th align="center" scope="col" width="18"><input id="960911" name="selected" onclick="toggle_all(this)" type="checkbox" value="true" class="emptyLabel"><label for="960911"><span class="textOffScreen">Select all</span></label></th>
     <th>Resource</th>
   </tr>
       
@@ -1033,6 +1055,7 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &#39;courier new&#39;, courier, monospace; font-size: 8pt;">i added something - iris</span></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &#39;courier new&#39;, courier, monospace; font-size: 8pt;">im 100% sure that kevin deleted stuff from under his own name - iris</span></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: courier new,courier,monospace; font-size: 8pt;">yes saem iris he totally deleted stuff, and also stephanie, banana virus is a crack ship. ~cher/athena/bella</span></p>
+<p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: courier new,courier,monospace; font-size: 8pt;">added a new ship - noah</span></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &#39;comic sans ms&#39;, sans-serif; font-size: 8pt;">pro html emphasis is pro - clam~</span></p>
 <p><marquee>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &#39;comic sans ms&#39;, sans-serif; font-size: 8pt;">pro html emphasis was created when shrujana added a ship under my name during comp sci - clam~</span></p>
@@ -1054,9 +1077,14 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: terminal,monaco,monospace; font-size: 8pt;">WHAT HAS THIS SHIP LIST BECOME</span></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: terminal,monaco,monospace; font-size: 8pt;">~cher/athena/bella</span></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: terminal,monaco,monospace; font-size: 8pt;"><span style="font-family: &#39;courier new&#39;, courier, monospace; font-size: 12pt;">Iḿ pr&amp;ty sure the new hypertext markup language emphasis is supposed to look like itś being typed out. &nbsp;The ¨<span style="color: #222222; font-family: terminal, monaco, monospace; font-size: 10.6667px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline !important; float: none;">LIST GLITCH<span style="font-family: &#39;courier new&#39;, courier, monospace;">¨&nbsp;<span style="font-size: 12pt;">is probably just that line adjusting to the changes in the textś font size. &nbsp;Also Canjana is not canon. &nbsp;</span></span></span>Ãlan Jason Grimm</span><br></span></p>
+<p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: terminal,monaco,monospace; font-size: 8pt;"><span style="font-family: &#39;courier new&#39;, courier, monospace;">yeah i only realized that later alan(p.s. clam can you take the size changing part out its glitching all the ships below shrujana's section)</span></span></p>
+<p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: terminal,monaco,monospace; font-size: 8pt;"><span style="font-family: &#39;courier new&#39;, courier, monospace;">~bella/cher/athena</span></span></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: terminal,monaco,monospace; font-size: 8pt;"><span style="font-family: &#39;courier new&#39;, courier, monospace;">i think kevin deleted "kevin x his crush" bc he was asking me about something on hangouts and i said that that was the only ship i put on the list. i added it back ~iris</span></span></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &#39;comic sans ms&#39;, sans-serif; font-size: 8pt;">pro html emphasis basically means rotating a &lt;marquee&gt; tag, changing its size, making it red, and making it bold</span></p>
-<p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"></p>
+<p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 8pt; font-family: &#39;courier new&#39;, courier, monospace;">I added lana x kevin :D ~iris (lana said that i can ship them xD)</span></p>
+<p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &#39;courier new&#39;, courier, monospace; font-size: 10pt;">added a section for jyotsna, if that's ok, and added some more ships and stuff</span></p>
+<p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &#39;courier new&#39;, courier, monospace; font-size: 10pt;">also this thing is really glitchy now jesus -- Stephanie&nbsp;</span></p>
+<p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 8pt; font-family: &#39;courier new&#39;, courier, monospace;"></span></p>
 <hr>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt;"></span></strong></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt;"></span></strong></p>
@@ -1070,7 +1098,7 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Allen, James:</span></strong></p>
 <ul>
-<li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">James A. x Bella J. ###</span></li>
+<li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">James A. x Bella J. </span></li>
 <li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">James A. x Lillian B</span></li>
 </ul>
 <p></p>
@@ -1078,29 +1106,39 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <ul>
 <li>Benji x Dank Memes</li>
 <li>Benji x <g class="gr_ gr_284 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="284" data-gr-id="284">unadmining</g> people :)***</li>
-<li>Benji x ego</li>
+<li>Benji x his ego</li>
 </ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Anderson, Lana:</span></strong></p>
-<p></p>
+<ul>
+<li>Lana x Kevin Z. (Levin)</li>
+</ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Arun, Roshni:</span></strong></p>
 <ul>
-<li style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 12pt;"><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Roshni x Rohin</span></span></li>
+<li style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 12pt;"><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Roshni A. x Rohin G.</span></span></li>
 </ul>
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Asfaw, Lia:</span></strong></p>
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Becker, Lillian:</span></strong></p>
 <ul>
-<li>Lillian B. x Chris P</li>
-<li>Lillian B. x James A</li>
+<li>Lillian B. x Chris P.</li>
+<li>Lillian B. x James A.</li>
 </ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Berhane, Ayyoob:</span></strong></p>
-<p></p>
+<p><strong><span style="font-size: 14pt;">Ships w/ Bhatsnagar, Jyotsna:</span></strong></p>
+<ul>
+<li><span style="font-size: 14pt;"><span style="font-size: 12pt;">Jyotsna B. x Brandon W.</span></span><strong><span style="font-size: 14pt;"><br></span></strong></li>
+<li><span style="font-size: 14pt;"><span style="font-size: 12pt;">Jyotsna B. x Noah S.</span></span></li>
+<li><span style="font-size: 14pt;"><span style="font-size: 12pt;">Jyotnsa B. x Brandon W. x Noah S.&nbsp;</span></span></li>
+<li><span style="font-size: 14pt;"><span style="font-size: 12pt;">Jyotsna B. x Her UGGs</span></span></li>
+</ul>
+<p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"></span></strong></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Bityutskiy, Nikita:</span></strong></p>
 <ul>
 <li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Nikita B. x Sanjana D. (Nookie) *** (formerly)</span></li>
 <li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Nikita B. x Simoni M. (Snickers)</span></li>
 <li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Nikita B. x Carina G. </span></li>
+<li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Nikita B. x Nell R.</span></li>
 </ul>
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Bowden, Jiaoli:</span></strong></span></p>
@@ -1116,7 +1154,7 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Burke, Shiloh:</span></strong></span></p>
 <ul>
-<li>Shiloh x Jason Lu</li>
+<li>Shiloh B. x Jason L.</li>
 </ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Burnett, Natalya:</span></strong></span></p>
 <p></p>
@@ -1127,7 +1165,9 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Chaupiz, Raquel:</span></strong></span></p>
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Chen, Samuel:</span></strong></span></p>
-<p></p>
+<ul>
+<li>Samuel C. x Lynna D.</li>
+</ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Choi, <g class="gr_ gr_305 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="305" data-gr-id="305">Sumin</g>:</span></strong></span></p>
 <ul>
 <li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><g class="gr_ gr_306 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="306" data-gr-id="306">Sumin</g> C. x Lucas C. &nbsp;(<g class="gr_ gr_307 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="307" data-gr-id="307">Lumin</g>)</span></li>
@@ -1136,7 +1176,7 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Clemens Vargas Lugo, Cecilia:</span></strong></p>
 <ul>
-<li>Cecilia C. x Chujia.G</li>
+<li>Cecilia C. x Chujia G.</li>
 <li>Cecilia C. x Eli W.</li>
 </ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Corea, Lucas:</span></strong></span></p>
@@ -1161,18 +1201,20 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Das, Sanjana:</span></strong></span></p>
 <ul>
 <li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Sanjana D. x Nikita B. (Nookie) *** (Formerly)</span></li>
-<li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Sanjana D. x Varun S. (<g class="gr_ gr_309 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="309" data-gr-id="309">Sanjarun</g>)</span></li>
-<li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Sanjana D. x Green T. ***</span></li>
+<li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Sanjana D. x Varun S. (<g class="gr_ gr_309 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="309" data-gr-id="309">Sanjarun, Varunjana, or Smancer</g>)</span></li>
+<li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Sanjana D. x green tea ***</span></li>
 <li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Sanjana D. x John K. (<g class="gr_ gr_310 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="310" data-gr-id="310">Sanjohna</g>) ###</span></li>
 <li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Sanjana D. x Making Ships ***</span></li>
 <li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Sanjana D. x Denying Ships ***</span></li>
-<li>Sanjana D. x Cancer (Canjana)</li>
+<li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Sanjana D. x Cancer (Canjana)</span></li>
+<li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Sanjana D. x Aaron M. *** (Formerly, kind of)</span></li>
 </ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ <g class="gr_ gr_287 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="287" data-gr-id="287">Delil</g>, Raniya:</span></strong></p>
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Deng, Lynna:</span></strong></p>
 <ul>
 <li>Lynna D. x Clarence L. ###</li>
+<li>Lynna D. x Samuel C.</li>
 </ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ <g class="gr_ gr_299 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="299" data-gr-id="299">Djibrila</g>, <g class="gr_ gr_300 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="300" data-gr-id="300">Emnet</g>:</span></strong></p>
 <p></p>
@@ -1204,7 +1246,9 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Ge, Joanna:</span></strong></span></p>
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Gibson, <g class="gr_ gr_301 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="301" data-gr-id="301">Shailen</g>:</span></strong></span></p>
-<p><g class="gr_ gr_302 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="302" data-gr-id="302">shailen</g> x <g class="gr_ gr_303 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="303" data-gr-id="303">shiloh</g></p>
+<ul>
+<li><g class="gr_ gr_302 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="302" data-gr-id="302">Shailen G.</g> x S<g class="gr_ gr_303 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="303" data-gr-id="303">hiloh</g></li>
+</ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Gowda, Anurag:</span></strong></span></p>
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Grimm, Alan:</span></strong></span></p>
@@ -1235,9 +1279,9 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Ho, Albert:</span></strong></span></p>
 <ul>
-<li>Albert x his puns ***</li>
-<li>Albert x Chairman Mao ###</li>
-<li>Albert x Simoni</li>
+<li>Albert H. x his puns ***</li>
+<li>Albert H. x Chairman Mao ###</li>
+<li>Albert H. x Simoni</li>
 </ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Hu, Alena:</span></strong></span></p>
 <p></p>
@@ -1253,6 +1297,9 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <li>Michael x Chess</li>
 </ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Israel, Zev:</span></strong></p>
+<ul>
+<li style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 12pt;">Skydiving (don't ask)</span></li>
+</ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"></span></strong></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Jayasundera, Samantha:</span></strong></p>
 <p></p>
@@ -1262,7 +1309,7 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ <g class="gr_ gr_297 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="297" data-gr-id="297">Jinlim</g>, Bella:</span></strong></p>
 <ul>
-<li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Bella J. x James A. ###</span></li>
+<li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Bella J. x James A.</span></li>
 </ul>
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Joo, Bumjin:</span></strong></p>
@@ -1286,7 +1333,7 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <ul>
 <li><span style="color: red; font-weight: bold; display: inline-block; font-size: 12pt;"><span style="color: #222222; font-family: RobotoLightNew,Helvetica,Arial,sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline ! important; float: none;">Shrujana K. x Michael H.</span></span></li>
 <li><span style="color: red; font-weight: bold; display: inline-block; font-size: 12pt;"><span style="color: #222222; font-family: RobotoLightNew,Helvetica,Arial,sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline ! important; float: none;">Shrujana K. x <g class="gr_ gr_298 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="298" data-gr-id="298">Natanel</g> H</span></span></li>
-<li><span style="color: red; font-weight: bold; display: inline-block; font-size: 12pt;"><span style="color: #222222; font-family: RobotoLightNew,Helvetica,Arial,sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline ! important; float: none;">Shrujana K. x <b id="wow" style="display: inline-block; color: red; font-size: 14.9px; transform: rotate(777deg);"><marquee>typing at ONE HUNDRED WORDS PER MINUTE!!!!!!!!!!!!!!!</marquee></b></span></span></li>
+<li><span style="color: red; font-weight: bold; display: inline-block; font-size: 12pt;"><span style="color: #222222; font-family: RobotoLightNew,Helvetica,Arial,sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline ! important; float: none;">Shrujana K. x <b id="wow" style="display: inline-block; color: red; font-size: 19.4px; transform: rotate(7196deg);"><marquee>typing at ONE HUNDRED WORDS pER MInUTE!!!!!!!!!!!!!!!</marquee></b></span></span></li>
 </ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Lam, Clarence:</span></strong></p>
 <ul>
@@ -1295,7 +1342,8 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Lam, Daryn:</span></strong></p>
 <ul style="margin: 0px 0px 0px 15px; padding: 0px; list-style: none; color: #222222; font-family: RobotoLightNew, Helvetica, Arial, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">
-<li style="position: relative; padding: 0px 0px 0px 20px; margin-top: 5px;">Daryn L. x Chujia&nbsp;</li>
+<li style="position: relative; padding: 0px 0px 0px 20px; margin-top: 5px;">Daryn L. x Chujia G.</li>
+<li style="position: relative; padding: 0px 0px 0px 20px; margin-top: 5px;">Daryn L. x Jason L.</li>
 </ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Lee, Donovan:</span></strong></p>
 <p></p>
@@ -1325,6 +1373,7 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <ul>
 <li>Jason Lu x Shiloh B.&nbsp;</li>
 <li>Jason Lu x Heidy R.</li>
+<li>Jason Lu x Daryn L.</li>
 </ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ <g class="gr_ gr_280 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="280" data-gr-id="280">Luttenberg</g>, Isaac:</span></strong></p>
 <p></p>
@@ -1332,7 +1381,7 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <ul>
 <li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Matthew M. x Nicole F. (Mythical)</span></li>
 <li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Matthew M. x Phoebe Q.</span></li>
-<li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Matthew M. x His plans to dominate the world</span></li>
+<li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Matthew M. x his plans to dominate the world</span></li>
 </ul>
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Martin, Danielle:</span></strong></p>
@@ -1403,14 +1452,23 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 </ul>
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Re <g class="gr_ gr_271 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="271" data-gr-id="271">Yonkos</g>, Nell:</span></strong></p>
-<p></p>
+<ul>
+<li><span style="font-size: 12pt;">Nell R. x Nikita B.</span></li>
+</ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Rodriguez, Samantha:</span></strong></p>
+<ul>
+<li style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong></strong>Samantha R. x Noah S.</li>
+<li style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;">Samantha R. x Kevin Z.</li>
+</ul>
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Sarkisov, Katherine:</span></strong></p>
 <ul>
 <li>Katherine S x James M.</li>
 </ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Savoie, Caleb:</span></strong></p>
+<ul>
+<li style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong></strong>Caleb S. x Sophia&nbsp;</li>
+</ul>
 <p></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Sbaschnig, Richard:</span></strong></p>
 <p></p>
@@ -1419,6 +1477,8 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Schulhof, Noah:</span></strong></p>
 <ul>
 <li>Noah S. x Jyostna B.&nbsp;</li>
+<li style="position: relative; padding: 0px 0px 0px 20px; margin-top: 5px;">Noah S. x Jyostna B. x Brandon W.</li>
+<li>Noah S. x Samantha R.</li>
 </ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><strong><span style="font-size: 14pt; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Seidman, RJ:</span></strong></p>
 <p></p>
@@ -1451,6 +1511,8 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Wang, Brandon:</span></strong></span></p>
 <ul>
 <li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Brandon W. x Phoebe Q.</span></li>
+<li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Brandon W. x Noah S. x Jyotsna B.</span></li>
+<li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Brandon W. x Jyotsna B.</span></li>
 </ul>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"></span></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ <g class="gr_ gr_274 gr-alert gr_spell gr_run_anim ContextualSpelling ins-del multiReplace" id="274" data-gr-id="274">Wange</g>, Peter:</span></strong></span></p>
@@ -1484,6 +1546,7 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <ul style="margin: 0px 0px 0px 15px; padding: 0px; list-style: none; color: #222222; font-family: RobotoLightNew, Helvetica, Arial, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">
 <li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"> Hannah Z. x Kevin Z. (Banana) </span></li>
 <li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"> Kevin Z. x Hannah Z. x Iris X. (Banana Virus) ###</span><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"></span></li>
+<li><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Hannah Z. Coleman L.</span></li>
 </ul>
 <p><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"></span></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Zhang, Kevin: </span></strong></span></p>
@@ -1495,7 +1558,8 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <li style="position: relative; padding: 0px 0px 0px 20px; margin-top: 5px;"><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Kevin Z. x Hannah Z. x Iris X. (Banana Virus) ### </span></li>
 <li style="position: relative; padding: 0px 0px 0px 20px; margin-top: 5px;"><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><span style="color: #000000; font-family: RobotoLightNew, Helvetica, Arial, sans-serif; font-size: 14.6667px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline !important; float: none;">Hannah Z. x Kevin Z. (Banana) ###</span></span></li>
 <li style="position: relative; padding: 0px 0px 0px 20px; margin-top: 5px;"><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><span style="color: #000000; font-family: RobotoLightNew, Helvetica, Arial, sans-serif; font-size: 14.6667px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline !important; float: none;">Kevin Z x Jiaoli B</span></span></li>
-<li style="position: relative; padding: 0px 0px 0px 20px; margin-top: 5px;"><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><span style="color: #000000; font-family: RobotoLightNew, Helvetica, Arial, sans-serif; font-size: 14.6667px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline !important; float: none;">Kevin Z x his crush</span></span><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><span style="color: #000000; font-family: RobotoLightNew, Helvetica, Arial, sans-serif; font-size: 14.6667px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline !important; float: none;"></span></span></li>
+<li style="position: relative; padding: 0px 0px 0px 20px; margin-top: 5px;"><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><span style="color: #000000; font-family: RobotoLightNew, Helvetica, Arial, sans-serif; font-size: 14.6667px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline !important; float: none;">Kevin Z x his crush </span></span></li>
+<li style="position: relative; padding: 0px 0px 0px 20px; margin-top: 5px;"><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><span style="color: #000000; font-family: RobotoLightNew, Helvetica, Arial, sans-serif; font-size: 14.6667px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline !important; float: none;">Kevin Z. x Lana (Levin)</span></span><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><span style="color: #000000; font-family: RobotoLightNew, Helvetica, Arial, sans-serif; font-size: 14.6667px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline !important; float: none;"></span></span></li>
 </ul>
 <p><span style="font-size: 14.6667px; font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><span style="color: #000000; font-family: RobotoLightNew, Helvetica, Arial, sans-serif; font-size: 14.6667px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline !important; float: none;"></span></span></p>
 <p style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 14pt;"><strong><span style="font-family: Roboto, helvetica, arial, sans-serif; color: #000000; background-color: transparent; font-variant-ligatures: normal; font-variant-caps: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ships w/ Zhou, Lillian:</span></strong></span></p>
@@ -1537,7 +1601,7 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <p>Solangelo = Nico x Will***</p>
 <p>Frazel = Hazel x Frank***</p>
 <p>Caleo = Leo x Calypso***</p>
-<p>Brason = Jason x Brick###</p>
+<p>Brason = Jason x Brick</p>
 <p>Pertamis = Percy x Artemis###</p>
 <p>Liper = Leo x Piper</p>
 <p>Leyna = Leo x Reyna</p>
@@ -1572,7 +1636,71 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 <p><span style="font-size: 12pt;">Michael x Taylor</span></p>
 <p><span style="font-size: 12pt;">Zeus x Tessa</span></p>
 <p><span style="font-size: 12pt;">Abigail x Jack</span></p>
-<p><span style="font-size: 12pt;">Ostin x McKenna</span></p><p></p></div>
+<p><span style="font-size: 12pt;">Ostin x McKenna</span></p>
+<p><span style="font-size: 12pt;"></span></p>
+<p><span style="font-size: 12pt;"><strong>Harry Potter</strong><br></span></p>
+<p><span style="font-size: 12pt;">harry x ginny</span></p>
+<p><span style="font-size: 12pt;">harry x hermione</span></p>
+<p><span style="font-size: 12pt;">harry x draco</span></p>
+<p><span style="font-size: 12pt;">harry x luna</span></p>
+<p><span style="font-size: 12pt;">harry x cho</span></p>
+<p><span style="font-size: 12pt;">harry x neville</span></p>
+<p><span style="font-size: 12pt;">ron x hermione</span></p>
+<p><span style="font-size: 12pt;">ron x luna</span></p>
+<p><span style="font-size: 12pt;">ron x lavender</span></p>
+<p><span style="font-size: 12pt;">ron x chicken</span></p>
+<p><span style="font-size: 12pt;">ron x krum</span></p>
+<p><span style="font-size: 12pt;">hermione x draco</span></p>
+<p><span style="font-size: 12pt;">hermione x krum</span></p>
+<p><span style="font-size: 12pt;">hermione x&nbsp;sirius</span></p>
+<p><span style="font-size: 12pt;">hermione x snape</span></p>
+<p><span style="font-size: 12pt;">ginny x neville</span></p>
+<p><span style="font-size: 12pt;">ginny x dean</span></p>
+<p><span style="font-size: 12pt;">luna x neville</span></p>
+<p><span style="font-size: 12pt;">luna x pudding</span></p>
+<p><span style="font-size: 12pt;">luna x draco</span></p>
+<p><span style="font-size: 12pt;">draco x apple</span></p>
+<p><span style="font-size: 12pt;">draco x pansy</span></p>
+<p><span style="font-size: 12pt;">draco x goyle</span></p>
+<p><span style="font-size: 12pt;">draco x crabbe</span></p>
+<p><span style="font-size: 12pt;">draco x bulstrode</span></p>
+<p><span style="font-size: 12pt;">draco x mimblus mimbletonia</span></p>
+<p><span style="font-size: 12pt;">draco x The Room Of Requirement</span></p>
+<p><span style="font-size: 12pt;">draco x marietta</span></p>
+<p><span style="font-size: 12pt;">draco x blaise</span></p>
+<p><span style="font-size: 12pt;">draco x narcissa</span></p>
+<p><span style="font-size: 12pt;">draco x ginny</span></p>
+<p><span style="font-size: 12pt;">james x lily</span></p>
+<p><span style="font-size: 12pt;">james x sirius</span></p>
+<p><span style="font-size: 12pt;">lily x snape</span></p>
+<p><span style="font-size: 12pt;">sirius x remus</span></p>
+<p><span style="font-size: 12pt;">sirius x lily</span></p>
+<p><span style="font-size: 12pt;">sirius x mary mcdonald</span></p>
+<p><span style="font-size: 12pt;">sirius x marlene mckinnon</span></p>
+<p><span style="font-size: 12pt;">remus x tonks</span></p>
+<p><span style="font-size: 12pt;">george x angelina</span></p>
+<p><span style="font-size: 12pt;">fred x hermione</span></p>
+<p><span style="font-size: 12pt;">fred x angelina</span></p>
+<p><span style="font-size: 12pt;">cho x dudley</span></p>
+<p><span style="font-size: 12pt;">dumbledore x mcgonagall</span></p>
+<p><span style="font-size: 12pt;">dumbledore x harry</span></p>
+<p><span style="font-size: 12pt;">dumbledore x trewalney</span></p>
+<p><span style="font-size: 12pt;">cedric x cho</span></p>
+<p><span style="font-size: 12pt;">cedric x hermione</span></p>
+<p><span style="font-size: 12pt;">slughorn x snape</span></p>
+<p><span style="font-size: 12pt;">voldemort x lily</span></p>
+<p><span style="font-size: 12pt;">voldemort x harry</span></p>
+<p><span style="font-size: 12pt;">voldemort x bellatrix</span></p>
+<p><span style="font-size: 12pt;">voldemort x hermione</span></p>
+<p><span style="font-size: 12pt;">narcissa x lucius</span></p>
+<p><span style="font-size: 12pt;">bill x fleur</span></p>
+<p><span style="font-size: 12pt;">fleur x harry</span></p>
+<p><span style="font-size: 12pt;">fleur x cedric</span></p>
+<p><span style="font-size: 12pt;">colin creevy x camera</span></p>
+<p><span style="font-size: 12pt;">dobby x winky</span></p>
+<p><span style="font-size: 12pt;">dobby x harry</span></p>
+<p><span style="font-size: 12pt;"></span>dobby x kreacher</p>
+<p></p><p></p></div>
   
 	  
 	
@@ -1714,4 +1842,66 @@ size = 12; direction = 1; speed = 0.1; r = 0; q = setInterval(function(){ if(siz
 
   
 
-                                        <div id="facebox" tabindex="-1" style="display:none;" role="dialog">                                           <div class="popup">                                                         <a href="http://tpmsscience.edu20.org/group_resources/list/115432#" class="close" style="z-index: 100;"><span class="textOffScreen">Close</span></a>                                                         <div id="faceboxContent" class="content" style="position: relative; z-index: 1;">                                                         </div>                                           </div>                                         </div></body></html>
+                                        <div id="facebox" tabindex="-1" style="top: 11645.3px; left: 541.5px; display: none;" role="dialog">                                           <div class="popup">                                                         <a href="http://tpmsscience.edu20.org/group_resources/list/115432#" class="close" style="z-index: 100; display: block;"><span class="textOffScreen">Close</span></a>                                                         <div id="faceboxContent" class="content" style="position: relative; z-index: 1; display: inline-block;"><div class="messagePopup">
+  <div class="header"><h4>Notification from Matthew Casertano</h4></div>
+
+  <div id="alerts" style="display: none;"></div>
+
+  <div class="facebox-content xl_popup" style="height: 400px;">
+    <table width="100%" class="noBorder messageHeader">
+      <tbody>
+        <tr>
+          <td width="75" valign="top"><b>From:</b></td>
+      
+          <td valign="top">
+            <p>
+              <img alt="Profile" class="avatar" height="48" src="./Resources - Shipping Group 2.0 _) - Takoma Park Middle School_files/Snowy_Tiger(3)(2).jpg" width="48">
+          
+                <a href="http://tpmsscience.edu20.org/user/show/3922641">Matthew Casertano</a> 
+          
+              <span class="onforum">on forum</span> <a href="http://tpmsscience.edu20.org/notifications/forum?notification=68539652">The Pun Group: News feed</a>
+          
+              <br>
+          
+              @ Dec 2, 7:20 pm (less than a minute ago)
+            </p>
+          </td>
+        </tr>
+        
+        <tr>
+          <td><b>Subject:</b></td>
+          <td>Re: we need more puns
+seriously guys</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="messageContent">
+        <div class="materialStyle ">I have too many cookies inside of me to function properly.</div>
+  
+    </div>
+  </div>
+
+  <div class="footer">
+      <a href="http://tpmsscience.edu20.org/notifications/show?notification=68539468&amp;popup=true" class="popup_left" onclick="return popup_clicked(this);" title="Previous"><i class="arrowLeft single"></i></a>
+  
+    <ul class="messageOptions">
+      <li>
+        <a href="http://tpmsscience.edu20.org/notifications/reply_to_forum?notification=68539652&amp;popup=true" onclick="return popup_clicked(this)" title="Reply to this message">Reply to forum</a>
+      </li>
+        
+      <li>
+        <a href="http://tpmsscience.edu20.org/notifications/thread?notification=68539652">See thread</a>
+      </li>
+    
+      <li>
+        <a href="http://tpmsscience.edu20.org/notifications/destroy?notification=68539652" onclick="return popup_delete(this);" title="Delete this message">Delete</a>
+      </li>
+    </ul>
+  
+  </div>
+
+  <script>
+    just_read_notification(68539652);
+  </script>
+</div></div>                                           </div>                                         </div></body></html>

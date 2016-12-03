@@ -1088,7 +1088,7 @@ function init_draggable_categories_in_catalog() {
 		revert: 300,
 		containment: 'parent',
 		tolerance: 'pointer',
-		handle : 'div.draggable_handle',
+		handle : '.draggable_handle',
 		update : function(event, ui) {
 			var after = ui.item.index('.catalog_categories > .draggable') + 1;
 			var category_id = ui.item.attr('id');
@@ -1192,7 +1192,7 @@ function init_draggable_lessons_tiles(class_id) {
 			$('.lesson_boxes.ui-sortable').removeClass('no_flex').show();
 
 			// set width on container to fix last item in row glitch
-			$('.lesson_boxes.ui-sortable').css('width', $('.lesson_boxes.ui-sortable').width());
+			$('.hasRightColumn .lesson_boxes.ui-sortable').css('width', $('.lesson_boxes.ui-sortable').width());
 		},
 		start: function (e, ui) {
 			// Set the height of ui-sortable-help so it doesn't change when removed from the flex flow
@@ -2072,12 +2072,6 @@ function set_icon_for_profile(checkbox) {
 
 function set_disable_dropdown_nav(checkbox) {
   ajax_request('/portal/set_disable_dropdown_nav?value=' + check_s(checkbox));
-}
-
-// default lesson images
-
-function set_use_old_default_lesson_images(checkbox) {
-  ajax_request('/portal/set_use_old_default_lesson_images?value=' + check_s(checkbox));
 }
 
 // tiles
