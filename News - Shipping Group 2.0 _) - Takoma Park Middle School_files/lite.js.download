@@ -160,6 +160,19 @@ function set_welcome(url) {
 	});
 }
 
+// terms
+
+var terms_shown = false;
+
+function show_terms() {
+  on_ready(function() {
+    if (!terms_shown) {
+      $.facebox({'ajax': '/accept_terms'}, 'hide_close');
+      terms_shown = true;
+    }
+  });
+}
+
 // toggles
 
 function add_checked_toggle(id) {

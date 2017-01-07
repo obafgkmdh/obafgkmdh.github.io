@@ -726,7 +726,8 @@ h1.customLogo a img + span {
   margin: 4px 0 0 14px;
 }
 h1.customLogo a img {
-  height: 51px;
+  max-height: 51px;
+  max-width: 100%
 }
 h1.customLogo a, h1.customLogo a img, h1.customLogo a img + span, h1.customLogo a span.longName {
   vertical-align: middle;
@@ -1340,6 +1341,14 @@ table.tableFixed {table-layout: fixed;width:100%}
 table.moveProfileImg tr td > a:not(:only-child) {vertical-align: top}
 table.moveProfileImg tr td > a ~ span {margin-bottom: -2px}
 table.hasChart td {padding-top: 3px; padding-bottom: 3px}
+table.noBorders td {
+  border: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 1px;
+}
+
 
 /* Teacher Module Tables */
 form#lessons #lesson_list table, .studentModuleView table {
@@ -2288,8 +2297,8 @@ a.contentBlock .sideText h3.m0 {font-size: 24px; line-height: 30px}
 .catalog_class #leftColumn .info {overflow: hidden; margin: 10px 0 20px}
 .catalog_class #leftColumn .info li span, .catalog_class #leftColumn .info li strong {float: left; width: 50%; line-height: 25px}
 .catalog_class #leftColumn .info li strong {padding-right: 10px; box-sizing: border-box; -moz-box-sizing: border-box}
-.catalog_class #leftColumn .info li span, .catalog_class #leftColumn .info a:not(.normalLink) {color: rgba(255,255,255,0.8)}
-.catalog_class #leftColumn .info li a:hover, .catalog_class #leftColumn a.teacher:hover span {text-decoration: underline}
+.catalog_class #leftColumn .info li span, .catalog_class #leftColumn .info a:not(.normalLink), .catalog_class #leftColumn .label.box a {color: rgba(255,255,255,0.8)}
+.catalog_class #leftColumn .info li a:hover, .catalog_class #leftColumn a.teacher:hover span, .catalog_class #leftColumn .label.box a:hover {text-decoration: underline}
 .catalog_class #leftColumn table td {background-color: transparent; border-color: rgba(255,255,255,0.3); padding-left: 0}
 
 .catalog_class.portal #leftColumn ~ #centreColumn {padding-left: 20px; padding-right: 20px}

@@ -1244,7 +1244,7 @@ $(function() {
 	function resizeCatalogClassLeftColumn() {
 		var leftcolumn_height = $(window).height() - $('.portal #contentHeader').outerHeight() - $('header').outerHeight();
 
-		if ($('#wrapper').outerHeight() <= $(window).height()) {
+		if ($('#wrapper').height() == $(window).height()) {
 			$('.catalog_class #leftColumn').css('max-height', leftcolumn_height - $('footer').outerHeight());
 		} else {
 			var scroll_pos = $('#contentWrap').outerHeight() - $(window).height() - $(window).scrollTop() + $('header').outerHeight() + $('.portal #contentHeader').outerHeight();

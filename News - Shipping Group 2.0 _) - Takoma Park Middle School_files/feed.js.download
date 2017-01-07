@@ -6,6 +6,11 @@ var stop = false;
 var pause = true;
 var obj = {trans: {}};
 
+// multi-post
+var selected_class_ids = [];
+var selected_path_ids = [];
+var selected_group_ids = [];
+
 // text
 var delete_message_text = 'Are you sure you want to delete it?';
 var unsaved_progress_text = 'There is unsaved content! Continue?';
@@ -13,21 +18,19 @@ var unsaved_progress_text = 'There is unsaved content! Continue?';
 // general icon
 var thumbs_up = "<i class='thumbsUp'></i>";
 
-// initialize
-
 function configure_feed(attribute, checkbox) {
 	ajax_request('/user_news_feed/set_attribute?attribute=' + attribute + '&value=' + (checkbox.checked ? 'true' : 'false'));
 }
 
 function init_feed_post(the_controller, the_id, sticky, supports_bronze_features, targeted, $biz, disable_family, message) {
-	feed_controller = the_controller;
-	feed_id = the_id;
-    obj.sticky = sticky;
-    obj.bronze = supports_bronze_features;
-    obj.targeted = targeted;
-    obj.biz = $biz;
-    obj.family = !disable_family;
-    obj.message = message;
+  feed_controller = the_controller;
+  feed_id = the_id;
+  obj.sticky = sticky;
+  obj.bronze = supports_bronze_features;
+  obj.targeted = targeted;
+  obj.biz = $biz;
+  obj.family = !disable_family;
+  obj.message = message;
 }
 
 function init_feed(the_controller, the_id, the_count) {
@@ -57,11 +60,34 @@ function hide_post() {
 	if (sticky_box) {
 		sticky_box.attr('checked', false);
 	}
+	
+	set_all_multi_post(false);
+	$('#addFeeds').html('<i class="add"></i>' + "Add feeds");
+	selected_class_ids = [];
+  selected_path_ids = [];
+	selected_group_ids = [];
 
 	hide_element('post_form');
 	show_element('news_options');
 
   $('#post_filecontainer').html('');
+}
+
+function additional_feed_post_update( feed_cont, sel_id, sticky, message,attach_segment) {
+	ajax_update('news1', '/' + feed_cont + '/post/' + sel_id
+		+ '?sticky=' + (sticky ? 'true' : 'false')
+		+ '&message=' + encodeURIComponent(message) + attach_segment);
+}
+
+function additional_feed_announcement_update( feed_cont, sel_id, sticky, message, messages, attach_segment, students, teachers, parents, managers) {
+	ajax_update('news1', '/' + feed_cont + '/announcement/' + sel_id
+		+ '?sticky=' + (sticky ? 'true' : 'false')
+		+ '&students=' + (students ? 'true' : 'false')
+		+ '&teachers=' + (teachers ? 'true' : 'false')
+		+ '&parents=' + (parents ? 'true' : 'false')
+		+ '&managers=' + (managers ? 'true' : 'false')
+		+ '&messages=' + messages
+		+ '&message=' + encodeURIComponent(message) + attach_segment);
 }
 
 function submit_post() {
@@ -83,26 +109,41 @@ function submit_post() {
 		}
 		
 		$('#post_filecontainer').html('');
-    
-		ajax_update('news1', '/' + feed_controller + '/post' + add_feed_id()
-				+ '?sticky=' + (sticky ? 'true' : 'false') 
-				+ '&message=' + encodeURIComponent(message) + attach_segment);
+
+		for (var i = 0; i < selected_class_ids.length; i++) {
+      additional_feed_post_update('teacher_news_feed', selected_class_ids[i], sticky, message, attach_segment);
+		}
+
+    for (var i = 0; i < selected_path_ids.length; i++) {
+      additional_feed_post_update('path_admin_news_feed', selected_path_ids[i], sticky, message, attach_segment);
+    }
+
+		for (var i = 0; i < selected_group_ids.length; i++) {
+      additional_feed_post_update('group_news_feed', selected_group_ids[i], sticky, message, attach_segment);
+		}
+			
+		//Default functionality remains - single post for current class/group/user_news
+		ajax_update('news1', '/' + feed_controller + '/post/' + add_feed_id()
+			+ '?sticky=' + (sticky ? 'true' : 'false')
+			+ '&message=' + encodeURIComponent(message) + attach_segment);
 		hide_post();
-    hide_news_intro();
+		hide_news_intro();
 	}
 }
+
 
 function delete_post(number, posting_id) {
   $.confirm({
     content : delete_message_text,
     confirm : function() {
-      ajax_request('/' + feed_controller + '/delete_posting' + add_feed_id() + '?posting=' + posting_id);
+		ajax_request('/' + feed_controller + '/delete_posting' + add_feed_id() + '?posting=' + posting_id);
       $.when($('#row' + number).fadeOut()).done(function() {
         update_min_height();
       });
     }
   });
 }
+
 
 function highlight_post() {
 	do_image_popups();
@@ -142,6 +183,12 @@ function hide_announcement() {
 	if (sticky_box) {
 		sticky_box.attr('checked', false);
 	}
+
+	set_all_multi_post(false);
+	$('#addFeeds').html('<i class="add"></i>' + "Add feeds");
+	selected_class_ids = [];
+	selected_path_ids = [];
+	selected_group_ids = [];
 
 	hide_element('announcement_form');
 	show_element('news_options');
@@ -183,7 +230,20 @@ function submit_announcement(messages) {
 	}
   
   $('#announcement_filecontainer').html('');
-  
+
+	for (var i = 0; i < selected_class_ids.length; i++) {
+		additional_feed_announcement_update('teacher_news_feed', selected_class_ids[i], sticky, message, messages, attach_segment, students, teachers, parents, managers);
+	}
+
+	for (var i = 0; i < selected_path_ids.length; i++) {
+		additional_feed_announcement_update('path_admin_news_feed', selected_path_ids[i], sticky, message, messages, attach_segment, students, teachers, parents, managers);
+	}
+
+	for (var i = 0; i < selected_group_ids.length; i++) {
+		additional_feed_announcement_update('group_news_feed', selected_group_ids[i], sticky, message, messages, attach_segment, students, teachers, parents, managers);
+	}
+
+	//Default functionality remains - single announcement for current class/group/user_news
 	if ((message != null) && (strip2(message).length > 0)) {
 		ajax_update('news1', '/' + feed_controller + '/announcement' + add_feed_id()
 				+ '?sticky=' + (sticky ? 'true' : 'false') 
@@ -274,7 +334,7 @@ function like(likes, number, posting_id) {
 
 	likes += 1;
 
-    // TRANSLATE
+  // TODO: translate
 	if (likes == 1) {
 		likes_span.html("<br/>" + thumbs_up + " You like this.");
 	} else if (likes == 2) {
@@ -448,13 +508,78 @@ function highlight_comment(id) {
 	highlight_element('comment_' + id, true);
 }
 
+/////// Multi Post
+
+function update_multi_post_checkboxes() {
+	$("input[type='checkbox']").each(function(index) {
+		if (!$(this).next().is('label')) {
+			$(this).after('<label for="' + $(this).attr('id') + '"></label>');
+			$(this).addClass("emptyLabel");
+
+			if ((selected_class_ids.indexOf($(this).attr('id')) > -1) || (selected_path_ids.indexOf($(this).attr('id')) > -1) || (selected_group_ids.indexOf($(this).attr('id')) > -1)) {
+				$(this).attr('checked', true);
+			}
+		}
+	});
+}
+
+function set_all_multi_post(value) {
+	$('#classes input[name="select[]"]').each(function(){
+		$("#classes" + id).attr('checked', value);
+	});
+	
+	$('#groups input[name="select[]"]').each(function(){
+		$("#groups" + id).attr('checked', value);
+	});
+}
+
+function save_multi_post() {
+	var nrFeeds = 0;
+	var selected = {classes: [], paths: [], groups: []};
+
+	$('#classes input[name="select[]"]:checked').each(function () {
+		selected.classes.push($(this).val());
+		nrFeeds++;
+	});
+
+  $('#paths input[name="select[]"]:checked').each(function () {
+    selected.paths.push($(this).val());
+    nrFeeds++;
+  });
+
+	$('#groups input[name="select[]"]:checked').each(function () {
+		selected.groups.push($(this).val());
+		nrFeeds++;
+	});
+
+	$.facebox.close();
+
+	$('#post_form form')
+		.append('<input type="hidden" id="selected_classes" value="' + selected.classes.join(',') + '" />')
+    .append('<input type="hidden" id="selected_paths" value="' + selected.paths.join(',') + '" />')
+		.append('<input type="hidden" id="selected_groups" value="' + selected.groups.join(',') + '" />');
+
+	if (nrFeeds === 0)
+		$('#addFeeds').html('<i class="add"></i>' + "Add feeds");
+	else
+		$('#addFeeds').html('<i class="edit"></i>' + "Edit feeds (" + nrFeeds + ")");
+
+	selected_class_ids = selected.classes;
+  selected_path_ids = selected.paths;
+	selected_group_ids = selected.groups;
+}
+
 // Generate main news feed forms
 function post_generate_controlls(p) {
 	var contr = '';
   var query_string = encodeURIComponent(JSON.stringify({"multi" : "true", "wrapper" : p.type + "_filecontainer"}));
 
-  contr += '<li' + ((window.IE === 8) ? ' style="float:left;border:1px solid #c8c8c8;"' : '') + '><a style="position:relative;z-index:0;" href="/uploader?data_json=' +  query_string + '" onclick="$.facebox({\'ajax\':this.href});return false;" class="pickfiles" id="' + p.type + '_pickefiles"><i class="folderUp"></i>' + file_text + '</a></li>';
+	if (((p.type === 'post') || (p.type === 'announcement')) && p.multi_post) {
+	  var url = '/' + p.controller + '/add_feeds/' + p.id; // URL to fetch additional feeds
+    contr += '<li' + ((window.IE === 8) ? ' style="float:center;border:1px solid #c8c8c8;"' : '') + '><a style="position:relative;z-index:0;" href="' + url + '" onclick="return popup_clicked(this);" id = "addFeeds"> <i class="add"></i> Add Feeds</a></li>';
+	}
 	
+	contr += '<li' + ((window.IE === 8) ? ' style="float:left;border:1px solid #c8c8c8;"' : '') + '><a style="position:relative;z-index:0;" href="/uploader?data_json=' +  query_string + '" onclick="$.facebox({\'ajax\':this.href});return false;" class="pickfiles" id="' + p.type + '_pickefiles"><i class="folderUp"></i>' + file_text + '</a></li>';
 	contr += '<li><a href="javascript:hide_' + p.type + '();" ' + ( p.type === 'post' ? 'class="cancelfeed"' : '' ) + '><i class="xCross"></i>' + cancel_text + '</a></li>';
 
 	if ((p.type === 'announcement') && p.plus_message) {
@@ -537,7 +662,7 @@ function append_post_form_html(p) {
 	focus_element(p.type + '_message');
 }
 
-function generate_form(id, type, controller, object, max_upload, plus_message) {
+function generate_form(id, type, controller, object, max_upload, plus_message, multi_post) {
 	var p = {
 			id: id,
 			type: type,
@@ -547,9 +672,9 @@ function generate_form(id, type, controller, object, max_upload, plus_message) {
 			up_limit: max_upload,
 			plus_message: (plus_message || false),
 			op: (obj || null),
-			spacer: '&nbsp;&nbsp;&nbsp;'
+			spacer: '&nbsp;&nbsp;&nbsp;',
+			multi_post: (multi_post || false)
 	};
-	
 	hide_element(p.wrapper);
 	append_post_form_html(p);
 }

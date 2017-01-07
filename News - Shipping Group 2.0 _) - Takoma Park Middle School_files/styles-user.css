@@ -2329,6 +2329,7 @@ table.newsletter td li, table.newsletter td p, table.newsletter td span {color: 
 .filter-scopes-wrapper p { margin-top: 0; float: left; }
 
 .new_filter .filter-select, 
+.new_filter .filter-checkbox,
 .compactFilterContainer.new_filter .filter-select { float: left; margin-left: 10px; }
 
 .new_filter p .filter-select { float: none; }
@@ -2790,6 +2791,7 @@ only screen and (                min-resolution: 2dppx) {
 @media screen and (min-width: 980px) {
 	nav#leftColumn > img {width: 100%}
 	nav#leftColumn > img.noBorder {width: 99px}
+	nav#leftColumn > img[src*='/badge_picture/'] {background-color: #fff; padding: 10px; box-sizing: border-box}
 
 	#centreColumn .pageHeading > div {display: inline-block}
 	.pageHeading.mobile_only + .optionsRight + .clearfix + ul.tabnav, .pageHeading.mobile_only + .clearfix + ul.tabnav,
@@ -2851,6 +2853,7 @@ div.error + .pageHeading.mobile_only + .optionsRibbon.optionsRight, div.warning 
 #centreColumn.dashboard div.error + .pageHeading.mobile_only + .optionsDashboardEnrolled, #centreColumn.dashboard div.warning + .pageHeading.mobile_only + .optionsDashboardEnrolled, #centreColumn.dashboard div.info + .pageHeading.mobile_only + .optionsDashboardEnrolled {
 	top: 70px
 }
+.ctr_stripe.act_configure div.warning + .pageHeading.mobile_only + .optionsRight {top: 90px}
 .completionPercentage {position: absolute;margin-top: -35px;margin-left: 80px;}
 
 /*------ Seating Chart ------*/
@@ -2999,3 +3002,9 @@ a.multiSelect span {padding-top: 3px; padding-left: 5px; margin: 1px 0px 1px 3px
 	#facebox #ProficiencyPicker.new_picker p.search-navigation {margin-top: 10px}
 	#facebox #ProficiencyPicker.new_picker p.search-navigation a {margin: 0 5px}
 }
+
+/* edit subscription payment */
+#payment_form #cc_number {width: 200px}
+#payment_form #cc_exp_month {width: 40px; margin-right: 0}
+#payment_form #cc_exp_year {width: 60px}
+#payment_form #cc_cvc {width: 50px}

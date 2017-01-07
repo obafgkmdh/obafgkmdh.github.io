@@ -2211,6 +2211,12 @@ function delete_todo(number) {
 	fade_element('todo' + number);
 }
 
+// publish student review
+
+function publish_student_review(class_id, review_id, checkbox) {
+  ajax_request('/teacher_reviews/set_publish/' + class_id + '?review=' + review_id + '&value=' + (checkbox.checked ? 'true' : 'false'));  
+}
+
 // search
 
 function submit_compact_search(url) {
@@ -2925,7 +2931,11 @@ function process_onclick_for_gotomeeting(checkbox, no_token, consumer_key, redir
     common_checked_conference_gateway();
     
     if (no_token) {
-      window.open('https://api.citrixonline.com/oauth/authorize?client_id=' + consumer_key + '&redirect_uri=' + redirect_uri, 'g2mWindow', 'width=350, height=500');
+			if(is_mobile_app_mode()){
+				window.parent.postMessage("{\"method\": \"loadBrowser\", \"href\": \"https://api.citrixonline.com/oauth/authorize?client_id=" + consumer_key + "&redirect_uri=" + redirect_uri + "\"}", "*");
+			}else{
+				window.open('https://api.citrixonline.com/oauth/authorize?client_id=' + consumer_key + '&redirect_uri=' + redirect_uri, 'g2mWindow', 'width=350, height=500');
+			}
     }
 
     $('#event_form button[type="submit"]').click(function() {
@@ -2941,7 +2951,11 @@ function process_onclick_for_zoomus(checkbox, no_account) {
     common_checked_conference_gateway();
     
     if (no_account) {
-      window.open('/zoomus_account/new', 'zoomusWindow', 'width=353, height=276');  
+			if(is_mobile_app_mode()){
+				window.parent.postMessage("{\"method\": \"loadBrowser\", \"href\": \"/zoomus_account/new\"}", "*");
+			}else{
+				window.open('/zoomus_account/new', 'zoomusWindow', 'width=353, height=276');
+			}
     }
 
     $('#event_form button[type="submit"]').click(function() {
@@ -2957,7 +2971,11 @@ function process_onclick_for_webex(checkbox, no_account) {
     common_checked_conference_gateway();
     
     if (no_account) {
-      window.open('/webex_account/new', 'webexWindow', 'width=353, height=350');  
+			if(is_mobile_app_mode()) {
+				window.parent.postMessage("{\"method\": \"loadBrowser\", \"href\": \"/webex_account/new\"}", "*");
+			}else{
+				window.open('/webex_account/new', 'webexWindow', 'width=353, height=350');
+			}
     }
 
     $('#event_form button[type="submit"]').click(function() {
@@ -6283,7 +6301,7 @@ function add_existing_more(controller, action, id, subject, name, library, class
 			type: "POST",
 			url: url,
 			beforeSend: function(){
-				more.append('<img src="loading-animation-' + (is_grey_page_mode() ? 'grey' : 'white') + '-retina.gif" width="100" />');
+				more.append('<img src="/images/loading-animation-white-retina.gif" width="100" />');
 			},
 			success: function(data) {
 				more.remove();
@@ -6540,3 +6558,48 @@ function update_scope_user_student_access(radio_button) {
 		 $('.student_access_library').show();		
 	 }
  }
+
+/* Stripe checkout */
+
+function init_stripe_checkout(publishable_key, form_id, is_popup_form){
+	// This identifies your website in the createToken call below
+	Stripe.setPublishableKey(publishable_key);
+
+	$('#' + form_id).submit(function() {
+		var $form = $(this);
+
+		// Disable the submit button to prevent repeated clicks
+		$form.find('button').prop('disabled', true);
+
+		Stripe.card.createToken($form, stripeResponseHandler);
+
+		// Prevent the form from submitting with the default action
+		return false;
+	});
+
+	function stripeResponseHandler(status, response) {
+		var $form = $('#' + form_id);
+		console.log('Stripe response' + response);
+		if (response.error) {
+			// Show the errors on the form
+			$form.before('<div class="error"><p>'+response.error.message+'</p></div>');
+			$form.find('button').prop('disabled', false);
+		} else {
+			// response contains id and card, which contains additional card details
+			var token = response.id;
+			console.log('Stripe token' + token);
+			// Insert the token into the form so it gets submitted to the server
+			$form.append($('<input type="hidden" name="stripeToken" />').val(token));
+			// and submit
+			if(is_popup_form){
+				popup_form(form_id);
+			}
+			$form.get(0).submit();
+		}
+	}
+}
+
+// disable submit button unless checkbox is checked. used mostly for agree terms and conditions.
+var toggle_submit_button = function(el){
+	$('form').find(':button[type=submit]').attr('disabled', !el.checked);
+}
