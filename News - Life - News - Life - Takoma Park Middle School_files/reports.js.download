@@ -1,0 +1,227 @@
+var course_ids_array = [];
+var taught_course_ids = [];
+var teacher_ids_array = [];
+var organization_ids_array = [];
+
+$(document).bind('reveal.facebox', function () {  
+    $("#report\\[class_id\\]").multiSelect();
+    select_multi_courses();
+    
+    $("#report\\[teacher_id\\]").multiSelect();
+    select_multi_teachers_or_organizations('teacher_id');
+
+    $("#report\\[organization_id\\]").multiSelect();
+    select_multi_teachers_or_organizations('organization_id');
+
+    handle_multi_select_click_off();
+});
+
+function select_multi_courses(){
+    add_checkboxes('class_id');
+    on_change_for_all('class_id');    
+    on_change_for_all_i_teach();
+
+    // handle all checkboxes
+    $(".multiSelectOptions").find('input:not([id="report[class_id][]_-1"],[id="report[class_id][]_-2"])').change(function () {
+        if ($("#report\\[class_id\\]\\[\\]_-1").is(':checked')) {
+            console.log("Not All");
+            $("#report\\[class_id\\]\\[\\]_-1").attr('checked', false);
+        }
+
+        if ($("#report\\[class_id\\]\\[\\]_-2").is(':checked')) { // to check it again
+            console.log("Not All I Teach");
+            var id = $(this).attr("id").split("_")[2];
+            for (var i = 0, len = taught_course_ids.length; i < len; i++) {                               
+                if (taught_course_ids[i] == id){
+                    $("#report\\[class_id\\]\\[\\]_-2").attr('checked', false);
+                }
+            } //
+        }
+        update_selected_objects_number('class_id');
+    });
+}
+
+function select_multi_teachers_or_organizations(element_id){
+    add_checkboxes(element_id);
+    on_change_for_all(element_id);
+
+    // handle all checkboxes
+    $('.multiSelect#report\\[' + element_id + '\\] + .multiSelectOptions').find('input:not([id="report[' + element_id + '][]_-1"])').change(function () {
+        if ($('#report\\[' + element_id + '\\]\\[\\]_-1').is(':checked')) {
+            console.log("Not All",element_id);
+            $('#report\\[' + element_id + '\\]\\[\\]_-1').attr('checked', false);
+        }
+        update_selected_objects_number(element_id);
+    });
+}
+
+function init_multi_select_reports_courses(class_ids, taught_class_ids) {
+    course_ids_array = class_ids;
+    taught_course_ids = taught_class_ids;
+    select_in_edit_mode(course_ids_array, 'class_id');
+    select_text(course_ids_array, 'class_id');
+    console.log("IDS Courses", course_ids_array + "  " + taught_course_ids);
+}
+
+function init_multi_select_reports_teachers(teacher_ids) {
+    teacher_ids_array = teacher_ids;
+    select_in_edit_mode(teacher_ids_array, 'teacher_id');
+    select_text(teacher_ids_array, 'teacher_id');
+    console.log("IDS Teachers ", teacher_ids_array);
+}
+
+function init_multi_select_reports_organizations(organization_ids) {
+    organization_ids_array = organization_ids;
+    select_in_edit_mode(organization_ids_array, 'organization_id');
+    select_text(organization_ids_array, 'organization_id');
+    console.log("IDS ORG ", organization_ids_array);
+}
+
+function init_multi_select_reports_affiliates(affiliate_ids) {
+    affiliate_ids_array = affiliate_ids;
+    select_in_edit_mode(affiliate_ids_array, 'affiliate_id');
+    select_text(affiliate_ids_array, 'affiliate_id');
+    console.log("IDS ORG ", affiliate_ids_array);
+}
+
+function select_all(root_id, element, id) {
+    $('.multiSelect#report\\[' + root_id + '\\] +.multiSelectOptions').find('INPUT:checkbox').attr('checked', element.attr('checked')).parent("LABEL").toggleClass('checked', element.attr('checked'));
+    $("#" + id).attr('checked', false);
+    $('.multiSelect#report\\[' + root_id + '\\]').find("span").html( 'All selected' );
+}
+
+function unselect_all(root_id) {
+    $('.multiSelect#report\\[' + root_id + '\\] +.multiSelectOptions').find('INPUT:checkbox').attr('checked', false).parent("LABEL").toggleClass('checked', false);
+    $('.multiSelect#report\\[' + root_id + '\\]').find("span").html( 'Select options' );
+}
+
+function select_taught_courses(course_ids_array) {
+    // uncheck All option
+    $("#report\\[class_id\\]\\[\\]_-1").attr('checked', false);
+    unselect_all('class_id');
+
+    $("#report\\[class_id\\]\\[\\]_-2").attr('checked', true);
+    
+    // select taught courses  
+    set_taught_courses(course_ids_array, true);
+    $('.multiSelect#report\\[class_id\\]').find("span").html( 'All I teach selected' );
+}
+
+function set_taught_courses(course_ids_array, value) {
+    for (var i = 0, len = course_ids_array.length; i < len; i++) {
+        var id = "report\\[class_id\\]\\[\\]_"+ course_ids_array[i];
+        $("#" + id).attr('checked', value);
+    }
+}
+
+function add_checkboxes(element_id){
+    $('.multiSelect#report\\[' + element_id + '\\] + .multiSelectOptions input').each(function () {
+        $(this).attr('id', $(this).attr('name') + "_" + $(this).attr('value'));
+        $(this).after("<label class=\"colorBlack\" for=\"" + $(this).attr('id') + "\"></label>");
+    });
+}
+
+function on_change_for_all_i_teach(){
+    // on change for All I teach
+    $("#report\\[class_id\\]\\[\\]_-2").change(function () {
+        if ($("#report\\[class_id\\]\\[\\]_-2").is(':checked')) {
+            console.log("Select taught");
+            select_taught_courses(taught_course_ids);
+        } else {
+            console.log("Unselect taught");
+            set_taught_courses(taught_course_ids, false);
+            update_selected_objects_number('class_id');          
+        }
+    });
+}
+
+function on_change_for_all(element_id){
+    // on change for All
+    $('#report\\[' + element_id + '\\]\\[\\]_-1').change(function () {
+        console.log("All Value", $('#report\\[' + element_id + '\\]\\[\\]_-1').is(':checked'));
+
+        if ($('#report\\[' + element_id + '\\]\\[\\]_-1').is(':checked')) {
+            console.log("Select all", element_id);
+            var id = 'report\\[' + element_id + '\\]\\[\\]_-2';
+            select_all(element_id, $(this), id);
+        } else {
+            console.log("Unselect all",element_id);
+            unselect_all(element_id);
+        }
+    });
+}
+
+function select_in_edit_mode(ids_array, element_id){
+    if (ids_array.length > 0) {
+        for (var i = 0, len = ids_array.length; i < len; i++) {
+            var id = 'report\\[' + element_id + '\\]\\[\\]_' + ids_array[i];
+            $("#" + id).attr('checked', true);
+        }
+    }
+}
+
+function select_text(ids_array, element_id){
+    if (ids_array.length > 0) {
+        for (var i = 0, len = ids_array.length; i < len; i++) {
+            if (ids_array[i] == "-1") {
+                $('.multiSelect#report\\[' + element_id + '\\]').find("span").html('All selected');
+                return true;
+            } else if (ids_array[i] == "-2") {
+                $('.multiSelect#report\\[' + element_id + '\\]').find("span").html('All I teach selected');
+               // return true;
+            } else {
+                $('.multiSelect#report\\[' + element_id + '\\]').find("span").html(ids_array.length + ' selected');
+            }
+        }
+    }
+}
+
+function handle_multi_select_click_off() {
+    // Add an event listener to the facebox to close the multiselect if the user clicks off
+    $('#faceboxContent').click(function (event) {                // If somewhere outside of the multiselect was clicked then hide the multiselect
+        if (!($(event.target).parents().andSelf().is('.multiSelectOptions'))) {
+            if ($('#report\\[class_id\\]').hasClass('active')) {
+                $('#report\\[class_id\\]').removeClass('active').removeClass('hover').next('.multiSelectOptions').css('visibility', 'hidden');
+            } else if ($('#report\\[organization_id\\]').hasClass('active')) {
+                $('#report\\[organization_id\\]').removeClass('active').removeClass('hover').next('.multiSelectOptions').css('visibility', 'hidden');
+            } else if ($('#report\\[teacher_id\\]').hasClass('active')) {
+                $('#report\\[teacher_id\\]').removeClass('active').removeClass('hover').next('.multiSelectOptions').css('visibility', 'hidden');
+            }
+        }
+    });
+
+    $(".multiSelect#report\\[class_id\\]").click(function () {
+        if ($(this).hasClass('active')) {
+            $(this).addClass('active').next('.multiSelectOptions').css('visibility', 'visible');
+            $("#report\\[organization_id\\]").next(".multiSelectOptions").css('overflow-y', 'hidden');
+        }
+    });
+
+    $(".multiSelect#report\\[organization_id\\]").click(function () {
+        if ($(this).hasClass('active')) {
+            $(this).addClass('active').next('.multiSelectOptions').css('visibility', 'visible');
+            $(this).next('.multiSelectOptions').css('overflow-y', 'auto');
+            $("#report\\[class_id\\]").next(".multiSelectOptions").css('visibility', 'hidden');
+        }
+    });
+
+    $(".multiSelect#report\\[teacher_id\\]").click(function () {
+        if ($(this).hasClass('active')) {
+            $(this).addClass('active').next('.multiSelectOptions').css('visibility', 'visible');
+            $(this).next('.multiSelectOptions').css('overflow-y', 'auto');
+            $("#report\\[class_id\\]").next(".multiSelectOptions").css('visibility', 'hidden');
+            $("#report\\[organization_id\\]").next(".multiSelectOptions").css('overflow-y', 'hidden');
+        }
+    });
+}
+
+function update_selected_objects_number(root_id) {
+    var elements = $('.multiSelect#report\\[' + root_id + '\\] +.multiSelectOptions').find('INPUT:checkbox:checked');
+    var x = elements.length;
+    console.log("Selected", elements.length);
+    if (x == 0){
+        $('.multiSelect#report\\[' + root_id + '\\]').find("span").html('Select options');
+    }else{
+        $('.multiSelect#report\\[' + root_id + '\\]').find("span").html(x + ' selected');
+    }
+}
