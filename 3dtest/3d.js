@@ -19,6 +19,7 @@ function toSpherical(coords){
     return {r:r,t1:t1,t2:t2};
 }
 points = [{x:3,y:-4,z:12}, {x:-4,y:2,z:15}];
+lines = [[points[0],points[1]]];
 var zoom = 100; // r
 var tracking = false;
 var mouseX = 0;
