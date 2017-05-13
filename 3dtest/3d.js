@@ -23,9 +23,17 @@ var zoom = 100; // r
 var tracking = false;
 var mouseX = 0;
 var mouseY = 0;
-document.querySelector("svg").addEventListener("mousedown",function(e){
-    tracking = true;
-});
-document.querySelector("svg").addEventListener("mouseup",function(e){
-    tracking = false;
+$(document).ready(function(){
+    $("#magic").mousedown(function(e){
+        tracking = true;
+    });
+    $("#magic").mouseup(function(e){
+        tracking = false;
+    });
+    $("#magic").mousemove(function(e){
+        if(tracking){
+           mouseX = e.pageX - $('#magic').offset().left;
+            mouseY = e.pageY - $('#magic').offset().top;
+        }
+    });
 });
