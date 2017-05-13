@@ -18,7 +18,7 @@ function toSpherical(coords){
     r=z/Math.sin(t2);
     return {r:r,t1:t1,t2:t2};
 }
-
+points = [{x:3,y:-4,z:12}, {x:-4,y:2,z:15}];
 var zoom = 100; // r
 var tracking = false;
 var mouseX = 0;
@@ -33,7 +33,7 @@ $(document).ready(function(){
     $("#magic").mousemove(function(e){
         if(tracking){
            mouseX = e.pageX - $('#magic').offset().left;
-            mouseY = e.pageY - $('#magic').offset().top;
+           mouseY = e.pageY - $('#magic').offset().top;
         }
     });
 });
