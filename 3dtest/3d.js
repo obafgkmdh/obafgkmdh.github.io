@@ -49,7 +49,7 @@ window.setInterval(function(){
     if(tracking){}
     for(var i = 0;i<points.length;i++){
         scalefactor=zoom*5/points[i].z;
-        a = document.createElement("circle");
+        a = document.createElementNS("http://www.w3.org/2000/svg","circle");
         a.setAttribute("cx",points[i].x*scalefactor);
         a.setAttribute("cy",points[i].y*scalefactor);
         a.setAttribute("r",5*scalefactor);
