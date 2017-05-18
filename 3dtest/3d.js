@@ -38,3 +38,11 @@ $(document).ready(function(){
         }
     });
 });
+p = []
+l = []
+window.setInterval(function(){
+    while(p.length){p[0].parentElement.removeChild(p[0]);}
+    for(var i = 0;i<points.length;i++){
+        
+    }
+},200);
