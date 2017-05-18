@@ -43,6 +43,11 @@ l = []
 window.setInterval(function(){
     while(p.length){p[0].parentElement.removeChild(p[0]);}
     for(var i = 0;i<points.length;i++){
-        
+        scalefactor=1;
+        a = document.createElement("circle");
+        a.cx=points[i].x*scalefactor;
+        a.cy=points[i].y*scalefactor;
+        a.r=5*scalefactor;
+        document.querySelector("#magic").appendChild(a);
     }
 },200);
