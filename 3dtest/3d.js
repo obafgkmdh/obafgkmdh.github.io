@@ -44,7 +44,7 @@ $(document).ready(function(){
 p = []
 l = []
 zoom = 1
-size = document.querySelector("#magic").width.substring(0,document.querySelector("#magic").width-2)/500;
+size = document.querySelector("#magic").style.width.substring(0,document.querySelector("#magic").style.width-2)/500;
 window.setInterval(function(){
     while(p.length){p[0].parentElement.removeChild(p[0]);p.shift();}
     if(tracking){}
