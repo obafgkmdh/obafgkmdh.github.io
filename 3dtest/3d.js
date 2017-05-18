@@ -24,6 +24,8 @@ var zoom = 100; // r
 var tracking = false;
 var mouseX = 0;
 var mouseY = 0;
+var mouseX_ = 0;
+var mouseY_ = 0;
 $(document).ready(function(){
     $("#magic").mousedown(function(e){
         tracking = true;
@@ -33,21 +35,25 @@ $(document).ready(function(){
     });
     $("#magic").mousemove(function(e){
         if(tracking){
-           mouseX = e.pageX - $('#magic').offset().left;
-           mouseY = e.pageY - $('#magic').offset().top;
+            mouseX_ = mouseX;
+            mouseY_ = mouseY;
+            mouseX = e.pageX - $('#magic').offset().left;
+            mouseY = e.pageY - $('#magic').offset().top;
         }
     });
 });
 p = []
 l = []
+s = 1
 window.setInterval(function(){
     while(p.length){p[0].parentElement.removeChild(p[0]);}
     for(var i = 0;i<points.length;i++){
-        scalefactor=1;
+        scalefactor=s*5/points[i].z;
         a = document.createElement("circle");
         a.cx=points[i].x*scalefactor;
         a.cy=points[i].y*scalefactor;
         a.r=5*scalefactor;
         document.querySelector("#magic").appendChild(a);
+        p.push(a);
     }
 },200);
