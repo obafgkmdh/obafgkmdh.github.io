@@ -46,7 +46,7 @@ p = []
 l = []
 s = 1
 window.setInterval(function(){
-    while(p.length){p[0].parentElement.removeChild(p[0]);}
+    while(p.length){p[0].parentElement.removeChild(p[0]);p.shift();}
     for(var i = 0;i<points.length;i++){
         scalefactor=s*5/points[i].z;
         a = document.createElement("circle");
