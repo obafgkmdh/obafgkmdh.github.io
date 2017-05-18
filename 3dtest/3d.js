@@ -47,12 +47,13 @@ l = []
 s = 1
 window.setInterval(function(){
     while(p.length){p[0].parentElement.removeChild(p[0]);p.shift();}
+    if(tracking){}
     for(var i = 0;i<points.length;i++){
         scalefactor=s*5/points[i].z;
         a = document.createElement("circle");
-        a.cx=points[i].x*scalefactor;
-        a.cy=points[i].y*scalefactor;
-        a.r=5*scalefactor;
+        a.cx.baseVal.value=points[i].x*scalefactor;
+        a.cy.baseVal.value=points[i].y*scalefactor;
+        a.r.baseVal.value=5*scalefactor;
         document.querySelector("#magic").appendChild(a);
         p.push(a);
     }
