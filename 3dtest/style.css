@@ -1,8 +1,9 @@
 body {
-	background:lightgoldenrodyellow;
+     background:lightgoldenrodyellow;
 }
 #magic {
-	position:absolute;
+    position:absolute;
     top:0px;
     left:0px;
+    border: 2px solid green;
 }
