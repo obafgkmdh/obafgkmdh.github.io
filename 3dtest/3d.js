@@ -44,12 +44,12 @@ $(document).ready(function(){
 p = []
 l = []
 zoom = 1
-size = document.querySelector("#magic").width.baseVal.value/500;
+size = document.querySelector("#magic").width.baseVal.value;
 window.setInterval(function(){
     while(p.length){p[0].parentElement.removeChild(p[0]);p.shift();}
     if(tracking){}
     for(var i = 0;i<points.length;i++){
-        scalefactor=size*zoom*5/points[i].z;
+        scalefactor=size/500*zoom*5/points[i].z;
         a = document.createElementNS("http://www.w3.org/2000/svg","circle");
         a.setAttribute("cx",points[i].x*scalefactor+size/2);
         a.setAttribute("cy",points[i].y*scalefactor+size/2);
