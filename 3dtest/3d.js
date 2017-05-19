@@ -18,7 +18,7 @@ function toSpherical(coords){
     r=z/Math.sin(t2);
     return {r:r,t1:t1,t2:t2};
 }
-points = [{x:3,y:-4,z:12}, {x:-4,y:2,z:15}, {x:17,y:7,z:17}];
+points = [{x:3,y:-4,z:12}, {x:-4,y:2,z:15}, {x:17,y:7,z:17}, {x:0,y:0,z:0}];
 lines = [[0,1],[1,2]];
 var tracking = false;
 var mouseX = 0;
