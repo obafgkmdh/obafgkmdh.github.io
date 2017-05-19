@@ -14,8 +14,8 @@ function toSpherical(coords){
     y=coords.y;
     z=coords.z;
     
-    t1=Math.atan(y/x)*180/Math.PI;
-    t2=Math.atan(z*180/Math.PI*Math.sin(t1*Math.PI/180)/y);
+    t1=atan(y/x)*180/Math.PI;
+    t2=atan(z*180/Math.PI*Math.sin(t1*Math.PI/180)/y);
     r=z/Math.sin(t2*Math.PI/180);
     return {r:r,t1:t1,t2:t2};
 }
