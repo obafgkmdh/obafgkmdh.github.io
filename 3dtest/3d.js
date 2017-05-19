@@ -48,14 +48,20 @@ size = document.querySelector("#magic").width.baseVal.value;
 window.setInterval(function(){
     while(p.length){p[0].parentElement.removeChild(p[0]);p.shift();}
     while(l.length){l[0].parentElement.removeChild(l[0]);l.shift();}
-    if(tracking){}
+    if(tracking){
+        for(var i = 0;i<points.length;i++){
+            k = toSpherical(points[i]);
+            k.t1+=mouseX-mouseX_;
+            k.t2+=mouseY-mouseY_;
+        }
+    }
     for(var i = 0;i<points.length;i++){
         scalefactor=size/500*zoom*50/points[i].z;
         a = document.createElementNS("http://www.w3.org/2000/svg","circle");
         a.setAttribute("cx",points[i].x*scalefactor+size/2);
         a.setAttribute("cy",points[i].y*scalefactor+size/2);
         a.setAttribute("r",5*scalefactor/50);
-        a.setAttribute("stroke-width",3);a.setAttribute("stroke","black");
+        a.setAttribute("stroke-width",1);a.setAttribute("stroke","black");a.setAttribute("fill","black");
         document.querySelector("#magic").appendChild(a);
         p.push(a);
     }
@@ -66,7 +72,7 @@ window.setInterval(function(){
         a.setAttribute("y1",points[lines[i][0]].y*scalefactor+size/2);
         a.setAttribute("x2",points[lines[i][1]].x*scalefactor+size/2);
         a.setAttribute("y2",points[lines[i][1]].y*scalefactor+size/2);
-        a.setAttribute("stroke-width",3);a.setAttribute("stroke","black");
+        a.setAttribute("stroke-width",1);a.setAttribute("stroke","black");
         document.querySelector("#magic").appendChild(a);
         l.push(a);
     }
