@@ -58,6 +58,7 @@ window.setInterval(function(){
     }
     for(var i = 0;i<points.length;i++){
         scalefactor=size/500*zoom*50/points[i].z;
+        scalefactor=1
         a = document.createElementNS("http://www.w3.org/2000/svg","circle");
         a.setAttribute("cx",points[i].x*scalefactor+size/2);
         a.setAttribute("cy",points[i].y*scalefactor+size/2);
