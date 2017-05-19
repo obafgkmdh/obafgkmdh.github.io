@@ -55,6 +55,7 @@ window.setInterval(function(){
         a.setAttribute("cx",points[i].x*scalefactor+size/2);
         a.setAttribute("cy",points[i].y*scalefactor+size/2);
         a.setAttribute("r",5*scalefactor/50);
+        a.setAttribute("stroke-width",3);
         document.querySelector("#magic").appendChild(a);
         p.push(a);
     }
@@ -65,6 +66,7 @@ window.setInterval(function(){
         a.setAttribute("y1",points[lines[i][0]].y*scalefactor+size/2);
         a.setAttribute("x2",points[lines[i][1]].x*scalefactor+size/2);
         a.setAttribute("y2",points[lines[i][1]].y*scalefactor+size/2);
+        a.setAttribute("stroke-width",3);
         document.querySelector("#magic").appendChild(a);
         l.push(a);
     }
