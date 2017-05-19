@@ -1,3 +1,4 @@
+atan=a=>a==Infinity?1:a==-Infinity?-1:Math.atan(a);
 function to3d(coords){
     r=coords.r;
     t1=coords.t1*Math.PI/180;
