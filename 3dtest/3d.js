@@ -54,7 +54,7 @@ window.setInterval(function(){
         a = document.createElementNS("http://www.w3.org/2000/svg","circle");
         a.setAttribute("cx",points[i].x*scalefactor+size/2);
         a.setAttribute("cy",points[i].y*scalefactor+size/2);
-        a.setAttribute("r",5*scalefactor);
+        a.setAttribute("r",5*scalefactor/50);
         document.querySelector("#magic").appendChild(a);
         p.push(a);
     }
