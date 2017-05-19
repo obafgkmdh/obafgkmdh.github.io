@@ -53,6 +53,7 @@ window.setInterval(function(){
             k = toSpherical(points[i]);
             k.t1+=mouseX-mouseX_;
             k.t2+=mouseY-mouseY_;
+            points[i]=to3d(k);
         }
     }
     for(var i = 0;i<points.length;i++){
