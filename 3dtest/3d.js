@@ -48,16 +48,17 @@ $(document).ready(function(){
         }
     });
 });
-p = []
-l = []
-zoom = 1
-size = document.querySelector("#magic").width.baseVal.value;
+p = [];
+l = [];
+zoom = 1;
+//size = document.querySelector("#magic").width.baseVal.value;
+size = 500;
 window.setInterval(function(){
     while(p.length){p[0].parentElement.removeChild(p[0]);p.shift();}
     while(l.length){l[0].parentElement.removeChild(l[0]);l.shift();}
     for(var i = 0;i<points.length;i++){
         scalefactor=size/500*zoom*50/points[i].z;
-        scalefactor=1
+        scalefactor=1;
         a = document.createElementNS("http://www.w3.org/2000/svg","circle");console.log(points);
         a.setAttribute("cx",points[i].x*scalefactor+size/2);
         a.setAttribute("cy",points[i].y*scalefactor+size/2);
