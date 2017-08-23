@@ -2,28 +2,32 @@
 <html>
 <head>
 <title>i need a good title</title>
-<script src="/biginteger.js"></script>
+<script src="http://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>
 <script>
 function rsa(){
-    n = document.forms["rsa"]["n"].value;
-    e = document.forms["rsa"]["e"].value;
-    c = document.forms["rsa"]["c"].value;
-    d = document.forms["rsa"]["d"].value;
-    p = document.forms["rsa"]["p"].value;
-    q = document.forms["rsa"]["q"].value;
-    
+    var vars={
+        n:document.forms["rsa"]["n"].value,
+        e:document.forms["rsa"]["e"].value,
+        c:document.forms["rsa"]["c"].value,
+        d:document.forms["rsa"]["d"].value,
+        p:document.forms["rsa"]["p"].value,
+        q:document.forms["rsa"]["q"].value
+    };
+    for(var i in vars){if(vars[i]==""){delete vars[i];}else{vars[i]=bigInt(vars[i]);}}
 }
 </script>
 </head>
 <body>
 <p>if you want inputs to be hex put 0x before it, if you want it to be binary put 0b before it</p>
-<form name="rsa" onsubmit="rsa()">
-<p>n: <input name="n"></p>
-<p>e: <input name="e"></p>
-<p>c: <input name="c"></p>
-<p>d: <input name="d"></p>
-<p>p: <input name="p"></p>
-<p>q: <input name="q"></p>
-<p><input type="submit" value="Submit"></p>
+<form name="rsa" onsubmit="return rsa()">
+    <p>n: <input name="n"></p>
+    <p>e: <input name="e"></p>
+    <p>c: <input name="c"></p>
+    <p>d: <input name="d"></p>
+    <p>p: <input name="p"></p>
+    <p>q: <input name="q"></p>
+    <p><input type="submit" value="Submit"></p>
+</form>
+<div id="result"></div>
 </body>
 </html>
