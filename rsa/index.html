@@ -4,17 +4,61 @@
 <title>i need a good title</title>
 <script src="http://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>
 <script>
-function rsa(){
-    var vars={
-        n:document.forms["rsa"]["n"].value,
-        e:document.forms["rsa"]["e"].value,
-        c:document.forms["rsa"]["c"].value,
-        d:document.forms["rsa"]["d"].value,
-        p:document.forms["rsa"]["p"].value,
-        q:document.forms["rsa"]["q"].value
-    };
-    for(var i in vars){if(vars[i]==""){delete vars[i];}else{vars[i]=bigInt(vars[i]);}}
-}
+    function escapeHtml(text) {
+      var map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      };
+
+      return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+    function rsa(){
+        try{
+            var vars={
+                n:document.forms["rsa"]["n"].value,
+                e:document.forms["rsa"]["e"].value,
+                c:document.forms["rsa"]["c"].value,
+                d:document.forms["rsa"]["d"].value,
+                p:document.forms["rsa"]["p"].value,
+                q:document.forms["rsa"]["q"].value
+            };
+            for(var i in vars){if(vars[i]==""){delete vars[i];}else{vars[i]=bigInt(vars[i]);}}
+            // todo: get factor tables
+            
+            //error checking
+            if(vars.p&&vars.q&&vars.n&&vars.p.multiply(vars.q).neq(vars.n)){throw ("p*q does not equal n! (that's not a factorial)");}
+            //if(vars.d&&vars.e&&vars.n&&vars.p.multiply(vars.q).neq(vars.n)){throw ("p*q does not equal n! (that's not a factorial)");}
+            
+            //computation
+            if(vars.p&&vars.q){
+                if(vars.e){
+                    //
+                }
+                if(vars.d){
+                    //
+                }
+            }
+            else if(vars.n&&vars.p){
+
+            }
+            else if(vars.n&&vars.q){
+
+            }
+            else if(vars.n){
+
+            }
+            else{
+
+            }
+        }
+        catch(e){
+            console.log(e);
+            document.getElementbyId("result").innerHTML+="Something went wrong. :(<br>"+escapeHTML(e);
+        }
+    }
 </script>
 </head>
 <body>
