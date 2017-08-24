@@ -46,7 +46,6 @@
                 };
                 for(var i in vars){if(vars[i]==""){delete vars[i];}else{vars[i]=bigInt(vars[i]);}}
                 //error checking
-                var errs = {c:false;}
                 if(!vars.c){
                     document.getElementbyId("result").innerHTML+="<br><span class='warning'>Warning: no value for c specified.</span>"
                 }
@@ -78,16 +77,32 @@
                     }
                 }
                 else if(vars.n&&vars.p){
-                    vars.p
+                    vars.q=vars.n.over(vars.p);
+                    if(vars.d){
+                        document.getElementbyId("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt1(vars.c,vars.d,vars.p.multiply(vars.q))+"</span>";
+                        return;
+                    }
+                    else if(vars.e){
+                        document.getElementbyId("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q))+"</span>";
+                        return;
+                    }
                 }
                 else if(vars.n&&vars.q){
-
+                    vars.p=vars.n.over(vars.q);
+                    if(vars.d){
+                        document.getElementbyId("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt1(vars.c,vars.d,vars.p.multiply(vars.q))+"</span>";
+                        return;
+                    }
+                    else if(vars.e){
+                        document.getElementbyId("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q))+"</span>";
+                        return;
+                    }
                 }
                 else if(vars.n){
-
+                    //
                 }
                 else{
-
+                    //
                 }
             }
             catch(e){
