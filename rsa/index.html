@@ -10,6 +10,9 @@
             background:red;
             color:white;
         }
+        .success {
+            background:lime;
+        }
     </style>
     <script src="biginteger.js"></script>
     <script>
@@ -40,7 +43,6 @@
                     q:document.forms["rsa"]["q"].value
                 };
                 for(var i in vars){if(vars[i]==""){delete vars[i];}else{vars[i]=bigInt(vars[i]);}}
-                // todo: get factor tables
 
                 //error checking
                 if(!vars.c){
@@ -54,13 +56,12 @@
                 }
 
                 //computation
-                if(!vars.o&&!vars.q&&vars.n){
-                    //send request to factordb
+                if(!vars.p&&!vars.q&&vars.n){
+                    //todo: get factor tables
                 }
                 if(vars.p&&vars.q){
                     if(vars.d){
-                        //
-                        
+                        document.getElementbyId("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt1(vars.c,vars.d,vars.n)+"</span>"
                     }
                     else if(vars.e){
                         //
