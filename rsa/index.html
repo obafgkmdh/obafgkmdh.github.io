@@ -68,33 +68,33 @@
                 }
                 if(vars.p&&vars.q){
                     if(vars.d){
-                        document.getElementbyId("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt1(vars.c,vars.d,vars.p.multiply(vars.q))+"</span>";
+                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt1(vars.c,vars.d,vars.p.multiply(vars.q))+"</span>";
                         return;
                     }
                     else if(vars.e){
-                        document.getElementbyId("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q))+"</span>";
+                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q))+"</span>";
                         return;
                     }
                 }
                 else if(vars.n&&vars.p){
                     vars.q=vars.n.over(vars.p);
                     if(vars.d){
-                        document.getElementbyId("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt1(vars.c,vars.d,vars.p.multiply(vars.q))+"</span>";
+                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt1(vars.c,vars.d,vars.p.multiply(vars.q))+"</span>";
                         return;
                     }
                     else if(vars.e){
-                        document.getElementbyId("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q))+"</span>";
+                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q))+"</span>";
                         return;
                     }
                 }
                 else if(vars.n&&vars.q){
                     vars.p=vars.n.over(vars.q);
                     if(vars.d){
-                        document.getElementbyId("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt1(vars.c,vars.d,vars.p.multiply(vars.q))+"</span>";
+                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt1(vars.c,vars.d,vars.p.multiply(vars.q))+"</span>";
                         return;
                     }
                     else if(vars.e){
-                        document.getElementbyId("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q))+"</span>";
+                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q))+"</span>";
                         return;
                     }
                 }
@@ -107,7 +107,7 @@
             }
             catch(e){
                 console.log(e);
-                document.getElementbyId("result").innerHTML+="Something went wrong. :("+escapeHTML(e);
+                document.getElementById("result").innerHTML+="Something went wrong. :("+escapeHTML(e);
             }
         }
     </script>
