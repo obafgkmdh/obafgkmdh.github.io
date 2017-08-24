@@ -61,10 +61,12 @@
                 }
                 if(vars.p&&vars.q){
                     if(vars.d){
-                        document.getElementbyId("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt1(vars.c,vars.d,vars.n)+"</span>"
+                        document.getElementbyId("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt1(vars.c,vars.d,vars.p.multiply(vars.q))+"</span>";
+                        return;
                     }
                     else if(vars.e){
-                        //
+                        document.getElementbyId("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt2(vars.c,vars.e,vars.p.multiply(vars.q))+"</span>";
+                        return;
                     }
                 }
                 else if(vars.n&&vars.p){
