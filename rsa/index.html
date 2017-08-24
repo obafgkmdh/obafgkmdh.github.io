@@ -37,12 +37,12 @@
         function rsa(){
             try{
                 var vars={
-                    n:document.forms["rsa"]["n"].value,
-                    e:document.forms["rsa"]["e"].value,
-                    c:document.forms["rsa"]["c"].value,
-                    d:document.forms["rsa"]["d"].value,
-                    p:document.forms["rsa"]["p"].value,
-                    q:document.forms["rsa"]["q"].value
+                    n:document.getElementbyId("n").value,
+                    e:document.getElementbyId("e").value,
+                    c:document.getElementbyId("c").value,
+                    d:document.getElementbyId("d").value,
+                    p:document.getElementbyId("p").value,
+                    q:document.getElementbyId("q").value
                 };
                 for(var i in vars){if(vars[i]==""){delete vars[i];}else{vars[i]=bigInt(vars[i]);}}
 
@@ -91,15 +91,13 @@
         }
     </script>
     <p>if you want inputs to be hex put 0x before it, if you want it to be binary put 0b before it</p>
-    <form name="rsa">
-        <p>n: <input name="n"></p>
-        <p>e: <input name="e"></p>
-        <p>c: <input name="c"></p>
-        <p>d: <input name="d"></p>
-        <p>p: <input name="p"></p>
-        <p>q: <input name="q"></p>
-        <p><button onclick="rsa()">Submit</button></p>
-    </form>
+    <p>n: <input name="n" id="n"></p>
+    <p>e: <input name="e" id="e"></p>
+    <p>c: <input name="c" id="c"></p>
+    <p>d: <input name="d" id="d"></p>
+    <p>p: <input name="p" id="p"></p>
+    <p>q: <input name="q" id="q"></p>
+    <p><button onclick="rsa()">Submit</button></p>
     <div id="result"></div>
 </body>
 </html>
