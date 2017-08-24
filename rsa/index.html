@@ -91,14 +91,14 @@
 </head>
 <body>
     <p>if you want inputs to be hex put 0x before it, if you want it to be binary put 0b before it</p>
-    <form name="rsa" onsubmit="return rsa()">
+    <form name="rsa">
         <p>n: <input name="n"></p>
         <p>e: <input name="e"></p>
         <p>c: <input name="c"></p>
         <p>d: <input name="d"></p>
         <p>p: <input name="p"></p>
         <p>q: <input name="q"></p>
-        <p><input type="submit" value="Submit"></p>
+        <p><button onclick="rsa()">Submit</button></p>
     </form>
     <div id="result"></div>
 </body>
