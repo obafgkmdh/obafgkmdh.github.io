@@ -47,13 +47,13 @@
                 for(var i in vars){if(vars[i]==""){delete vars[i];}else{vars[i]=bigInt(vars[i]);}}
                 //error checking
                 if(!vars.c){
-                    document.getElementbyId("result").innerHTML+="<br><span class='warning'>Warning: no value for c specified.</span>"
+                    document.getElementById("result").innerHTML+="<br><span class='warning'>Warning: no value for c specified.</span>"
                 }
                 if(!vars.e&&!vars.d){
-                    document.getElementbyId("result").innerHTML+="<br><span class='warning'>Warning: no values for e or d specified.</span>"
+                    document.getElementById("result").innerHTML+="<br><span class='warning'>Warning: no values for e or d specified.</span>"
                 }
                 if(!vars.n){
-                    document.getElementbyId("result").innerHTML+="<br><span class='warning'>Warning: no value for n specified.</span>"
+                    document.getElementById("result").innerHTML+="<br><span class='warning'>Warning: no value for n specified.</span>"
                 }
                 if(vars.p&&vars.q&&vars.n&&vars.p.multiply(vars.q).neq(vars.n)){
                     throw ("<span class='error'>Error: inconsistency between p, q, and n</span>");
