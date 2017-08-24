@@ -38,16 +38,26 @@
                 // todo: get factor tables
 
                 //error checking
-                if(!vars.c)
-                if(vars.p&&vars.q&&vars.n&&vars.p.multiply(vars.q).neq(vars.n)){throw ("inconsistency between p, q, and n");}
-                if(vars.d&&vars.e&&vars.n&&bigInt(2).modPow(vars.d.multiply(vars.e),vars.n).neq(bigInt(2))){throw ("inconsistency between d and e");}
+                if(!vars.c){
+                    document.getElementbyId("result").innerHTML+="<br><span class='warning'>Warning: no value for c specified.</span>"
+                }
+                if(vars.p&&vars.q&&vars.n&&vars.p.multiply(vars.q).neq(vars.n)){
+                    throw ("<span class='error'>Error: inconsistency between p, q, and n</span>");
+                }
+                if(vars.d&&vars.e&&vars.n&&bigInt(2).modPow(vars.d.multiply(vars.e),vars.n).neq(bigInt(2))){
+                    throw ("<span class='error'>Error: inconsistency between d and e</span>");
+                }
 
                 //computation
+                if(!vars.o&&!vars.q&&vars.n){
+                    //send request to factordb
+                }
                 if(vars.p&&vars.q){
-                    if(vars.e){
-                        //
-                    }
                     if(vars.d){
+                        //
+                        
+                    }
+                    else if(vars.e){
                         //
                     }
                 }
