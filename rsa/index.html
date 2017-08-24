@@ -37,18 +37,24 @@
         function rsa(){
             try{
                 var vars={
-                    n:document.getElementbyId("n").value,
-                    e:document.getElementbyId("e").value,
-                    c:document.getElementbyId("c").value,
-                    d:document.getElementbyId("d").value,
-                    p:document.getElementbyId("p").value,
-                    q:document.getElementbyId("q").value
+                    n:document.getElementById("n").value,
+                    e:document.getElementById("e").value,
+                    c:document.getElementById("c").value,
+                    d:document.getElementById("d").value,
+                    p:document.getElementById("p").value,
+                    q:document.getElementById("q").value
                 };
                 for(var i in vars){if(vars[i]==""){delete vars[i];}else{vars[i]=bigInt(vars[i]);}}
-
                 //error checking
+                var errs = {c:false;}
                 if(!vars.c){
                     document.getElementbyId("result").innerHTML+="<br><span class='warning'>Warning: no value for c specified.</span>"
+                }
+                if(!vars.e&&!vars.d){
+                    document.getElementbyId("result").innerHTML+="<br><span class='warning'>Warning: no values for e or d specified.</span>"
+                }
+                if(!vars.n){
+                    document.getElementbyId("result").innerHTML+="<br><span class='warning'>Warning: no value for n specified.</span>"
                 }
                 if(vars.p&&vars.q&&vars.n&&vars.p.multiply(vars.q).neq(vars.n)){
                     throw ("<span class='error'>Error: inconsistency between p, q, and n</span>");
@@ -72,7 +78,7 @@
                     }
                 }
                 else if(vars.n&&vars.p){
-
+                    vars.p
                 }
                 else if(vars.n&&vars.q){
 
@@ -86,7 +92,7 @@
             }
             catch(e){
                 console.log(e);
-                document.getElementbyId("result").innerHTML+="Something went wrong. :(<br>"+escapeHTML(e);
+                document.getElementbyId("result").innerHTML+="Something went wrong. :("+escapeHTML(e);
             }
         }
     </script>
