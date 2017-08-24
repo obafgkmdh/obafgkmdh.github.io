@@ -21,8 +21,13 @@
             '"': '&quot;',
             "'": '&#039;'
           };
-
           return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+        function decrypt1(c,d,n){
+            return c.modPow(d,n);
+        }
+        function decrypt2(p,q,c,e,n){
+            return decrypt1(c,modInv(e,p.prev().multiply(q.prev())),n);
         }
         function rsa(){
             try{
