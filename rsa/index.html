@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>i need a good title</title>
-<script src="http://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>
+<script src="https://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>
 <script>
     function escapeHtml(text) {
       var map = {
@@ -29,8 +29,9 @@
             // todo: get factor tables
             
             //error checking
-            if(vars.p&&vars.q&&vars.n&&vars.p.multiply(vars.q).neq(vars.n)){throw ("p*q does not equal n! (that's not a factorial)");}
-            //if(vars.d&&vars.e&&vars.n&&vars.p.multiply(vars.q).neq(vars.n)){throw ("p*q does not equal n! (that's not a factorial)");}
+            if(!vars.c)
+            if(vars.p&&vars.q&&vars.n&&vars.p.multiply(vars.q).neq(vars.n)){throw ("inconsistency between p, q, and n");}
+            if(vars.d&&vars.e&&vars.n&&bigInt(3).modPow(vars.d.multiply(vars.e),vars.n).neq(bigInt(3))){throw ("inconsistency between d and e");}
             
             //computation
             if(vars.p&&vars.q){
