@@ -13,12 +13,16 @@
         .success {
             background:lime;
         }
+        .info {
+            /* will use at some later time */
+            font-style: italic;
+        }
         * {
             font-family: monospace;
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="biginteger.js"></script>
+    <script src="biginteger.js"></script><!--uses peter olson biginteger.js-->
 </head>
 <body>
     <script>
@@ -28,7 +32,12 @@
         function decrypt2(p,q,c,e,n){
             return decrypt1(c,e.modInv(p.prev().multiply(q.prev())),n);
         }
+        function iroot(k,n){
+            //not implemented
+            return false;
+        }
         function rsa(){
+            document.getElementById("result").innerHTML=""; // clear
             try{
                 var vars={
                     n:document.getElementById("n").value,
@@ -40,9 +49,6 @@
                 };
                 for(var i in vars){if(vars[i]==""){delete vars[i];}else{vars[i]=bigInt(vars[i]);}}
                 //error checking
-                if(!vars.c){
-                    document.getElementById("result").innerHTML+="<br><span class='warning'>Warning: no value for c specified.</span>"
-                }
                 if(!vars.e&&!vars.d){
                     document.getElementById("result").innerHTML+="<br><span class='warning'>Warning: no values for e or d specified.</span>"
                 }
@@ -55,41 +61,73 @@
                 if(vars.d&&vars.e&&vars.n&&bigInt(2).modPow(vars.d.multiply(vars.e),vars.n).neq(bigInt(2))){
                     throw ("Error: inconsistency between d and e");
                 }
-
+                if(!vars.c){
+                    throw ("Error: no value of c specified")
+                }
                 //computation
                 if(!vars.p&&!vars.q&&vars.n){
                     //todo: get factor tables
                 }
                 if(vars.p&&vars.q){
                     if(vars.d){
-                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt1(vars.c,vars.d,vars.p.multiply(vars.q)).toString()+"</span>";
+                        var m = decrypt1(vars.c,vars.d,vars.p.multiply(vars.q));
+                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+m.toString()+"</span>";
                         return;
                     }
                     else if(vars.e){
-                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q)).toString()+"</span>";
+                        var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
+                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+m.toString()+"</span>";
                         return;
+                    }
+                    else{
+                        fermat_primes=[3, 5, 17, 257, 65537];
+                        for(var i = 0;i<fermat_primes.length;i++){
+                            vars.e=bigInt(fermat_primes[i]);
+                            var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
+                            document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>";
+                        }
                     }
                 }
                 else if(vars.n&&vars.p){
                     vars.q=vars.n.over(vars.p);
                     if(vars.d){
-                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt1(vars.c,vars.d,vars.p.multiply(vars.q)).toString()+"</span>";
+                        var m = decrypt1(vars.c,vars.d,vars.p.multiply(vars.q));
+                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+m.toString()+"</span>";
                         return;
                     }
                     else if(vars.e){
-                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q)).toString()+"</span>";
+                        var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
+                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+m.toString()+"</span>";
                         return;
+                    }
+                    else{
+                        fermat_primes=[3, 5, 17, 257, 65537];
+                        for(var i = 0;i<fermat_primes.length;i++){
+                            vars.e=bigInt(fermat_primes[i]);
+                            var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
+                            document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>";
+                        }
                     }
                 }
                 else if(vars.n&&vars.q){
                     vars.p=vars.n.over(vars.q);
                     if(vars.d){
-                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt1(vars.c,vars.d,vars.p.multiply(vars.q)).toString()+"</span>";
+                        var m = decrypt1(vars.c,vars.d,vars.p.multiply(vars.q));
+                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+m.toString()+"</span>";
                         return;
                     }
                     else if(vars.e){
-                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q)).toString()+"</span>";
+                        var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
+                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+m.toString()+"</span>";
                         return;
+                    }
+                    else{
+                        fermat_primes=[3, 5, 17, 257, 65537];
+                        for(var i = 0;i<fermat_primes.length;i++){
+                            vars.e=bigInt(fermat_primes[i]);
+                            var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
+                            document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>";
+                        }
                     }
                 }
                 else if(vars.n){
