@@ -23,7 +23,7 @@
             return c.modPow(d,n);
         }
         function decrypt2(p,q,c,e,n){
-            return decrypt1(c,modInv(e,p.prev().multiply(q.prev())),n);
+            return decrypt1(c,e.modInv(p.prev().multiply(q.prev())),n);
         }
         function rsa(){
             try{
