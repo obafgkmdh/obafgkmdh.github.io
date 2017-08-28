@@ -14,7 +14,6 @@
             background:lime;
         }
         .info {
-            /* will use at some later time */
             font-style: italic;
         }
         * {
@@ -25,6 +24,7 @@
     <script src="biginteger.js"></script><!--uses peter olson biginteger.js-->
 </head>
 <body>
+    <!--ughhh i need to optimize thisssss-->
     <script>
         function decrypt1(c,d,n){
             return c.modPow(d,n);
@@ -36,6 +36,7 @@
             //not implemented
             return false;
         }
+        h2a=a=>a.match(/.{1,2}/g).map(v=>String.fromCharCode(parseInt(v, 16))).join``; //arrow functions? template strings? now that's exciting
         function write(m){
             document.getElementById("result").innerHTML+=m;
         }
@@ -53,10 +54,10 @@
                 for(var i in vars){if(vars[i]==""){delete vars[i];}else{vars[i]=bigInt(vars[i]);}}
                 //error checking
                 if(!vars.e&&!vars.d){
-                    write("<br><span class='warning'>Warning: no values for e or d specified.</span>");
+                    write("<br><span class='warning'>Warning: no values for e or d specified. Assuming e is a fermat prime.</span>");
                 }
-                if(!vars.n){
-                    write("<br><span class='warning'>Warning: no value for n specified.</span>");
+                if(!vars.n&&(!vars.p||!vars.q)){
+                    write("<br><span class='warning'>Warning: Information about modulus missing and/or incomplete. Assuming message does not wrap around modulus.</span>");
                 }
                 if(vars.p&&vars.q&&vars.n&&vars.p.multiply(vars.q).neq(vars.n)){
                     throw ("Error: inconsistency between p, q, and n");
@@ -65,7 +66,7 @@
                     throw ("Error: inconsistency between d and e");
                 }
                 if(!vars.c){
-                    throw ("Error: no value of c specified")
+                    throw ("Error: no value for c specified");
                 }
                 //computation
                 if(!vars.p&&!vars.q&&vars.n){
@@ -75,11 +76,13 @@
                     if(vars.d){
                         var m = decrypt1(vars.c,vars.d,vars.p.multiply(vars.q));
                         write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                        write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                         return;
                     }
                     else if(vars.e){
                         var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
                         write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                        write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                         return;
                     }
                     else{
@@ -89,6 +92,10 @@
                             if(!vars.p.prev().multiply(vars.q.prev()).isDivisibleBy(vars.e)){
                                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
                                 write("<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
+                                write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
+                            }
+                            else{
+                                write("<br><span class='info'>No message could be recovered when e="+vars.e.toString()+"</span>");
                             }
                         }
                     }
@@ -98,11 +105,13 @@
                     if(vars.d){
                         var m = decrypt1(vars.c,vars.d,vars.p.multiply(vars.q));
                         write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                        write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                         return;
                     }
                     else if(vars.e){
                         var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
                         write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                        write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                         return;
                     }
                     else{
@@ -112,6 +121,10 @@
                             if(!vars.p.prev().multiply(vars.q.prev()).isDivisibleBy(vars.e)){
                                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
                                 write("<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
+                                write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
+                            }
+                            else{
+                                write("<br><span class='info'>No message could be recovered when e="+vars.e.toString()+"</span>");
                             }
                         }
                     }
@@ -121,11 +134,13 @@
                     if(vars.d){
                         var m = decrypt1(vars.c,vars.d,vars.p.multiply(vars.q));
                         write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                        write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                         return;
                     }
                     else if(vars.e){
                         var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
                         write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                        write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                         return;
                     }
                     else{
@@ -135,6 +150,10 @@
                             if(!vars.p.prev().multiply(vars.q.prev()).isDivisibleBy(vars.e)){
                                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
                                 write("<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
+                                write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
+                            }
+                            else{
+                                write("<br><span class='info'>No message could be recovered when e="+vars.e.toString()+"</span>");
                             }
                         }
                     }
