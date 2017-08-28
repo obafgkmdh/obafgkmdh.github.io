@@ -80,10 +80,10 @@
                         return;
                     }
                     else{
-                        fermat_primes=[3, 5, 17, 257, 65537];
+                        var fermat_primes=[3, 5, 17, 257, 65537];
                         for(var i = 0;i<fermat_primes.length;i++){
                             vars.e=bigInt(fermat_primes[i]);
-                            if(!p.prev().multiply(q.prev()).isDivisibleBy(vars.e)){
+                            if(!vars.p.prev().multiply(vars.q.prev()).isDivisibleBy(vars.e)){
                                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
                                 document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>";
                             }
@@ -103,10 +103,10 @@
                         return;
                     }
                     else{
-                        fermat_primes=[3, 5, 17, 257, 65537];
+                        var fermat_primes=[3, 5, 17, 257, 65537];
                         for(var i = 0;i<fermat_primes.length;i++){
                             vars.e=bigInt(fermat_primes[i]);
-                            if(!p.prev().multiply(q.prev()).isDivisibleBy(vars.e)){
+                            if(!vars.p.prev().multiply(vars.q.prev()).isDivisibleBy(vars.e)){
                                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
                                 document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>";
                             }
@@ -126,10 +126,10 @@
                         return;
                     }
                     else{
-                        fermat_primes=[3, 5, 17, 257, 65537];
+                        var fermat_primes=[3, 5, 17, 257, 65537];
                         for(var i = 0;i<fermat_primes.length;i++){
                             vars.e=bigInt(fermat_primes[i]);
-                            if(!p.prev().multiply(q.prev()).isDivisibleBy(vars.e)){
+                            if(!vars.p.prev().multiply(vars.q.prev()).isDivisibleBy(vars.e)){
                                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
                                 document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>";
                             }
@@ -141,6 +141,7 @@
                 }
                 else{
                     //take e'th root, if no e, guess fermat primes
+                    var fermat_primes=[3, 5, 17, 257, 65537];
                 }
             }
             catch(e){
