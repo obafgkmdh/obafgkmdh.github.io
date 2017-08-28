@@ -41,7 +41,7 @@
         //arrow functions? template strings? now that's pretty exciting
         h2a=a=>a.match(/.{1,2}/g).map(v=>String.fromCharCode(parseInt(v, 16))).join``;
         function write(m){
-            document.getElementById("result").innerHTML+=m;
+            document.getElementById("result").innerHTML+=m.replace(/</g,"&lt;"); //plz no inject
         }
         function rsa(){
             document.getElementById("result").innerHTML=""; // clear
@@ -187,7 +187,7 @@
             }
         }
     </script>
-    <p>if you want inputs to be hex put 0x before it, if you want it to be binary put 0b before it</p>
+    <p>Please enter inputs in decimal.</p>
     <p>n: <input name="n" id="n"></p>
     <p>e: <input name="e" id="e"></p>
     <p>c: <input name="c" id="c"></p>
