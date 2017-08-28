@@ -36,7 +36,7 @@
             return false;
         }
         //arrow functions? template strings? now that's pretty exciting
-        h2a=a=>a.split``.reverse().join``.match(/.{1,2}/g).map(v=>String.fromCharCode(parseInt(v.split``.reverse().join``, 16))).join``;
+        h2a=a=>a.match(/.{1,2}/g).map(v=>String.fromCharCode(parseInt(v, 16))).join``;
         function write(m){
             document.getElementById("result").innerHTML+=m;
         }
