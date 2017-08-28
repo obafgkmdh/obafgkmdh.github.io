@@ -74,7 +74,7 @@
                 if(vars.p&&vars.q){
                     if(vars.d){
                         var m = decrypt1(vars.c,vars.d,vars.p.multiply(vars.q));
-                        write(<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                        write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
                         return;
                     }
                     else if(vars.e){
