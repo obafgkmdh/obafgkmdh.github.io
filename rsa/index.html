@@ -40,8 +40,8 @@
         }
         //arrow functions? template strings? now that's pretty exciting
         h2a=a=>a.match(/.{1,2}/g).map(v=>String.fromCharCode(parseInt(v, 16))).join``;
-        function write(m){
-            document.getElementById("result").innerHTML+=m.replace(/</g,"&lt;"); //plz no inject
+        function write(m,e){
+            document.getElementById("result").innerHTML+=e==1?m.replace(/</g,"&lt;"):m;
         }
         function rsa(){
             document.getElementById("result").innerHTML=""; // clear
@@ -83,14 +83,18 @@
                         var m = decrypt1(vars.c,vars.d,vars.p.multiply(vars.q));
                         write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
                         write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
-                        write("<br><span class='info'>converted to ASCII: "+h2a(m.toString(16))+" </span><br>");
+                        write("<br><span class='info'>converted to ASCII: ");
+                        write(h2a(m.toString(16)),1);
+                        write("</span><br>");
                         return;
                     }
                     else if(vars.e){
                         var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
                         write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
                         write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
-                        write("<br><span class='info'>converted to ASCII: "+h2a(m.toString(16))+" </span><br>");
+                        write("<br><span class='info'>converted to ASCII: ");
+                        write(h2a(m.toString(16)),1);
+                        write("</span><br>");
                         return;
                     }
                     else{
@@ -101,7 +105,9 @@
                                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
                                 write("<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
                                 write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
-                                write("<br><span class='info'>converted to ASCII: "+h2a(m.toString(16))+" </span><br>");
+                                write("<br><span class='info'>converted to ASCII: ");
+                                write(h2a(m.toString(16)),1);
+                                write("</span><br>");
                             }
                             else{
                                 write("<br><span class='info'>No message could be recovered when e="+vars.e.toString()+"</span><br>");
@@ -115,14 +121,18 @@
                         var m = decrypt1(vars.c,vars.d,vars.p.multiply(vars.q));
                         write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
                         write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
-                        write("<br><span class='info'>converted to ASCII: "+h2a(m.toString(16))+" </span><br>");
+                        write("<br><span class='info'>converted to ASCII: ");
+                        write(h2a(m.toString(16)),1);
+                        write("</span><br>");
                         return;
                     }
                     else if(vars.e){
                         var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
                         write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
                         write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
-                        write("<br><span class='info'>converted to ASCII: "+h2a(m.toString(16))+" </span><br>");
+                        write("<br><span class='info'>converted to ASCII: ");
+                        write(h2a(m.toString(16)),1);
+                        write("</span><br>");
                         return;
                     }
                     else{
@@ -133,7 +143,9 @@
                                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
                                 write("<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
                                 write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
-                                write("<br><span class='info'>converted to ASCII: "+h2a(m.toString(16))+" </span><br>");
+                                write("<br><span class='info'>converted to ASCII: ");
+                                write(h2a(m.toString(16)),1);
+                                write("</span><br>");
                             }
                             else{
                                 write("<br><span class='info'>No message could be recovered when e="+vars.e.toString()+"</span><br>");
@@ -147,14 +159,18 @@
                         var m = decrypt1(vars.c,vars.d,vars.p.multiply(vars.q));
                         write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
                         write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
-                        write("<br><span class='info'>converted to ASCII: "+h2a(m.toString(16))+" </span><br>");
+                        write("<br><span class='info'>converted to ASCII: ");
+                        write(h2a(m.toString(16)),1);
+                        write("</span><br>");
                         return;
                     }
                     else if(vars.e){
                         var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
                         write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
                         write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
-                        write("<br><span class='info'>converted to ASCII: "+h2a(m.toString(16))+" </span><br>");
+                        write("<br><span class='info'>converted to ASCII: ");
+                        write(h2a(m.toString(16)),1);
+                        write("</span><br>");
                         return;
                     }
                     else{
@@ -165,7 +181,9 @@
                                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
                                 write("<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
                                 write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
-                                write("<br><span class='info'>converted to ASCII: "+h2a(m.toString(16))+" </span><br>");
+                                write("<br><span class='info'>converted to ASCII: ");
+                                write(h2a(m.toString(16)),1);
+                                write("</span><br>");
                             }
                             else{
                                 write("<br><span class='info'>No message could be recovered when e="+vars.e.toString()+"</span><br>");
@@ -187,7 +205,7 @@
             }
         }
     </script>
-    <p>Please enter inputs in decimal.</p>
+    <p>Please enter inputs in decimal. Non-numeric characters will be filtered out.</p>
     <p>n: <input name="n" id="n"></p>
     <p>e: <input name="e" id="e"></p>
     <p>c: <input name="c" id="c"></p>
