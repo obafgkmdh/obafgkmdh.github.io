@@ -62,6 +62,9 @@
                 if(!vars.n&&(!vars.p||!vars.q)){
                     write("<br><span class='warning'>Warning: Information about modulus missing and/or incomplete. Assuming message does not wrap around modulus.</span><br>");
                 }
+                if(vars.n&&vars.c&&vars.c.gt(vars.n)){
+                    write("<br><span class='warning'>Warning: Message is larger than modulus</span><br>");
+                }
                 if(vars.p&&vars.q&&vars.n&&vars.p.multiply(vars.q).neq(vars.n)){
                     throw ("Error: inconsistency between p, q, and n<br>");
                 }
@@ -172,6 +175,7 @@
                 }
                 else if(vars.n){
                     //wrap around modulus? if not, take e'th root
+                    
                 }
                 else{
                     //take e'th root, if no e, guess fermat primes
