@@ -36,6 +36,9 @@
             //not implemented
             return false;
         }
+        function write(m){
+            document.getElementById("result").innerHTML+=m;
+        }
         function rsa(){
             document.getElementById("result").innerHTML=""; // clear
             try{
@@ -50,10 +53,10 @@
                 for(var i in vars){if(vars[i]==""){delete vars[i];}else{vars[i]=bigInt(vars[i]);}}
                 //error checking
                 if(!vars.e&&!vars.d){
-                    document.getElementById("result").innerHTML+="<br><span class='warning'>Warning: no values for e or d specified.</span>"
+                    write("<br><span class='warning'>Warning: no values for e or d specified.</span>");
                 }
                 if(!vars.n){
-                    document.getElementById("result").innerHTML+="<br><span class='warning'>Warning: no value for n specified.</span>"
+                    write("<br><span class='warning'>Warning: no value for n specified.</span>");
                 }
                 if(vars.p&&vars.q&&vars.n&&vars.p.multiply(vars.q).neq(vars.n)){
                     throw ("Error: inconsistency between p, q, and n");
@@ -71,12 +74,12 @@
                 if(vars.p&&vars.q){
                     if(vars.d){
                         var m = decrypt1(vars.c,vars.d,vars.p.multiply(vars.q));
-                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+m.toString()+"</span>";
+                        write(<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
                         return;
                     }
                     else if(vars.e){
                         var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
-                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+m.toString()+"</span>";
+                        write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
                         return;
                     }
                     else{
@@ -85,7 +88,7 @@
                             vars.e=bigInt(fermat_primes[i]);
                             if(!vars.p.prev().multiply(vars.q.prev()).isDivisibleBy(vars.e)){
                                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
-                                document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>";
+                                write("<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
                             }
                         }
                     }
@@ -94,12 +97,12 @@
                     vars.q=vars.n.over(vars.p);
                     if(vars.d){
                         var m = decrypt1(vars.c,vars.d,vars.p.multiply(vars.q));
-                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+m.toString()+"</span>";
+                        write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
                         return;
                     }
                     else if(vars.e){
                         var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
-                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+m.toString()+"</span>";
+                        write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
                         return;
                     }
                     else{
@@ -108,7 +111,7 @@
                             vars.e=bigInt(fermat_primes[i]);
                             if(!vars.p.prev().multiply(vars.q.prev()).isDivisibleBy(vars.e)){
                                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
-                                document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>";
+                                write("<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
                             }
                         }
                     }
@@ -117,12 +120,12 @@
                     vars.p=vars.n.over(vars.q);
                     if(vars.d){
                         var m = decrypt1(vars.c,vars.d,vars.p.multiply(vars.q));
-                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+m.toString()+"</span>";
+                        write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
                         return;
                     }
                     else if(vars.e){
                         var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
-                        document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message found: "+m.toString()+"</span>";
+                        write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
                         return;
                     }
                     else{
@@ -131,7 +134,7 @@
                             vars.e=bigInt(fermat_primes[i]);
                             if(!vars.p.prev().multiply(vars.q.prev()).isDivisibleBy(vars.e)){
                                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
-                                document.getElementById("result").innerHTML+="<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>";
+                                write("<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
                             }
                         }
                     }
@@ -145,7 +148,7 @@
                 }
             }
             catch(e){
-                document.getElementById("result").innerHTML+="<br><span class='error'>"+e+"</span>";
+                write("<br><span class='error'>"+e+"</span><br><span class='error'>Process terminated.</span>");
             }
         }
     </script>
