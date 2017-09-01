@@ -35,7 +35,7 @@
             return decrypt1(c,e.modInv(p.prev().multiply(q.prev())),n);
         }
         function nthroot(x,n){
-            //adapted from https://stackoverflow.com/a/358134
+            //adapted from https://stackoverflow.com/a/356206/5335592
             var high = bigInt.one;
             while(high.pow(n).lt(x)){
                 high=high.times(2);
@@ -209,12 +209,24 @@
                     }
                 }
                 else if(vars.n){
-                    //wrap around modulus? if not, take e'th root
-                    
+                    if(vars.d){
+                        var m = decrypt1(vars.c,vars.d,vars.n);
+                        write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                        write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
+                        write("<br><span class='info'>converted to ASCII: ");
+                        write(h2a(m.toString(16)),1);
+                        write("</span><br>");
+                        return;
+                    }
+                    else{
+                        //hope and pray
+                    }
                 }
                 else{
                     //take e'th root, if no e, guess fermat primes
                     var fermat_primes=[3, 5, 17, 257, 65537];
+                    
+                    //jk, ragequit
                 }
             }
             catch(e){
