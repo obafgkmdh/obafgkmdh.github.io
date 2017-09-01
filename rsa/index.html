@@ -36,8 +36,11 @@
         }
         function nthroot(x,n){
             //adapted from https://stackoverflow.com/a/358134
-            low = bigInt(10).pow(bigInt(x.toString().length).over(n));
-            high = low.times(10);
+            var high = bigInt.one;
+            while(high.pow(n).lt(x)){
+                high=high.times(2);
+            }
+            var low=high.over(2);
             while(low.lt(high)){
                 mid = low.plus(high).over(2);
                 if(low.lt(mid)&&mid.pow(n).lt(x)){
