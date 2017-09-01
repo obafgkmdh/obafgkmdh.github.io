@@ -34,9 +34,23 @@
         function decrypt2(p,q,c,e,n){
             return decrypt1(c,e.modInv(p.prev().multiply(q.prev())),n);
         }
-        function iroot(k,n){
-            //not implemented
-            return false;
+        function nthroot(x,n){
+            //adapted from https://stackoverflow.com/a/358134
+            low = bigInt(10).pow(x.toString().length.over(n));
+            high = low.times(10);
+            while low.lt(high){
+                mid = low.plus(high).over(2);
+                if(low.lt(mid)&&mid.pow(n).lt(x)){
+                    low = mid;
+                }
+                else if(high.gt(mid)&&mid.pow(n).gt(x)){
+                    high = mid;
+                }
+                else{
+                    return mid;
+                }
+            }
+            return mid.next();
         }
         //arrow functions? template strings? now that's pretty exciting
         h2a=a=>a.match(/.{1,2}/g).map(v=>String.fromCharCode(parseInt(v, 16))).join``;
