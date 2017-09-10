@@ -38,6 +38,22 @@ function frac2continued(num,den){
     }
     return a;
 }
+function continued2convergents(arr){
+    var a=[];
+    for(var i = arr.length-1;i>=0;i++){
+        // i could probably make this run in O(n) instead of O(n^2) but whatever
+        var num=bigInt.one,den=arr[i];
+        for(var j = i;j>0;j++){
+            num = num.plus(den.times(arr[j]));
+            var tmp=num;
+            num=den;
+            den=tmp;
+        }
+        num = num.plus(den.times(arr[0]));
+        a.push([num,den]);
+    }
+    return a.reverse();
+}
 //arrow functions? template strings? now that's pretty exciting
 h2a=a=>a.match(/.{1,2}/g).map(v=>String.fromCharCode(parseInt(v, 16))).join``;
 function write(m,e){
@@ -217,7 +233,6 @@ function rsa(){
                 var e_is_large = false;
                 if(e_is_large){
                     var w = frac2continued(vars.e,vars.n);
-                    w.shift(); // remove leading 0
                     //ragequit
                     return;
                 }
