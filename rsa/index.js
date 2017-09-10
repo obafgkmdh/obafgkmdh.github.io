@@ -236,7 +236,7 @@ function rsa(){
                     write("</span><br>");
                     return;
                 }
-                var e_is_large=!e.isSmall; // idk
+                var e_is_large=true; // idk
                 if(e_is_large){
                     var w = continued2convergents(frac2continued(vars.e,vars.n));
                     w.shift();
