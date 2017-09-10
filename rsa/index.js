@@ -236,12 +236,7 @@ function rsa(){
                     write("</span><br>");
                     return;
                 }
-                var e_is_large;
-                try{
-                    e_is_large = nthroot(vars.n,4).over(bigInt[3]).modInv(vars.n).leq(vars.e);
-                }catch(err){
-                    e_is_large = nthroot(vars.n,4).over(bigInt[3]).modInv(vars.n+1).leq(vars.e);
-                }
+                var e_is_large=!e.isSmall; // idk
                 if(e_is_large){
                     var w = continued2convergents(frac2continued(vars.e,vars.n));
                     w.shift();
