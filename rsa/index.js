@@ -242,13 +242,13 @@ function rsa(){
                     w.shift();
                     for(var i = 0; i < w.length; i++){
                         var s = vars.e.times(w[i][1]).prev();
-                        if(s.mod(w[i][0]).neq(bigInt.zero)){continue;}
+                        if(s.isDivisibleBy(w[i][0])){console.log("hi");continue;}
                         var t = s.over(w[i][0]);
                         var b = vars.n.minus(t).next();
                         if(nthroot(b.square().minus(bigInt[4].times(vars.n)),2).square()==b.square().minus(bigInt[4].times(vars.n))){
                             var p = (b.plus(nthroot(b.square().minus(bigInt[4].times(vars.n)),2))).over(bigInt[2]);
                             var q = (b.minus(nthroot(b.square().minus(bigInt[4].times(vars.n)),2))).over(bigInt[2]);
-                            if(p.times(q).neq(vars.n)){/*oh no something has gone horribly wrong*/continue;}
+                            if(p.times(q).neq(vars.n)){console.log("oh no something has gone horribly wrong");continue;}
                             var m = decrypt2(p,q,vars.c,vars.e,p.times(q));
                             write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
                             write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
@@ -256,7 +256,7 @@ function rsa(){
                             write(h2a(m.toString(16)),1);
                             write("</span><br>");
                             return;
-                        }else{continue;}
+                        }else{console.log("hello");continue;}
                     }
                     return;
                 }
