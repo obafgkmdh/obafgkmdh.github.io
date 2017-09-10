@@ -53,7 +53,8 @@ function continued2convergents(arr){
             console.log(num);console.log(den;)
         }
         num = num.plus(den.times(arr[0]));
-        a.push([num,den]);
+        var b = bigInt.gcd(num,den)
+        a.push([num.over(b),den.over(b)]);
     }
     return a.reverse();
 }
