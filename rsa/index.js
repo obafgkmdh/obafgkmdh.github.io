@@ -256,7 +256,7 @@ function rsa(){
                             write(h2a(m.toString(16)),1);
                             write("</span><br>");
                             return;
-                        }else{console.log(t.toString());continue;}
+                        }else{console.log(t.toString()+" "+b.toString());continue;}
                     }
                     return;
                 }
