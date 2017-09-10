@@ -50,10 +50,12 @@ function continued2convergents(arr){
             var tmp=num;
             num=den;
             den=tmp;
-            console.log(num);console.log(den;)
+            console.log(num);console.log(den);
         }
+        console.log(num);console.log(den);
         num = num.plus(den.times(arr[0]));
-        var b = bigInt.gcd(num,den)
+        var b = bigInt.gcd(num,den);
+        console.log(num);console.log(den);
         a.push([num.over(b),den.over(b)]);
     }
     return a.reverse();
