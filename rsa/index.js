@@ -46,7 +46,7 @@ function continued2convergents(arr){
         for(var j = i;j>0;j--){
             console.log(1);
             console.log(num);console.log(den);
-            num = num.plus(den.times(arr[j]));
+            num = num.plus(den.times(arr[j-1]));
             console.log(2);
             console.log(num);console.log(den);
             var tmp=num;
