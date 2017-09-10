@@ -69,14 +69,14 @@ function rsa(){
     document.getElementById("result").innerHTML=""; // clear
     try{
         var vars={
-            n:document.getElementById("n").value.replace(/\D/g,''),
-            e:document.getElementById("e").value.replace(/\D/g,''),
-            c:document.getElementById("c").value.replace(/\D/g,''),
-            d:document.getElementById("d").value.replace(/\D/g,''),
-            p:document.getElementById("p").value.replace(/\D/g,''),
-            q:document.getElementById("q").value.replace(/\D/g,'')
+            n:document.getElementById("n").value,
+            e:document.getElementById("e").value,
+            c:document.getElementById("c").value,
+            d:document.getElementById("d").value,
+            p:document.getElementById("p").value,
+            q:document.getElementById("q").value
         };
-        for(var i in vars){if(vars[i]==""){delete vars[i];}else{vars[i]=bigInt(vars[i]);}}
+        for(var i in vars){vars[i]=vars[i].replace(/\D/g,'');if(vars[i]==""){delete vars[i];}else{vars[i]=bigInt(vars[i]);}}
         //error checking
         if(!vars.e&&!vars.d){
             write("<br><span class='warning'>Warning: no values for e or d specified. Assuming e is a fermat prime.</span><br>");
