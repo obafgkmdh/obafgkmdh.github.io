@@ -241,7 +241,7 @@ function rsa(){
                     var w = continued2convergents(frac2continued(vars.e,vars.n));
                     w.shift();
                     for(var i = 0; i < w.length; i++){
-                        var s = vars.e.mult(w[i][1]).prev();
+                        var s = vars.e.times(w[i][1]).prev();
                         if(s.mod(w[i][0]).neq(bigInt.zero)){continue;}
                         var t = s.over(w[i][0]);
                         var b = vars.n.minus(t).next();
