@@ -59,9 +59,7 @@ function continued2convergents(arr){
         console.log(num);console.log(den);
         num = num.plus(den.times(arr[0]));
         var b = bigInt.gcd(num,den);
-        console.log(5);
-        console.log(num);console.log(den);
-        a.push([num.over(b),den.over(b)]);
+        a.push([den.over(b),num.over(b)]); //hm got them mixed up somehow idk it works tho so whatever
     }
     return a.reverse();
 }
