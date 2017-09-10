@@ -222,7 +222,7 @@ function rsa(){
                 return;
             }
             else if(vars.e){
-                if(nthroot(vars.c,vars.e).pow(vars.e)==vars.c){
+                if(nthroot(vars.c,vars.e).modPow(vars.e,vars.n)==vars.c){
                     var m = nthroot(vars.c,vars.e);
                     write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
                     write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
