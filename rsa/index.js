@@ -26,17 +26,16 @@ function nthroot(x,n){
     return mid.next();
 }
 function frac2continued(num,den){
-    a=[];
+    var a=[];
     while(num.neq(bigInt.one)){
-        b=num.over(den);
+        var b=num.over(den);
         a.push(b);
         num=num.minus(b.times(den));
         //uhh i really hope there's no aliasing
-        tmp=num;
+        var tmp=num;
         num=den;
         den=tmp;
     }
-    a.push(den);
     return a;
 }
 //arrow functions? template strings? now that's pretty exciting
@@ -217,7 +216,8 @@ function rsa(){
                 }
                 var e_is_large = false;
                 if(e_is_large){
-                    //apply wiener's attack
+                    var w = frac2continued(vars.e,vars.n);
+                    w.shift(); // remove leading 0
                     //ragequit
                     return;
                 }
