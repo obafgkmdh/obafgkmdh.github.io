@@ -5,25 +5,30 @@ function decrypt2(p,q,c,e,n){
     return decrypt1(c,e.modInv(p.prev().multiply(q.prev())),n);
 }
 function nthroot(x,n){
-    //adapted from https://stackoverflow.com/a/356206/5335592
-    var high = bigInt.one;
-    while(high.pow(n).lt(x)){
-        high=high.times(2);
+    try{
+        //adapted from https://stackoverflow.com/a/356206/5335592
+        var high = bigInt.one;
+        while(high.pow(n).lt(x)){
+            high=high.times(2);
+        }
+        var low=high.over(2);
+        while(low.lt(high)){
+            mid = low.plus(high).over(2);
+            if(low.lt(mid)&&mid.pow(n).lt(x)){
+                low = mid;
+            }
+            else if(high.gt(mid)&&mid.pow(n).gt(x)){
+                high = mid;
+            }
+            else{
+                return mid;
+            }
+        }
+        return mid.next();
+    }catch(err){
+        //give up
+        return bigInt(1);
     }
-    var low=high.over(2);
-    while(low.lt(high)){
-        mid = low.plus(high).over(2);
-        if(low.lt(mid)&&mid.pow(n).lt(x)){
-            low = mid;
-        }
-        else if(high.gt(mid)&&mid.pow(n).gt(x)){
-            high = mid;
-        }
-        else{
-            return mid;
-        }
-    }
-    return mid.next();
 }
 function frac2continued(num,den){
     var a=[];
@@ -267,17 +272,21 @@ function rsa(){
         }
         else{
             if(vars.e){
-                if(nthroot(vars.c,vars.e).pow(vars.e)==vars.c){
-                    var m = nthroot(vars.c,vars.e);
-                    write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
-                    write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
-                    write("<br><span class='info'>converted to ASCII: ");
-                    write(h2a(m.toString(16)),1);
-                    write("</span><br>");
-                    return;
-                }
-                else{
-                    //give up your hopes and dreams, all is lost
+                if(vars.e.isSmall){
+                    if(nthroot(vars.c,vars.e).pow(vars.e)==vars.c){
+                        var m = nthroot(vars.c,vars.e);
+                        write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                        write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
+                        write("<br><span class='info'>converted to ASCII: ");
+                        write(h2a(m.toString(16)),1);
+                        write("</span><br>");
+                        return;
+                    }
+                    else{
+                        //give up your hopes and dreams, all is lost
+                    }
+                }else{
+                    //heck idk
                 }
             }
             else{
