@@ -25,6 +25,20 @@ function nthroot(x,n){
     }
     return mid.next();
 }
+function frac2continued(num,den){
+    a=[];
+    while(num.neq(bigInt.one)){
+        b=num.over(den);
+        a.push(b);
+        num=num.minus(b.times(den));
+        //uhh i really hope there's no aliasing
+        tmp=num;
+        num=den;
+        den=tmp;
+    }
+    a.push(den);
+    return a;
+}
 //arrow functions? template strings? now that's pretty exciting
 h2a=a=>a.match(/.{1,2}/g).map(v=>String.fromCharCode(parseInt(v, 16))).join``;
 function write(m,e){
@@ -53,13 +67,13 @@ function rsa(){
             write("<br><span class='warning'>Warning: Message is larger than modulus</span><br>");
         }
         if(vars.p&&vars.q&&vars.n&&vars.p.multiply(vars.q).neq(vars.n)){
-            throw ("Error: inconsistency between p, q, and n<br>");
+            throw ("Error: inconsistency between p, q, and n");
         }
         if(vars.d&&vars.e&&vars.n&&bigInt(2).modPow(vars.d.multiply(vars.e),vars.n).neq(bigInt(2))){
-            throw ("Error: inconsistency between d and e<br>");
+            throw ("Error: inconsistency between d and e");
         }
         if(!vars.c){
-            throw ("Error: no value for c specified<br>");
+            throw ("Error: no value for c specified");
         }
         //computation
         if(!vars.p&&!vars.q&&vars.n){
