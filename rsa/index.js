@@ -243,7 +243,6 @@ function rsa(){
                     e_is_large = nthroot(vars.n,4).over(bigInt[3]).modInv(vars.n+1).leq(vars.e);
                 }
                 if(e_is_large){
-                    console.log("hi");
                     var w = continued2convergents(frac2continued(vars.e,vars.n));
                     w.shift();
                     for(var i = 0; i < w.length; i++){
