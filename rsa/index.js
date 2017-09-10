@@ -44,19 +44,11 @@ function continued2convergents(arr){
         // i could probably make this run in O(n) instead of O(n^2) but whatever
         var num=bigInt.one,den=arr[i];
         for(var j = i;j>0;j--){
-            console.log(1);
-            console.log(num);console.log(den);
             num = num.plus(den.times(arr[j-1]));
-            console.log(2);
-            console.log(num);console.log(den);
             var tmp=num;
             num=den;
             den=tmp;
-            console.log(3);
-            console.log(num);console.log(den);
         }
-        console.log(4);
-        console.log(num);console.log(den);
         num = num.plus(den.times(arr[0]));
         var b = bigInt.gcd(num,den);
         a.push([den.over(b),num.over(b)]); //hm got them mixed up somehow idk it works tho so whatever
@@ -66,7 +58,7 @@ function continued2convergents(arr){
 //arrow functions? template strings? now that's pretty exciting
 h2a=a=>a.match(/.{1,2}/g).map(v=>String.fromCharCode(parseInt(v, 16))).join``;
 function write(m,e){
-    document.getElementById("result").innerHTML+=e==1?m.replace(/</g,"&lt;"):m;
+    document.getElementById("result").innerHTML+=e==1?m.replace(/</g,"&lt;"):m;//plz no inject
 }
 function rsa(){
     document.getElementById("result").innerHTML=""; // clear
@@ -239,10 +231,33 @@ function rsa(){
                     write("</span><br>");
                     return;
                 }
-                var e_is_large = false;
+                var e_is_large;
+                try{
+                    e_is_large = nthroot(vars.n,4).over(bigInt[3]).modInv(vars.n).leq(vars.e);
+                }catch(err){
+                    e_is_large = nthroot(vars.n,4).over(bigInt[3]).modInv(vars.n+1).leq(vars.e);
+                }
                 if(e_is_large){
-                    var w = frac2continued(vars.e,vars.n);
-                    //ragequit
+                    var w = continued2convergents(frac2continued(vars.e,vars.n));
+                    w.shift();
+                    for(var i = 0; i < w.length; i++){
+                        var s = vars.e.mult(w[i][1]).prev();
+                        if(s.mod(w[i][0]).neq(bigInt.zero)){continue;}
+                        var t = s.over(w[i][0]);
+                        var b = vars.n.minus(t).next();
+                        if(nthroot(b.square().minus(bigInt[4].times(vars.n)),2).square()==b.square().minus(bigInt[4].times(vars.n))){
+                            var p = (b.plus(nthroot(b.square().minus(bigInt[4].times(vars.n)),2))).over(bigInt[2]);
+                            var q = (b.minus(nthroot(b.square().minus(bigInt[4].times(vars.n)),2))).over(bigInt[2]);
+                            if(p.times(q).neq(vars.n)){/*oh no something has gone horribly wrong*/continue;}
+                            var m = decrypt2(p,q,vars.c,vars.e,p.times(q));
+                            write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                            write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
+                            write("<br><span class='info'>converted to ASCII: ");
+                            write(h2a(m.toString(16)),1);
+                            write("</span><br>");
+                            return;
+                        }else{continue;}
+                    }
                     return;
                 }
             }
