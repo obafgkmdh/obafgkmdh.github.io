@@ -44,10 +44,13 @@ function continued2convergents(arr){
         // i could probably make this run in O(n) instead of O(n^2) but whatever
         var num=bigInt.one,den=arr[i];
         for(var j = i;j>0;j++){
+            console.log(num);console.log(den);
             num = num.plus(den.times(arr[j]));
+            console.log(num);consoke.log(den);
             var tmp=num;
             num=den;
             den=tmp;
+            console.log(num);console.log(den;)
         }
         num = num.plus(den.times(arr[0]));
         a.push([num,den]);
