@@ -40,10 +40,10 @@ function frac2continued(num,den){
 }
 function continued2convergents(arr){
     var a=[];
-    for(var i = arr.length-1;i>=0;i++){
+    for(var i = arr.length-1;i>=0;i--){
         // i could probably make this run in O(n) instead of O(n^2) but whatever
         var num=bigInt.one,den=arr[i];
-        for(var j = i;j>0;j++){
+        for(var j = i;j>0;j--){
             console.log(1);
             console.log(num);console.log(den);
             num = num.plus(den.times(arr[j]));
