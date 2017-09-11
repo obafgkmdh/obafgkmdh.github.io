@@ -237,7 +237,9 @@ function rsa(){
                     return;
                 }
                 var e_is_large=true; // idk
+                // wiener's attack
                 if(e_is_large){
+                    //so like this is only supposed to work if d < N^(1/3)/4
                     var w = continued2convergents(frac2continued(vars.e,vars.n));
                     w.shift();
                     for(var i = 0; i < w.length; i++){
@@ -260,6 +262,8 @@ function rsa(){
                     }
                     return;
                 }
+                // boneh durfree only works when d<N^0.292
+                // basically you find roots to 1 + 2k * ((N+1)/2 + (-p-q)/2) = 0 using LLL or smth
             }
             else{
                 //hope and pray
