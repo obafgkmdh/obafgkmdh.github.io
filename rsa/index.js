@@ -236,34 +236,31 @@ function rsa(){
                     write("</span><br>");
                     return;
                 }
-                var e_is_large=true; // idk
                 // wiener's attack
-                if(e_is_large){
-                    //so like this is only supposed to work if d < N^(1/3)/4
-                    var w = continued2convergents(frac2continued(vars.e,vars.n));
-                    w.shift();
-                    for(var i = 0; i < w.length; i++){
-                        var s = vars.e.times(w[i][1]).prev();
-                        if(!s.isDivisibleBy(w[i][0])){continue;}
-                        var t = s.over(w[i][0]);
-                        var b = vars.n.minus(t).next();
-                        if(nthroot(b.square().minus(bigInt[4].times(vars.n)),2).square().eq(b.square().minus(bigInt[4].times(vars.n)))){
-                            var p = (b.plus(nthroot(b.square().minus(bigInt[4].times(vars.n)),2))).over(bigInt[2]);
-                            var q = (b.minus(nthroot(b.square().minus(bigInt[4].times(vars.n)),2))).over(bigInt[2]);
-                            if(p.times(q).neq(vars.n)){console.log("oh no something has gone horribly wrong");continue;}
-                            var m = decrypt2(p,q,vars.c,vars.e,p.times(q));
-                            write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
-                            write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
-                            write("<br><span class='info'>converted to ASCII: ");
-                            write(h2a(m.toString(16)),1);
-                            write("</span><br>");
-                            return;
-                        }else{console.log(t.toString()+" "+b.toString());continue;}
-                    }
-                    return;
+                //so like this is only supposed to work if d < N^(1/3)/4
+                var w = continued2convergents(frac2continued(vars.e,vars.n));
+                w.shift();
+                for(var i = 0; i < w.length; i++){
+                    var s = vars.e.times(w[i][1]).prev();
+                    if(!s.isDivisibleBy(w[i][0])){continue;}
+                    var t = s.over(w[i][0]);
+                    var b = vars.n.minus(t).next();
+                    if(nthroot(b.square().minus(bigInt[4].times(vars.n)),2).square().eq(b.square().minus(bigInt[4].times(vars.n)))){
+                        var p = (b.plus(nthroot(b.square().minus(bigInt[4].times(vars.n)),2))).over(bigInt[2]);
+                        var q = (b.minus(nthroot(b.square().minus(bigInt[4].times(vars.n)),2))).over(bigInt[2]);
+                        if(p.times(q).neq(vars.n)){console.log("oh no something has gone horribly wrong");continue;}
+                        var m = decrypt2(p,q,vars.c,vars.e,p.times(q));
+                        write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                        write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
+                        write("<br><span class='info'>converted to ASCII: ");
+                        write(h2a(m.toString(16)),1);
+                        write("</span><br>");
+                        return;
+                    }else{console.log(t.toString()+" "+b.toString());continue;}
                 }
                 // boneh durfree only works when d<N^0.292
-                // basically you find roots to 1 + 2k * ((N+1)/2 + (-p-q)/2) = 0 using LLL or smth
+                // basically you find roots to 1 + 2k * ((N+1)/2 + (-p-q)/2) = 0 using coppersmith's or smth
+                // http://tinyurl.com/boneh-durfree
             }
             else{
                 //hope and pray
