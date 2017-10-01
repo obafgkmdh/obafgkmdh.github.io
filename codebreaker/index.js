@@ -1,4 +1,5 @@
 function run(){
+    document.getElementById("result").innerHTML=""; // clear
     var type = document.getElementById("t").value;
     /*var vars={
         n:document.getElementById("n").value,
