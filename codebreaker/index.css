@@ -4,6 +4,9 @@ body {
 span {
     word-wrap: break-word;
 }
+input {
+    float:right;
+}
 .warning {
     background:#ffa;
 }
@@ -15,6 +18,10 @@ span {
 }
 .info {
     font-style:italic;
+}
+#form {
+    width:500px;
+    border: 2px solid black;
 }
 * {
     font-family:monospace;
