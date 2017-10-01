@@ -23,7 +23,7 @@ input {
     display:none;
 }
 .visible {
-    display:inline;
+    display:block;
 }
 #form {
     width:500px;
