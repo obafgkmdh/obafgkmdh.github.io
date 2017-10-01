@@ -19,6 +19,12 @@ input {
 .info {
     font-style:italic;
 }
+.hide {
+    display:none;
+}
+.visible {
+    display:inline;
+}
 #form {
     width:500px;
     border: 2px solid black;
