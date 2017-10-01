@@ -7,20 +7,22 @@
     </head>
     <body>
         <p id="js-working">Please enable JavaScript on this page, as it is required to run this site.</p>
-        <p>Select code type:</p>
-        <select>
-            <option value="ck" selected>Ciphertext and key</option>
-            <option value="c">Saab</option>
-            <option value="vw">VW</option>
-            <option value="rsa" selected>Audi</option>
-        </select>
-        <p>rsa modulus: <input name="n" id="n" class="hide"></p>
-        <p>rsa public exponent: <input name="e" id="e" class="hide"></p>
-        <p>rsa ciphertext: <input name="c" id="c" class="hide"></p>
-        <p>rsa private exponent: <input name="d" id="d" class="hide"></p>
-        <p>rsa modulus factor #1: <input name="p" id="p" class="hide"></p>
-        <p>rsa modulus factor #2: <input name="q" id="q" class="hide"></p>
-        <p><button onclick="run()">Submit</button></p>
+        <div id="form">
+            <p>Select code type:</p>
+            <select>
+                <option value="ck" selected>Ciphertext and key</option>
+                <option value="c">Saab</option>
+                <option value="vw">VW</option>
+                <option value="rsa" selected>Audi</option>
+            </select>
+            <p>rsa modulus: <input name="n" id="n" class="hide"></p>
+            <p>rsa public exponent: <input name="e" id="e" class="hide"></p>
+            <p>rsa ciphertext: <input name="c" id="c" class="hide"></p>
+            <p>rsa private exponent: <input name="d" id="d" class="hide"></p>
+            <p>rsa modulus factor #1: <input name="p" id="p" class="hide"></p>
+            <p>rsa modulus factor #2: <input name="q" id="q" class="hide"></p>
+            <p><button onclick="run()">Submit</button></p>
+        </div>
         <div id="result"></div>
     </body>
 </html>
