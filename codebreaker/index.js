@@ -10,7 +10,7 @@ function run(webWorkersSupported){
             //darn
         }
     }
-    elif(type1=="d"){
+    else if(type1=="d"){
         if(webWorkersSupported){
             //do stuff
         }else{
@@ -18,7 +18,7 @@ function run(webWorkersSupported){
         }
     }
     else{
-        res.innerHTML="really?!";
+        res.innerHTML+="really?!";
     }
     
 }
