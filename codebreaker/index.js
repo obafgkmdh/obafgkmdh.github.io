@@ -10,10 +10,12 @@ function run(){
         q:document.getElementById("q").value
     };*/
 }
-var js_working=document.querySelector("#js-working");
-if(!window.Worker){
-    js_working.innerHTML="Your browser does not support Web Workers. This website will still work, just more slowly.";
-} else{
-    js_working.innerHTML="";
-    
-}
+setTimeout(function(){
+    var js_working=document.querySelector("#js-working");
+    if(!window.Worker){
+        js_working.innerHTML="Your browser does not support Web Workers. This website will still work, just more slowly.";
+    } else{
+        js_working.innerHTML="";
+
+    }
+},50);
