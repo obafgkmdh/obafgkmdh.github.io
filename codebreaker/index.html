@@ -19,14 +19,14 @@
                 <option value="e" selected>encrypt</option>
                 <option value="d">decrypt</option>
             </select>
-            <p>rsa modulus: <input name="rn" id="rn" class="hide"></p>
-            <p>rsa public exponent: <input name="re" id="re" class="hide"></p>
-            <p>rsa ciphertext: <input name="rc" id="c" class="hide"></p>
-            <p>rsa private exponent: <input name="rd" id="rd" class="hide"></p>
-            <p>rsa modulus factor #1: <input name="rp" id="rp" class="hide"></p>
-            <p>rsa modulus factor #2: <input name="rq" id="rq" class="hide"></p>
-            <p>ciphertext: <input name="c" id="c" class="visible"></p>
-            <p>key: <input name="k" id="k" class="visible"></p>
+            <p id="rnp" class="hide">rsa modulus: <input name="rn" id="rn"></p>
+            <p id="rep" class="hide">rsa public exponent: <input name="re" id="re"></p>
+            <p id="rcp" class="hide">rsa ciphertext: <input name="rc" id="rc"></p>
+            <p id="rdp" class="hide">rsa private exponent: <input name="rd" id="rd"></p>
+            <p id="rpp" class="hide">rsa modulus factor #1: <input name="rp" id="rp"></p>
+            <p id="rqp" class="hide">rsa modulus factor #2: <input name="rq" id="rq"></p>
+            <p id="cp" class="visible">ciphertext: <input name="c" id="c"></p>
+            <p id="kp" class="visible">key: <input name="k" id="k"></p>
             <p><button onclick="run()">Submit</button></p>
         </div>
         <div id="result"></div>
