@@ -1,3 +1,21 @@
 body {
     background:linen;
 }
+span {
+    word-wrap: break-word;
+}
+.warning {
+    background:#ffa;
+}
+.error {
+    background:#faa;
+}
+.success {
+    background:#afa;
+}
+.info {
+    font-style:italic;
+}
+* {
+    font-family:monospace;
+}
