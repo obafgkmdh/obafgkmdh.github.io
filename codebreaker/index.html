@@ -8,17 +8,16 @@
     <body>
         <p id="js-working">Please enable JavaScript on this page, as it is required to run this site.</p>
         <div id="form">
-            <p>Select code type:</p>
-            <select id="t">
-                <option value="ck" selected>All ciphertext and key</option>
-                <option value="c">Caesar</option>
-                <option value="v">Vigenere</option>
-                <option value="rsa">RSA</option>
-            </select>
+            I want to 
             <select id="t2">
                 <option value="e" selected>encrypt</option>
                 <option value="d">decrypt</option>
-            </select>
+            </select> using <select id="t">
+                <option value="ck" selected>all codes requiring a ciphertext and key</option>
+                <option value="c">Caesar</option>
+                <option value="v">Vigenere</option>
+                <option value="rsa">RSA</option>
+            </select>.
             <p id="rnp" class="hide">rsa modulus: <input name="rn" id="rn"></p>
             <p id="rep" class="hide">rsa public exponent: <input name="re" id="re"></p>
             <p id="rcp" class="hide">rsa ciphertext: <input name="rc" id="rc"></p>
