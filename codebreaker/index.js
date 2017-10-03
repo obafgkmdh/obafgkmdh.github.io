@@ -1,11 +1,23 @@
 function run(webWorkersSupported){
-    var res = document.getElementById("result").innerHTML;
-    res.innerHTML="Result:<br>";
+    var res = document.getElementById("result");
+    res.innerHTML="Results:<br>";
     var type1 = document.getElementById("t").value;
     var type2 = document.getElementById("t2").value;
     if(type1=="e"){
         if(webWorkersSupported){
-            //do stuff
+            switch(type2){
+                case "":
+                    RSA = new Worker('rsa-decrypt.js');
+                    w.onmessage=function(e){
+                        var data = e.data;
+                        if(data=="END"){
+                            RSA.terminate();
+                        }else{
+                            res.innerHTML+=data;
+                        }
+                    };
+                    break;
+            }
         }else{
             //darn
         }
@@ -18,7 +30,7 @@ function run(webWorkersSupported){
         }
     }
     else{
-        res.innerHTML+="really?!";
+        res.innerHTML+="very funny.";
     }
     
 }
