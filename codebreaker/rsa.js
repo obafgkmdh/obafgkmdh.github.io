@@ -69,7 +69,7 @@ function write(m,e){
 onmessage=function(VARS){
     document.getElementById("result").innerHTML=""; // clear
     try{
-        var vars=vars.data;
+        var vars=VARS.data;
         for(var i in vars){vars[i]=vars[i].replace(/\D/g,'');if(vars[i]==""){delete vars[i];}else{vars[i]=bigInt(vars[i]);}}
         //error checking
         if(!vars.e&&!vars.d){
