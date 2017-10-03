@@ -1,3 +1,4 @@
+importScripts('biginteger.js');
 function decrypt1(c,d,n){
     return c.modPow(d,n);
 }
