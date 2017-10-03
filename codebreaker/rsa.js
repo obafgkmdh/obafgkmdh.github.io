@@ -63,19 +63,12 @@ function continued2convergents(arr){
 //arrow functions? template strings? now that's pretty exciting
 h2a=a=>a.match(/.{1,2}/g).map(v=>String.fromCharCode(parseInt(v, 16))).join``;
 function write(m,e){
-    document.getElementById("result").innerHTML+=e==1?m.replace(/</g,"&lt;"):m;//plz no inject
+    postMessage(e==1?m.replace(/</g,"&lt;"):m);//plz no inject
 }
-function rsa(){
+onmessage=function(VARS){
     document.getElementById("result").innerHTML=""; // clear
     try{
-        var vars={
-            n:document.getElementById("n").value,
-            e:document.getElementById("e").value,
-            c:document.getElementById("c").value,
-            d:document.getElementById("d").value,
-            p:document.getElementById("p").value,
-            q:document.getElementById("q").value
-        };
+        var vars=vars.data;
         for(var i in vars){vars[i]=vars[i].replace(/\D/g,'');if(vars[i]==""){delete vars[i];}else{vars[i]=bigInt(vars[i]);}}
         //error checking
         if(!vars.e&&!vars.d){
