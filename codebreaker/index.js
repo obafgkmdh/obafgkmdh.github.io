@@ -1,3 +1,4 @@
+var webWorkersSupported = false;
 function run(webWorkersSupported){
     var res = document.getElementById("result");
     res.innerHTML="Results:<br>";
@@ -34,12 +35,12 @@ function run(webWorkersSupported){
     }
     
 }
-setTimeout(function(){
+onload=function(){
     var js_working=document.querySelector("#js-working");
     if(!window.Worker){
         js_working.innerHTML="Your browser does not support Web Workers. This website will still work, just more slowly.";
     }else{
         js_working.innerHTML="";
-
+        webWorkersSupported = true;
     }
-},5);
+};
