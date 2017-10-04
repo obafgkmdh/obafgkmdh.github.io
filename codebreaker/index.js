@@ -1,5 +1,5 @@
 var webWorkersSupported = false;
-function run(webWorkersSupported){
+function run(){
     var res = document.getElementById("result");
     res.innerHTML="Results:<br>";
     var type1 = document.getElementById("t").value;
@@ -35,6 +35,9 @@ function run(webWorkersSupported){
     }
     
 }
+document.getElementById("t2").onchange=function(e){
+
+};
 onload=function(){
     var js_working=document.querySelector("#js-working");
     if(!window.Worker){
