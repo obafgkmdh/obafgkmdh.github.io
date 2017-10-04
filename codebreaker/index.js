@@ -44,7 +44,10 @@ onload=function(){
         js_working.innerHTML="";
         webWorkersSupported = true;
     }
-    document.getElementById("t2").onchange = function(e){
-        //switch(e){}
+    document.getElementById("t2").oninput = function(e){
+        switch(event.currentTarget.value){
+            case "rsa":
+                break
+        }
     };
 };
