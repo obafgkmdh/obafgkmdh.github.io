@@ -35,9 +35,7 @@ function run(){
     }
     
 }
-document.getElementById("t2").onchange=function(e){
 
-};
 onload=function(){
     var js_working=document.querySelector("#js-working");
     if(!window.Worker){
@@ -46,4 +44,7 @@ onload=function(){
         js_working.innerHTML="";
         webWorkersSupported = true;
     }
+    document.getElementById("t2").onchange = function(e){
+        //switch(e){}
+    };
 };
