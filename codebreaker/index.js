@@ -9,6 +9,14 @@ function run(){
             switch(type2){
                 case "rsa":
                     RSA = new Worker('rsa-decrypt.js');
+                    RSA.postMessage({
+                        n:document.getElementById("rn").value,
+                        e:document.getElementById("re").value,
+                        c:document.getElementById("rc").value,
+                        d:document.getElementById("rd").value,
+                        p:document.getElementById("rp").value,
+                        q:document.getElementById("rq").value
+                    });
                     w.onmessage=function(e){
                         var data = e.data;
                         if(data=="END"){
