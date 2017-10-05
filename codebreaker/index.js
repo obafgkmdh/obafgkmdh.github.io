@@ -73,7 +73,7 @@ onload=function(){
     }
     inputs = ["rnp","rep","rcp","rdp","rpp","rqp","cp","kp"]
     RSAinputs = ["rnp","rep","rcp","rdp","rpp","rqp"];
-    document.getElementById("t2").oninput = function(e){
+    document.getElementById("t2").oninput = function(event){
         for(var i = 0;i<inputs.length;i++){document.querySelector("#"+inputs[i]).className="hide"}
         switch(event.currentTarget.value){
             case "rsa":
@@ -82,6 +82,13 @@ onload=function(){
         }
     };
     document.getElementById("t").oninput = function(e){
-        document.querySelector("#rcp").innerHTML=document.querySelector("#rcp").innerHTML.replace(/ciphertext/,"message")
+        switch(event.currentTarget.value){
+            case "e":
+                document.querySelector("#rcp").innerHTML=document.querySelector("#rcp").innerHTML.replace(/ciphertext/,"message");
+                break;
+            case "d":
+                document.querySelector("#rcp").innerHTML=document.querySelector("#rcp").innerHTML.replace(/message/,"ciphertext");
+                break;
+        }
     };
 };
