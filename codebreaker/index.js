@@ -81,7 +81,7 @@ onload=function(){
                 break;
         }
     };
-    document.getElementById("t1").oninput = function(e){
+    document.getElementById("t").oninput = function(e){
         document.querySelector("rcp").innerHTML=document.querySelector("rcp").innerHTML.replace(/ciphertext/,"message")
     };
 };
