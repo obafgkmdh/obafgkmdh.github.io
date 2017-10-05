@@ -33,7 +33,27 @@ function run(){
     }
     else if(type1=="d"){
         if(webWorkersSupported){
-            //do stuff
+            switch(type2){
+                case "rsa":
+                    RSA = new Worker('rsa-decrypt.js');
+                    RSA.postMessage({
+                        n:document.getElementById("rn").value,
+                        e:document.getElementById("rd").value,
+                        c:document.getElementById("rc").value,
+                        d:document.getElementById("re").value,
+                        p:document.getElementById("rp").value,
+                        q:document.getElementById("rq").value
+                    });
+                    w.onmessage=function(e){
+                        var data = e.data;
+                        if(data=="END"){
+                            RSA.terminate();
+                        }else{
+                            res.innerHTML+=data;
+                        }
+                    };
+                    break;
+            }
         }else{
             //darn
         }
@@ -61,5 +81,8 @@ onload=function(){
                 for(var i = 0;i<RSAinputs.length;i++){document.querySelector("#"+RSAinputs[i]).className="visible"}
                 break;
         }
+    };
+    document.getElementById("t1").oninput = function(e){
+        document.querySelector("rcp").innerHTML=document.querySelector("rcp").innerHTML.replace(/ciphertext/,"message")
     };
 };
