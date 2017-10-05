@@ -8,7 +8,7 @@ function run(){
         if(webWorkersSupported){
             switch(type2){
                 case "rsa":
-                    RSA = new Worker('rsa-decrypt.js');
+                    RSA = new Worker('rsa.js');
                     RSA.postMessage({
                         n:document.getElementById("rn").value,
                         e:document.getElementById("re").value,
@@ -35,7 +35,7 @@ function run(){
         if(webWorkersSupported){
             switch(type2){
                 case "rsa":
-                    RSA = new Worker('rsa-decrypt.js');
+                    RSA = new Worker('rsa.js');
                     RSA.postMessage({
                         n:document.getElementById("rn").value,
                         e:document.getElementById("rd").value,
