@@ -17,7 +17,7 @@ function run(){
                         p:document.getElementById("rp").value,
                         q:document.getElementById("rq").value
                     });
-                    w.onmessage=function(e){
+                    RSA.onmessage=function(e){
                         var data = e.data;
                         if(data=="END"){
                             RSA.terminate();
