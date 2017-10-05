@@ -4,7 +4,7 @@ function run(){
     res.innerHTML="Results:<br>";
     var type1 = document.getElementById("t").value;
     var type2 = document.getElementById("t2").value;
-    if(type1=="e"){
+    if(type1=="d"){
         if(webWorkersSupported){
             switch(type2){
                 case "rsa":
