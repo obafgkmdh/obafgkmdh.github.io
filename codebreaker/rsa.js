@@ -67,7 +67,6 @@ function write(m,e){
     postMessage(e==1?m.replace(/</g,"&lt;"):m);//plz no inject
 }
 onmessage=function(VARS){
-    document.getElementById("result").innerHTML=""; // clear
     try{
         var vars=VARS.data;
         for(var i in vars){vars[i]=vars[i].replace(/\D/g,'');if(vars[i]==""){delete vars[i];}else{vars[i]=bigInt(vars[i]);}}
