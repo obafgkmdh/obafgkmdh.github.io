@@ -102,7 +102,7 @@ onmessage=function(VARS){
                 write("<br><span class='info'>converted to ASCII: ");
                 write(h2a(m.toString(16)),1);
                 write("</span><br>");
-                return;
+                write("END");
             }
             else if(vars.e){
                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
@@ -111,7 +111,7 @@ onmessage=function(VARS){
                 write("<br><span class='info'>converted to ASCII: ");
                 write(h2a(m.toString(16)),1);
                 write("</span><br>");
-                return;
+                write("END");
             }
             else{
                 var fermat_primes=[3, 5, 17, 257, 65537];
@@ -129,7 +129,7 @@ onmessage=function(VARS){
                         write("<br><span class='info'>No message could be recovered when e="+vars.e.toString()+"</span><br>");
                     }
                 }
-                return;
+                write("END");
             }
         }
         else if(vars.n&&vars.p){
@@ -141,7 +141,7 @@ onmessage=function(VARS){
                 write("<br><span class='info'>converted to ASCII: ");
                 write(h2a(m.toString(16)),1);
                 write("</span><br>");
-                return;
+                write("END");
             }
             else if(vars.e){
                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
@@ -150,7 +150,7 @@ onmessage=function(VARS){
                 write("<br><span class='info'>converted to ASCII: ");
                 write(h2a(m.toString(16)),1);
                 write("</span><br>");
-                return;
+                write("END");
             }
             else{
                 var fermat_primes=[3, 5, 17, 257, 65537];
@@ -168,7 +168,7 @@ onmessage=function(VARS){
                         write("<br><span class='info'>No message could be recovered when e="+vars.e.toString()+"</span><br>");
                     }
                 }
-                return;
+                write("END");
             }
         }
         else if(vars.n&&vars.q){
@@ -180,7 +180,7 @@ onmessage=function(VARS){
                 write("<br><span class='info'>converted to ASCII: ");
                 write(h2a(m.toString(16)),1);
                 write("</span><br>");
-                return;
+                write("END");
             }
             else if(vars.e){
                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
@@ -189,7 +189,7 @@ onmessage=function(VARS){
                 write("<br><span class='info'>converted to ASCII: ");
                 write(h2a(m.toString(16)),1);
                 write("</span><br>");
-                return;
+                write("END");
             }
             else{
                 var fermat_primes=[3, 5, 17, 257, 65537];
@@ -207,7 +207,7 @@ onmessage=function(VARS){
                         write("<br><span class='info'>No message could be recovered when e="+vars.e.toString()+"</span><br>");
                     }
                 }
-                return;
+                write("END");
             }
         }
         else if(vars.n){
@@ -218,7 +218,7 @@ onmessage=function(VARS){
                 write("<br><span class='info'>converted to ASCII: ");
                 write(h2a(m.toString(16)),1);
                 write("</span><br>");
-                return;
+                write("END");
             }
             else if(vars.e){
                 if(nthroot(vars.c,vars.e).modPow(vars.e,vars.n)==vars.c){
@@ -228,7 +228,7 @@ onmessage=function(VARS){
                     write("<br><span class='info'>converted to ASCII: ");
                     write(h2a(m.toString(16)),1);
                     write("</span><br>");
-                    return;
+                    write("END");
                 }
                 // wiener's attack
                 //so like this is only supposed to work if d < N^(1/3)/4
@@ -249,7 +249,7 @@ onmessage=function(VARS){
                         write("<br><span class='info'>converted to ASCII: ");
                         write(h2a(m.toString(16)),1);
                         write("</span><br>");
-                        return;
+                        write("END");
                     }else{console.log(t.toString()+" "+b.toString());continue;}
                 }
                 // boneh durfree only works when d<N^0.292
@@ -270,7 +270,7 @@ onmessage=function(VARS){
                         write("<br><span class='info'>converted to ASCII: ");
                         write(h2a(m.toString(16)),1);
                         write("</span><br>");
-                        return;
+                        write("</span><br>");
                     }
                     else{
                         //give up your hopes and dreams, all is lost
@@ -297,5 +297,6 @@ onmessage=function(VARS){
     }
     catch(e){
         write("<br><span class='error'>"+e+"</span><br><span class='error'>Process terminated.</span>");
+        write("END");
     }
 }
