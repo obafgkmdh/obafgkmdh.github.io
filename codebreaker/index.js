@@ -7,7 +7,7 @@ function run(){
     if(type1=="e"){
         if(webWorkersSupported){
             switch(type2){
-                case "":
+                case "rsa":
                     RSA = new Worker('rsa-decrypt.js');
                     w.onmessage=function(e){
                         var data = e.data;
@@ -44,10 +44,14 @@ onload=function(){
         js_working.innerHTML="";
         webWorkersSupported = true;
     }
+    inputs = ["rnp","rep","rcp","rdp","rpp","rqp","cp","kp"]
+    RSAinputs = ["rnp","rep","rcp","rdp","rpp","rqp"];
     document.getElementById("t2").oninput = function(e){
+        for(var i = 0;i<inputs.length;i++){document.querySelector("#"+inputs[i]).className="hide"}
         switch(event.currentTarget.value){
             case "rsa":
-                break
+                for(var i = 0;i<RSAinputs.length;i++){document.querySelector("#"+RSAinputs[i]).className="visible"}
+                break;
         }
     };
 };
