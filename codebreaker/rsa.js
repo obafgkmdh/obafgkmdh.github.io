@@ -299,4 +299,5 @@ onmessage=function(VARS){
         write("<br><span class='error'>"+e+"</span><br><span class='error'>Process terminated.</span>");
         write("END");
     }
+    write("END");
 }
