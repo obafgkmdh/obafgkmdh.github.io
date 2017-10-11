@@ -73,11 +73,15 @@ onload=function(){
     }
     inputs = ["rnp","rep","rcp","rdp","rpp","rqp","cp","kp"]
     RSAinputs = ["rnp","rep","rcp","rdp","rpp","rqp"];
+    cPlusKeyInputs = ["cp","kp"]
     document.getElementById("t2").oninput = function(event){
         for(var i = 0;i<inputs.length;i++){document.querySelector("#"+inputs[i]).className="hide"}
         switch(event.currentTarget.value){
             case "rsa":
                 for(var i = 0;i<RSAinputs.length;i++){document.querySelector("#"+RSAinputs[i]).className="visible"}
+                break;
+            case "c":
+                for(var i = 0;i<cPlusKeyInputs.length;i++){document.querySelector("#"+cPlusKeyInputs[i]).className="visible"}
                 break;
         }
     };
@@ -85,9 +89,11 @@ onload=function(){
         switch(event.currentTarget.value){
             case "e":
                 document.querySelector("#rcp").innerHTML=document.querySelector("#rcp").innerHTML.replace(/ciphertext/,"message");
+                document.querySelector("#cp").innerHTML=document.querySelector("#rcp").innerHTML.replace(/ciphertext/,"message");
                 break;
             case "d":
                 document.querySelector("#rcp").innerHTML=document.querySelector("#rcp").innerHTML.replace(/message/,"ciphertext");
+                document.querySelector("#cp").innerHTML=document.querySelector("#rcp").innerHTML.replace(/message/,"ciphertext");
                 break;
         }
     };
