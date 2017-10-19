@@ -3,13 +3,13 @@ function write(m,e){
     postMessage(e==1?m.replace(/</g,"&lt;"):m);//plz no inject
 };
 function caesar(text, key){
-    alphabetUpper = "abcdefghijklmnopqrstuvwxyz";
-    alphabetLower = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    alphabetLower = "abcdefghijklmnopqrstuvwxyz";
+    alphabetUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     caesared = "";
     for(var i = 0; i < text.length; i++){
-        if(alphabetUpper.search(text[i]!==-1)){
-            caesared+=alphabetUpper[(alphabetUpper.search(text[i])+key)%alphabetLower.length];
-        }else if(alphabetLower.search(text[i]!==-1)){
+        if(alphabetUpper.search(text[i])!==-1){
+            caesared+=alphabetUpper[(alphabetUpper.search(text[i])+key)%alphabetUpper.length];
+        }else if(alphabetLower.search(text[i])!==-1){
             caesared+=alphabetLower[(alphabetLower.search(text[i])+key)%alphabetLower.length];
         }else{
             caesared+=text[i];
