@@ -31,7 +31,7 @@ function run(){
             //darn
         }
     }
-    else if(type1=="d"){
+    else if(type1=="e"){
         if(webWorkersSupported){
             switch(type2){
                 case "rsa":
