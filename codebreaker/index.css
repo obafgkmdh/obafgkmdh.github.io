@@ -39,11 +39,13 @@ h1 {
 }
 #home {
     text-decoration:none;
-    margin:auto;
 }
 p {
     padding-left:15px;
     padding-right:15px;
+}
+a {
+    margin:auto;
 }
 .warning {
     background:#ffa;
