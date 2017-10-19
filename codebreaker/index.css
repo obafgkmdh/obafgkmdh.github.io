@@ -14,8 +14,8 @@ a {
     border-radius: 5px;
     color: gray;
     background: lightyellow;
-    padding: 5px;
-    margin: 5px;
+    padding: 2px;
+    margin: 3px;
 }
 a:hover {
     color: black;
