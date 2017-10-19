@@ -41,7 +41,8 @@ h1 {
     text-decoration:none;
 }
 p {
-    padding:15px;
+    padding-left:15px;
+    padding-right:15px;
 }
 .warning {
     background:#ffa;
