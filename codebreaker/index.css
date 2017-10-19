@@ -22,7 +22,7 @@ a:not(#home):hover {
     background: lightgoldenrodyellow;
 }
 nav {
-    margin:auto;
+    text-align:center;
 }
 div {
     width: 700px;
