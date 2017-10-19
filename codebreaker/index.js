@@ -89,11 +89,11 @@ onload=function(){
         switch(event.currentTarget.value){
             case "e":
                 document.querySelector("#rcp").innerHTML=document.querySelector("#rcp").innerHTML.replace(/ciphertext/,"message");
-                document.querySelector("#cp").innerHTML=document.querySelector("#rcp").innerHTML.replace(/ciphertext/,"message");
+                document.querySelector("#cp").innerHTML=document.querySelector("#cp").innerHTML.replace(/ciphertext/,"message");
                 break;
             case "d":
                 document.querySelector("#rcp").innerHTML=document.querySelector("#rcp").innerHTML.replace(/message/,"ciphertext");
-                document.querySelector("#cp").innerHTML=document.querySelector("#rcp").innerHTML.replace(/message/,"ciphertext");
+                document.querySelector("#cp").innerHTML=document.querySelector("#cp").innerHTML.replace(/message/,"ciphertext");
                 break;
         }
     };
