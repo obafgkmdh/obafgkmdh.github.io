@@ -7,7 +7,7 @@ span {
 input {
     float:right;
 }
-a {
+a:not(#home) {
     text-align: center;
     font-size: 40px;
     border: 2px solid black;
@@ -17,7 +17,7 @@ a {
     padding: 2px;
     margin: 3px;
 }
-a:hover {
+a:not(#home):hover {
     color: black;
     background: lightgoldenrodyellow;
 }
