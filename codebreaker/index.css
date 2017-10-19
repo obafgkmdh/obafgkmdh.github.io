@@ -7,6 +7,31 @@ span {
 input {
     float:right;
 }
+a {
+    text-align: center;
+    font-size: 40px;
+    border: 2px solid black;
+    border-radius: 5px;
+    color: gray;
+    background: lightyellow;
+    padding: 5px;
+    margin: 5px;
+}
+a:hover {
+    color: black;
+    background: lightgoldenrodyellow;
+}
+div {
+    width: 700px;
+    border: 2px solid black;
+    border-radius:15px;
+    padding: 5px;
+    margin:auto;
+}
+h1 {
+    text-align:center;
+    font-size:50px;
+}
 .warning {
     background:#ffa;
 }
@@ -24,12 +49,6 @@ input {
 }
 .visible {
     display:block;
-}
-#form {
-    width: 700px;
-    border: 2px solid black;
-    margin: 5px;
-    padding: 5px;
 }
 * {
     font-family:monospace;
