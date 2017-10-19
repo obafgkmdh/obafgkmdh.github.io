@@ -39,6 +39,7 @@ h1 {
 }
 #home {
     text-decoration:none;
+    margin:auto;
 }
 p {
     padding-left:15px;
