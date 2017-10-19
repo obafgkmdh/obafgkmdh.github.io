@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="index.css" />
+        <script src="biginteger.js"></script>
+        <script src="index.js"></script>
+    </head>
+    <body>
+        <a href="#" id="home"><h1>CODEBRE🔓K3R</h1></a>
+        <nav>
+            <a href="#">HOME</a>
+            <a href="/index.html">ENCRYPT/DECRYPT</a>
+            <a href="/stored.html">VIEW STORED MESSAGES</a>
+            <a href="/login.html">LOGIN</a>
+            <a href="/register.html">REGISTER</a>
+        </nav>
+        <p id="js-working">Please enable JavaScript on this page, as it is required to run this site.</p>
+        <div id="form">
+            I want to 
+            <select id="t">
+                <option value="e" selected>encrypt</option>
+                <option value="d">decrypt</option>
+            </select> using <select id="t2">
+                <option value="ck" selected>all codes requiring a ciphertext and key</option>
+                <option value="c">the Caesar cipher</option>
+                <option value="v">the Vigenere cipher</option>
+                <option value="rsa">the RSA cryptosystem</option>
+            </select>.
+            <p id="rnp" class="hide">rsa modulus: <input name="rn" id="rn"></p>
+            <p id="rep" class="hide">rsa public exponent: <input name="re" id="re"></p>
+            <p id="rcp" class="hide">rsa ciphertext: <input name="rc" id="rc"></p>
+            <p id="rdp" class="hide">rsa private exponent: <input name="rd" id="rd"></p>
+            <p id="rpp" class="hide">rsa modulus factor #1: <input name="rp" id="rp"></p>
+            <p id="rqp" class="hide">rsa modulus factor #2: <input name="rq" id="rq"></p>
+            <p id="cp" class="visible">ciphertext: <input name="c" id="c"></p>
+            <p id="kp" class="visible">key: <input name="k" id="k"></p>
+            <p><button onclick="run()">Submit</button></p>
+        </div>
+        <br>
+        <div id="result">Results: </div>
+    </body>
+</html>
