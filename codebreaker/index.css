@@ -21,6 +21,9 @@ a:hover {
     color: black;
     background: lightgoldenrodyellow;
 }
+nav {
+    margin:auto;
+}
 div {
     width: 700px;
     border: 2px solid black;
