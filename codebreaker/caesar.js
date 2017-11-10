@@ -24,7 +24,7 @@ onmessage = function(VARS){
         alphabetUpper = "abcdefghijklmnopqrstuvwxyz";
         alphabetLower = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         if(isNaN(parseInt(vars.k))){
-            write("Guessing key... ");
+            write("Guessing key... <br>");
             for(var i = 0;i<26;i++){
                 write("Decrypted message found: "+caesar(vars.c,i),1);
                 write("<br>");
