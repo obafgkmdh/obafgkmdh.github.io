@@ -26,10 +26,12 @@ onmessage = function(VARS){
         if(isNaN(parseInt(vars.k))){
             write("Guessing key... ");
             for(var i = 0;i<26;i++){
-                write("Decrypted message found: "+caesar(vars.c,i));
+                write("Decrypted message found: "+caesar(vars.c,i),1);
             }
+            write("END");
         }else if(parseInt(vars.k)){
-            write("Decrypted message found: "+caesar(vars.c,parseInt(vars.k)));
+            write("Decrypted message found: "+caesar(vars.c,parseInt(vars.k)),1);
+            write("END");
         }
     }catch(err){
         
