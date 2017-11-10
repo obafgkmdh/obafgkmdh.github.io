@@ -26,6 +26,22 @@ function run(){
                         }
                     };
                     break;
+                case "c":
+                    C = new Worker("caesar.js");
+                    C.postMessage({
+                        c:document.getElementById("c").value,
+                        k:document.getElementById("k").value, 
+                        e:false
+                    });
+                    C.onmessage=function(e){
+                        var data = e.data;
+                        if(data=="END"){
+                            C.terminate();
+                        }else{
+                            res.innerHTML+=data;
+                        }
+                    };
+                    break;
             }
         }else{
             //darn
@@ -48,6 +64,22 @@ function run(){
                         var data = e.data;
                         if(data=="END"){
                             RSA.terminate();
+                        }else{
+                            res.innerHTML+=data;
+                        }
+                    };
+                    break;
+                case "c":
+                    C = new Worker("caesar.js");
+                    C.postMessage({
+                        c:document.getElementById("c").value,
+                        k:document.getElementById("k").value, 
+                        e:true
+                    });
+                    C.onmessage=function(e){
+                        var data = e.data;
+                        if(data=="END"){
+                            C.terminate();
                         }else{
                             res.innerHTML+=data;
                         }
