@@ -30,10 +30,10 @@ onmessage = function(VARS){
             }
             write("END");
         }else if(parseInt(vars.k)){
-            write("Decrypted message found: "+caesar(vars.c,parseInt(vars.k)),1);
+            write("Decrypted message found: "+caesar(vars.c,vars.e?parseInt(vars.k):-parseInt(vars.k)),1);
             write("END");
         }
     }catch(err){
-        
+        write("END");
     }
 }
