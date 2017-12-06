@@ -2,7 +2,7 @@ importScripts('biginteger.js');
 function write(m,e){
     postMessage(e==1?m.replace(/</g,"&lt;"):m);//plz no inject
 };
-function caesar(text, key){ // it's basically just caesar
+function caesar(text, key, e){ // it's basically just caesar
     alphabetLower = "abcdefghijklmnopqrstuvwxyz";
     alphabetUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     a=key;key=[];
@@ -18,9 +18,9 @@ function caesar(text, key){ // it's basically just caesar
     caesared = "";
     for(var i = 0; i < text.length; i++){
         if(alphabetUpper.search(text[i])!==-1){
-            caesared+=alphabetUpper[(bigInt(alphabetUpper.search(text[i])).plus(key[i%key.length])).mod(bigInt(alphabetUpper.length)).valueOf()];
+            caesared+=e?alphabetUpper[(bigInt(alphabetUpper.search(text[i])).plus(key[i%key.length])).mod(bigInt(alphabetUpper.length)).valueOf()]:alphabetUpper[(bigInt(alphabetUpper.search(text[i])).minus(key[i%key.length])).mod(bigInt(alphabetUpper.length)).valueOf()];
         }else if(alphabetLower.search(text[i])!==-1){
-            caesared+=alphabetLower[(bigInt(alphabetLower.search(text[i])).plus(key[i%key.length])).mod(bigInt(alphabetLower.length)).valueOf()];
+            caesared+=e?alphabetLower[(bigInt(alphabetLower.search(text[i])).plus(key[i%key.length])).mod(bigInt(alphabetLower.length)).valueOf()]:alphabetLower[(bigInt(alphabetLower.search(text[i])).minus(key[i%key.length])).mod(bigInt(alphabetLower.length)).valueOf()];
         }else{
             caesared+=text[i];
         }
@@ -33,7 +33,7 @@ onmessage = function(VARS){
         alphabetUpper = "abcdefghijklmnopqrstuvwxyz";
         alphabetLower = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         if(vars.k){
-            write("Decrypted message found: "+caesar(vars.c,vars.e?parseInt(vars.k):-parseInt(vars.k)),1);
+            write("Decrypted message found: "+caesar(vars.c,vars.k,vars.e),1);
             write("END");
         }else{
             write("END");
