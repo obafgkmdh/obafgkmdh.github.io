@@ -101,6 +101,22 @@ function run(){
                         }
                     };
                     break;
+                case "v":
+                    V = new Worker("vigenere.js");
+                    V.postMessage({
+                        c:document.getElementById("c").value,
+                        k:document.getElementById("k").value, 
+                        e:true
+                    });
+                    V.onmessage=function(e){
+                        var data = e.data;
+                        if(data=="END"){
+                            V.terminate();
+                        }else{
+                            res.innerHTML+=data;
+                        }
+                    };
+                    break;
             }
         }else{
             //darn
