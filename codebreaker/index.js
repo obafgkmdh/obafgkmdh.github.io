@@ -42,6 +42,22 @@ function run(){
                         }
                     };
                     break;
+                case "v":
+                    V = new Worker("vigenere.js");
+                    V.postMessage({
+                        c:document.getElementById("c").value,
+                        k:document.getElementById("k").value, 
+                        e:false
+                    });
+                    V.onmessage=function(e){
+                        var data = e.data;
+                        if(data=="END"){
+                            V.terminate();
+                        }else{
+                            res.innerHTML+=data;
+                        }
+                    };
+                    break;
             }
         }else{
             //darn
@@ -113,6 +129,9 @@ onload=function(){
                 for(var i = 0;i<RSAinputs.length;i++){document.querySelector("#"+RSAinputs[i]).className="visible"}
                 break;
             case "c":
+                for(var i = 0;i<cPlusKeyInputs.length;i++){document.querySelector("#"+cPlusKeyInputs[i]).className="visible"}
+                break;
+            case "v":
                 for(var i = 0;i<cPlusKeyInputs.length;i++){document.querySelector("#"+cPlusKeyInputs[i]).className="visible"}
                 break;
         }
