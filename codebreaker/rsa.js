@@ -96,7 +96,7 @@ onmessage=function(VARS){
         if(vars.p&&vars.q){
             if(vars.d){
                 var m = decrypt1(vars.c,vars.d,vars.p.multiply(vars.q));
-                write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                write("<br><span class='success'>Message: "+m.toString()+"</span>");
                 write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                 write("<br><span class='info'>converted to ASCII: ");
                 write(h2a(m.toString(16)),1);
@@ -105,7 +105,7 @@ onmessage=function(VARS){
             }
             else if(vars.e){
                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
-                write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                write("<br><span class='success'>Message: "+m.toString()+"</span>");
                 write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                 write("<br><span class='info'>converted to ASCII: ");
                 write(h2a(m.toString(16)),1);
@@ -118,7 +118,7 @@ onmessage=function(VARS){
                     vars.e=bigInt(fermat_primes[i]);
                     if(!vars.p.prev().multiply(vars.q.prev()).isDivisibleBy(vars.e)){
                         var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
-                        write("<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
+                        write("<br><span class='success'>Message assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
                         write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                         write("<br><span class='info'>converted to ASCII: ");
                         write(h2a(m.toString(16)),1);
@@ -135,7 +135,7 @@ onmessage=function(VARS){
             vars.q=vars.n.over(vars.p);
             if(vars.d){
                 var m = decrypt1(vars.c,vars.d,vars.p.multiply(vars.q));
-                write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                write("<br><span class='success'>Message: "+m.toString()+"</span>");
                 write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                 write("<br><span class='info'>converted to ASCII: ");
                 write(h2a(m.toString(16)),1);
@@ -144,7 +144,7 @@ onmessage=function(VARS){
             }
             else if(vars.e){
                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
-                write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                write("<br><span class='success'>Message: "+m.toString()+"</span>");
                 write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                 write("<br><span class='info'>converted to ASCII: ");
                 write(h2a(m.toString(16)),1);
@@ -157,7 +157,7 @@ onmessage=function(VARS){
                     vars.e=bigInt(fermat_primes[i]);
                     if(!vars.p.prev().multiply(vars.q.prev()).isDivisibleBy(vars.e)){
                         var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
-                        write("<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
+                        write("<br><span class='success'>Message assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
                         write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                         write("<br><span class='info'>converted to ASCII: ");
                         write(h2a(m.toString(16)),1);
@@ -174,7 +174,7 @@ onmessage=function(VARS){
             vars.p=vars.n.over(vars.q);
             if(vars.d){
                 var m = decrypt1(vars.c,vars.d,vars.p.multiply(vars.q));
-                write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                write("<br><span class='success'>Message found: "+m.toString()+"</span>");
                 write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                 write("<br><span class='info'>converted to ASCII: ");
                 write(h2a(m.toString(16)),1);
@@ -183,7 +183,7 @@ onmessage=function(VARS){
             }
             else if(vars.e){
                 var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
-                write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                write("<br><span class='success'>Message found: "+m.toString()+"</span>");
                 write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                 write("<br><span class='info'>converted to ASCII: ");
                 write(h2a(m.toString(16)),1);
@@ -196,7 +196,7 @@ onmessage=function(VARS){
                     vars.e=bigInt(fermat_primes[i]);
                     if(!vars.p.prev().multiply(vars.q.prev()).isDivisibleBy(vars.e)){
                         var m = decrypt2(vars.p,vars.q,vars.c,vars.e,vars.p.multiply(vars.q));
-                        write("<br><span class='success'>Decrypted message assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
+                        write("<br><span class='success'>Message assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
                         write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                         write("<br><span class='info'>converted to ASCII: ");
                         write(h2a(m.toString(16)),1);
@@ -212,7 +212,7 @@ onmessage=function(VARS){
         else if(vars.n){
             if(vars.d){
                 var m = decrypt1(vars.c,vars.d,vars.n);
-                write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                write("<br><span class='success'>Message found: "+m.toString()+"</span>");
                 write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                 write("<br><span class='info'>converted to ASCII: ");
                 write(h2a(m.toString(16)),1);
@@ -222,7 +222,7 @@ onmessage=function(VARS){
             else if(vars.e){
                 if(nthroot(vars.c,vars.e).modPow(vars.e,vars.n)==vars.c){
                     var m = nthroot(vars.c,vars.e);
-                    write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                    write("<br><span class='success'>Message found: "+m.toString()+"</span>");
                     write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                     write("<br><span class='info'>converted to ASCII: ");
                     write(h2a(m.toString(16)),1);
@@ -264,7 +264,7 @@ onmessage=function(VARS){
                 if(vars.e.isSmall){
                     if(nthroot(vars.c,vars.e).pow(vars.e)==vars.c){
                         var m = nthroot(vars.c,vars.e);
-                        write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+                        write("<br><span class='success'>Message found: "+m.toString()+"</span>");
                         write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                         write("<br><span class='info'>converted to ASCII: ");
                         write(h2a(m.toString(16)),1);
@@ -284,7 +284,7 @@ onmessage=function(VARS){
                     vars.e=fermat_primes[i];
                     if(nthroot(vars.c,vars.e).pow(vars.e)==vars.c){
                         var m = nthroot(vars.c,vars.e);
-                        write("<br><span class='success'>Decrypted message found assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
+                        write("<br><span class='success'>Message found assuming e="+vars.e.toString()+": "+m.toString()+"</span>");
                         write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
                         write("<br><span class='info'>converted to ASCII: ");
                         write(h2a(m.toString(16)),1);
