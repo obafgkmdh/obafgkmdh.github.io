@@ -33,7 +33,7 @@ onmessage = function(VARS){
         alphabetUpper = "abcdefghijklmnopqrstuvwxyz";
         alphabetLower = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         if(vars.k){
-            write(!vars.e?"Decrypted message found: ":"Encrypted message"+caesar(vars.c,vars.k,vars.e),1);
+            write(!vars.e?"Decrypted message found: ":"Encrypted message: "+caesar(vars.c,vars.k,vars.e),1);
             write("END");
         }else{
             write("END");
