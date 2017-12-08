@@ -24,14 +24,14 @@ onmessage = function(VARS){
         alphabetUpper = "abcdefghijklmnopqrstuvwxyz";
         alphabetLower = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         if(isNaN(parseInt(vars.k))){
-            write("Guessing key... <br>");
+            write("Trying all possible keys... <br>");
             for(var i = 0;i<26;i++){
-                write("Decrypted message found: "+caesar(vars.c,i),1);
+                write(!vars.e?"Decrypted message found: ":"Encrypted message"+caesar(vars.c,i),1);
                 write("<br>");
             }
             write("END");
         }else if(parseInt(vars.k)){
-            write("Decrypted message found: "+caesar(vars.c,vars.e?parseInt(vars.k):-parseInt(vars.k)),1);
+            write(!vars.e?"Decrypted message found: ":"Encrypted message"+caesar(vars.c,vars.e?parseInt(vars.k):-parseInt(vars.k)),1);
             write("END");
         }
     }catch(err){
