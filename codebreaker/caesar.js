@@ -9,9 +9,9 @@ function caesar(text, key){
     caesared = "";
     for(var i = 0; i < text.length; i++){
         if(alphabetUpper.search(text[i])!==-1){
-            caesared+=alphabetUpper[(bigInt(alphabetUpper.search(text[i])).plus(key)).mod(bigInt(alphabetUpper.length)).valueOf()];
+            caesared+=alphabetUpper[(bigInt(alphabetUpper.search(text[i])).plus(key)).mod(bigInt(alphabetUpper.length)).plus(bigInt(alphabetUpper.length)).mod(bigInt(alphabetUpper.length)).valueOf()];
         }else if(alphabetLower.search(text[i])!==-1){
-            caesared+=alphabetLower[(bigInt(alphabetLower.search(text[i])).plus(key)).mod(bigInt(alphabetLower.length)).valueOf()];
+            caesared+=alphabetLower[(bigInt(alphabetLower.search(text[i])).plus(key)).mod(bigInt(alphabetLower.length)).plus(bigInt(alphabetLower.length)).mod(bigInt(alphabetLower.length)).valueOf()];
         }else{
             caesared+=text[i];
         }
