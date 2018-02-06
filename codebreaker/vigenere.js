@@ -18,9 +18,9 @@ function caesar(text, key, e){ // it's basically just caesar
     caesared = "";
     for(var i = 0; i < text.length; i++){
         if(alphabetUpper.search(text[i])!==-1){
-            caesared+=e?alphabetUpper[(bigInt(alphabetUpper.search(text[i])).plus(key[((i%key.length)+key.length)%key.length])).mod(bigInt(alphabetUpper.length)).valueOf()]:alphabetUpper[(bigInt(alphabetUpper.search(text[i])).minus(key[((i%key.length)+key.length)%key.length])).mod(bigInt(alphabetUpper.length)).valueOf()];
+            caesared+=e?alphabetUpper[(bigInt(alphabetUpper.search(text[i])).plus(key[((i%key.length)+key.length)%key.length])).mod(bigInt(alphabetUpper.length)).plus(bigInt(alphabetUpper.length)).mod(bigInt(alphabetUpper.length)).valueOf()]:alphabetUpper[(bigInt(alphabetUpper.search(text[i])).minus(key[((i%key.length)+key.length)%key.length])).mod(bigInt(alphabetUpper.length)).valueOf()];
         }else if(alphabetLower.search(text[i])!==-1){
-            caesared+=e?alphabetLower[(bigInt(alphabetLower.search(text[i])).plus(key[((i%key.length)+key.length)%key.length])).mod(bigInt(alphabetLower.length)).valueOf()]:alphabetLower[(bigInt(alphabetLower.search(text[i])).minus(key[((i%key.length)+key.length)%key.length])).mod(bigInt(alphabetLower.length)).valueOf()];
+            caesared+=e?alphabetLower[(bigInt(alphabetLower.search(text[i])).plus(key[((i%key.length)+key.length)%key.length])).mod(bigInt(alphabetUpper.length)).plus(bigInt(alphabetUpper.length)).mod(bigInt(alphabetUpper.length)).valueOf()]:alphabetLower[(bigInt(alphabetLower.search(text[i])).minus(key[((i%key.length)+key.length)%key.length])).mod(bigInt(alphabetLower.length)).valueOf()];
         }else{
             caesared+=text[i];
         }
