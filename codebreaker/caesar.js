@@ -31,7 +31,7 @@ onmessage = function(VARS){
             }
             write("END");
         }else if(parseInt(vars.k)){
-            write(!vars.e?"Decrypted message found: ":"Encrypted message: "+caesar(vars.c,vars.e?parseInt(vars.k):-parseInt(vars.k)),1);
+            write(!vars.e?"Decrypted message found: ":"Encrypted message: "+caesar(vars.c,vars.e?parseInt(vars.k):26-parseInt(vars.k)),1);
             write("END");
         }
     }catch(err){
