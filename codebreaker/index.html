@@ -34,6 +34,12 @@
             <p id="rdp" class="hide">rsa private exponent: <input name="rd" id="rd"></p>
             <p id="rpp" class="hide">rsa modulus factor #1: <input name="rp" id="rp"></p>
             <p id="rqp" class="hide">rsa modulus factor #2: <input name="rq" id="rq"></p>
+            <p id="xip" class="hide">
+                XOR inputs are in: 
+                <input type="radio" name="xi" id="xih">hex
+                <input type="radio" name="xi" id="xia">ASCII
+                <input type="radio" name="xi" id="xib">binary
+            </p>
             <p id="cp" class="visible">ciphertext: <input name="c" id="c"></p>
             <p id="kp" class="visible">key: <input name="k" id="k"></p>
             <p><button onclick="run()">Submit</button></p>
