@@ -3,6 +3,9 @@ body {
     height:100%;
     background-size:cover;
 }
+html {
+    min-height:100%;
+}
 span {
     word-wrap: break-word;
 }
