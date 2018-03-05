@@ -58,6 +58,22 @@ function run(){
                         }
                     };
                     break;
+                case "x":
+                    X = new Worker("xor.js");
+                    X.postMessage({
+                        c:document.getElementById("c").value,
+                        k:document.getElementById("k").value, 
+                        e:document.getElementByID("xi").value
+                    });
+                    X.onmessage=function(e){
+                        var data = e.data;
+                        if(data=="END"){
+                            X.terminate();
+                        }else{
+                            res.innerHTML+=data;
+                        }
+                    };
+                    break;
             }
         }else{
             //darn
@@ -117,6 +133,22 @@ function run(){
                         }
                     };
                     break;
+                case "x":
+                    X = new Worker("xor.js");
+                    X.postMessage({
+                        c:document.getElementById("c").value,
+                        k:document.getElementById("k").value, 
+                        e:document.getElementByID("xi").value
+                    });
+                    X.onmessage=function(e){
+                        var data = e.data;
+                        if(data=="END"){
+                            X.terminate();
+                        }else{
+                            res.innerHTML+=data;
+                        }
+                    };
+                    break;
             }
         }else{
             //darn
@@ -130,7 +162,7 @@ function run(){
 onload=function(){
     var js_working=document.querySelector("#js-working");
     if(!window.Worker){
-        js_working.innerHTML="Your browser does not support Web Workers. This website will still work, just more slowly.";
+        js_working.innerHTML="Your browser does not support Web Workers, which are required for this website to work. Try using one of the browsers specififed <a href=\"https://caniuse.com/#feat=webworkers\">here</a>.";
     }else{
         js_working.innerHTML="";
         webWorkersSupported = true;
@@ -138,6 +170,7 @@ onload=function(){
     inputs = ["rnp","rep","rcp","rdp","rpp","rqp","cp","kp"]
     RSAinputs = ["rnp","rep","rcp","rdp","rpp","rqp"];
     cPlusKeyInputs = ["cp","kp"]
+    XORInputs = ["cp","kp","xip"]
     document.getElementById("t2").oninput = function(event){
         for(var i = 0;i<inputs.length;i++){document.querySelector("#"+inputs[i]).className="hide"}
         switch(event.currentTarget.value){
@@ -150,6 +183,11 @@ onload=function(){
             case "v":
                 for(var i = 0;i<cPlusKeyInputs.length;i++){document.querySelector("#"+cPlusKeyInputs[i]).className="visible"}
                 break;
+            case "x":
+                for(var i = 0;i<XORInputs.length;i++){document.querySelector("#"+XORInputs[i]).className="visible"}
+                break;
+            default:
+                document.querySelector("nop").className="visible"
         }
     };
     document.getElementById("t").oninput = function(e){
