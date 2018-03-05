@@ -188,7 +188,7 @@ return (msw << 16) | (lsw & 0xFFFF);
 
 
 function register(){
-    u=document.getElementById("user").value;
+    u=document.getElementById("name").value;
     p1=document.getElementById("pass").value;
     p2=document.getElementById("cpass").value;
     if(p1!=p2){console.log("passwords do not match")}
