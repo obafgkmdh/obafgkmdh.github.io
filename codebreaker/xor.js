@@ -18,6 +18,6 @@ onmessage = function(VARS){
             write("END");
         }
     }catch(err){
-        write("Unexpected error: "+err+"<br>END");
+        write("END");
     }
 }
