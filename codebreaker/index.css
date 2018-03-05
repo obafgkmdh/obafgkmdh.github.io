@@ -1,5 +1,5 @@
 body {
-    background:linen;
+    background:linear-gradient(white,linen);
 }
 span {
     word-wrap: break-word;
@@ -39,6 +39,7 @@ h1 {
 }
 #home {
     text-decoration:none;
+    border:none;
 }
 p {
     padding-left:15px;
