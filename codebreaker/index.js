@@ -138,7 +138,7 @@ function run(){
                     X.postMessage({
                         c:document.getElementById("c").value,
                         k:document.getElementById("k").value, 
-                        e:document.getElementByID("xi").value
+                        e:document.getElementById("xi").value
                     });
                     X.onmessage=function(e){
                         var data = e.data;
