@@ -7,7 +7,7 @@ function login(){
     p = document.querySelector("#pass").value;
     req = new XMLHttpRequest();
     req.open("POST","https://lamchcl.pythonanywhere.com/log",true);
-    req.send("user="+urlencode(u)+"&pass="+urlencode(p));
+    req.send("user="+encodeURI(u)+"&pass="+encodeURI(p));
     req.onreadystatechange=function(){
         if(this.readyState==4&&this.status==200){
             js_working=document.querySelector("#js-working");
