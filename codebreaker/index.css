@@ -33,7 +33,9 @@ nav {
     text-align:center;
 }
 code {
-    background: grey;
+    background: lightgrey;
+    padding: 2px;
+    border-radius: 1px;
 }
 div {
     width: 700px;
