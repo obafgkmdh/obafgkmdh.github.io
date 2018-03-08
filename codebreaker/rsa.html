@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="index.css" />
+        <title>CODEBRE🔓K3R</title>
+    </head>
+    <body>
+        <a href="home.html" id="home"><h1>CODEBRE🔓K3R</h1></a>
+        <nav>
+            <a href="home.html">HOME</a>
+            <a href="index.html">ENCRYPT/DECRYPT</a>
+            <a href="stored.html">VIEW STORED MESSAGES</a>
+            <a href="sitemap.html">SITEMAP</a>
+            <a href="login.html">LOGIN</a>
+            <a href="register.html">REGISTER</a>
+        </nav>
+        <h1 style="font-size:40px">RSA CRYPTOSYSTEM</h1>
+        <p style="text-align:center">RSA is an asymmetric public-key cryptosystem invented by Ron Rivest, Adi Shamir, and Leonard Adleman. RSA stands for all three of the inventors' last names.
+        The security of the cryptosystem depends on the difficulty of factoring very large numbers. Let's encrypt and decrypt a number <code>m</code> using RSA.
+        We first choose two large primes <code>p</code> and <code>q</code> and multiply them to generate <code>n</code>.
+        Then we compute <code>λ(n)</code>, or <code>LCM(p-1,q-1)</code> and choose an <code>e</code> that is smaller than and relatively prime to <code>λ(n)</code>.
+        We also compute <code>d</code>, the modular inverse of <code>e</code> modulo <code>λ(n)</code>.
+        To encrypt <code>m</code>, we compute <code>c ≡ m<sup>e</sup> (mod n)</code>.
+        To decrypt <code>c</code>, we compute <code>m ≡ c,sup>d</sup> (mod n)</code>.
+        <br>
+        We can release the public key, which consists of <code>n</code> and <code>e</code>. Anyone can now encrypt messages and send them to us, but they cannot decrypt anything in a practical amount of time.
+        </p>
+        <br>
+    </body>
+</html>
