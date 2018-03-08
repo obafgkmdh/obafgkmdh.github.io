@@ -35,7 +35,8 @@ nav {
 code {
     background: lightgrey;
     padding: 2px;
-    border-radius: 1px;
+    border-radius: 4px;
+    color:darkred;
 }
 div {
     width: 700px;
