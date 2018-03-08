@@ -21,7 +21,7 @@
         Then we compute <code>λ(n)</code>, or <code>LCM(p-1,q-1)</code> and choose an <code>e</code> that is smaller than and relatively prime to <code>λ(n)</code>.
         We also compute <code>d</code>, the modular inverse of <code>e</code> modulo <code>λ(n)</code>.
         To encrypt <code>m</code>, we compute <code>c ≡ m<sup>e</sup> (mod n)</code>.
-        To decrypt <code>c</code>, we compute <code>m ≡ c,sup>d</sup> (mod n)</code>.
+        To decrypt <code>c</code>, we compute <code>m ≡ c<sup>d</sup> (mod n)</code>.
         <br>
         We can release the public key, which consists of <code>n</code> and <code>e</code>. Anyone can now encrypt messages and send them to us, but they cannot decrypt anything in a practical amount of time.
         </p>
