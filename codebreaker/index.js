@@ -176,15 +176,23 @@ onload=function(){
         switch(event.currentTarget.value){
             case "rsa":
                 for(var i = 0;i<RSAinputs.length;i++){document.querySelector("#"+RSAinputs[i]).className="visible"}
+                document.querySelector("#cipher").innerHTML = "the RSA Cryptosystem"
+                document.querySelector("#cipherlink").href = "rsa.html"
                 break;
             case "c":
                 for(var i = 0;i<cPlusKeyInputs.length;i++){document.querySelector("#"+cPlusKeyInputs[i]).className="visible"}
+                document.querySelector("#cipher").innerHTML = "the Caesar Cipher"
+                document.querySelector("#cipherlink").href = "caesar.html"
                 break;
             case "v":
                 for(var i = 0;i<cPlusKeyInputs.length;i++){document.querySelector("#"+cPlusKeyInputs[i]).className="visible"}
+                document.querySelector("#cipher").innerHTML = "the Vigenere Cipher"
+                document.querySelector("#cipherlink").href = "rsa.html"
                 break;
             case "x":
                 for(var i = 0;i<XORInputs.length;i++){document.querySelector("#"+XORInputs[i]).className="visible"}
+                document.querySelector("#cipher").innerHTML = "the XOR Cipher"
+                document.querySelector("#cipherlink").href = "xor.html"
                 break;
             default:
                 document.querySelector("nop").className="visible"
