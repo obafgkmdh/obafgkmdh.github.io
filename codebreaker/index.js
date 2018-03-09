@@ -12,13 +12,6 @@ function getCookie(cname) { // thanks w3schools
         }
     }
     return "";
-}
-onload=function(){
-    if(getCookie("fawef")){
-        document.querySelector("nav").removeChild(document.querySelector("nav").lastChild);
-        document.querySelector("nav").lastChild.innerHTML="LOGOUT";
-        document.querySelector("nav").lastChild.href="logout.html";
-    }
 };
 function run(){
     var res = document.getElementById("result");
@@ -187,6 +180,11 @@ onload=function(){
     }else{
         js_working.innerHTML="";
         webWorkersSupported = true;
+    }
+    if(getCookie("fawef")){
+        document.querySelector("nav").removeChild(document.querySelector("nav").lastChild);
+        document.querySelector("nav").lastChild.innerHTML="LOGOUT";
+        document.querySelector("nav").lastChild.href="logout.html";
     }
     inputs = ["rnp","rep","rcp","rdp","rpp","rqp","cp","kp"]
     RSAinputs = ["rnp","rep","rcp","rdp","rpp","rqp"];
