@@ -187,7 +187,7 @@ onload=function(){
             case "v":
                 for(var i = 0;i<cPlusKeyInputs.length;i++){document.querySelector("#"+cPlusKeyInputs[i]).className="visible"}
                 document.querySelector("#cipher").innerHTML = "the Vigenere Cipher"
-                document.querySelector("#cipherlink").href = "rsa.html"
+                document.querySelector("#cipherlink").href = "vigenere.html"
                 break;
             case "x":
                 for(var i = 0;i<XORInputs.length;i++){document.querySelector("#"+XORInputs[i]).className="visible"}
