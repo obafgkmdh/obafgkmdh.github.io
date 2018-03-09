@@ -35,6 +35,7 @@ onload=function(){
     var js_working=document.querySelector("#js-working");
     js_working.innerHTML="";
     if(getCookie("fawef")){
+        document.querySelector("form").innerHTML="You are already logged in!"
         document.querySelector("nav").removeChild(document.querySelector("nav").lastChild);
         document.querySelector("nav").lastChild.innerHTML="LOGOUT";
         document.querySelector("nav").lastChild.href="logout.html";
