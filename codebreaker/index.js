@@ -186,7 +186,7 @@ onload=function(){
         document.querySelector("nav").lastChild.innerHTML="LOGOUT";
         document.querySelector("nav").lastChild.href="logout.html";
     }
-    inputs = ["rnp","rep","rcp","rdp","rpp","rqp","cp","kp"]
+    inputs = ["rnp","rep","rcp","rdp","rpp","rqp","cp","kp","xip"]
     RSAinputs = ["rnp","rep","rcp","rdp","rpp","rqp"];
     cPlusKeyInputs = ["cp","kp"]
     XORInputs = ["cp","kp","xip"]
