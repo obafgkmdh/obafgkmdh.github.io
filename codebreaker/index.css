@@ -55,6 +55,9 @@ h1 {
     text-decoration:none;
     border:none;
 }
+#result {
+    word-wrap: break-word;
+}
 p {
     padding-left:15px;
     padding-right:15px;
