@@ -41,6 +41,7 @@ function hash(text, e, hash){
     }else{
         a = "'Decryption' of hashes is not supported."
     }
+    while(a!=""){}
     return a;
 };
 onmessage = function(VARS){
