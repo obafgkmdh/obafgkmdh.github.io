@@ -11,11 +11,11 @@ function xor(text, key, e){
     }
     if(e=="xih"){
         t = t.toLowerCase();
-        if(!/[0-9a-f]+/.test(t)){return "Not valid hexadecimal!"}
+        if(!/^[0-9a-f]+$/.test(t)){return "Not valid hexadecimal!"}
         for(var i = 0;i < t.length;i++){a+="0123456789abcdef"[parseInt(t[i],16)^parseInt(k[i],16)];}
     }
     if(e=="xib"){
-        if(!/[0-1]+/.test(t)){return "Not valid binary!"}
+        if(!/^[0-1]+$/.test(t)){return "Not valid binary!"}
         for(var i = 0;i < t.length;i++){a+=""+((+t[i])^(+k[i]));}
     }
     return "Message: "+a;
