@@ -20,7 +20,7 @@ function write(m,e){
     postMessage(e==1?m.replace(/</g,"&lt;"):m);//plz no inject
 };
 function hash(text, e, hash){
-    a="";
+    var a="";
     if(e==="e"){
         switch(hash){
             case "sha1":
