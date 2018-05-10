@@ -47,11 +47,11 @@ function hash(text, e, hash){
 onmessage = function(VARS){
     try{
         var vars = VARS.data;
-        if(vars.k && vars.e){
+        if(vars.h && vars.e){
             write("Message: "+hash(vars.c,vars.e,vars.h),1);
             write("END");
         }else{
-            write("Please provide a key and an encryption/decryption mode!")
+            write("Please provide a hash type and an encryption/decryption mode!")
             write("END");
         }
     }catch(err){
