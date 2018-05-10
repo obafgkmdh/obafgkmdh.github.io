@@ -88,6 +88,22 @@ function run(){
                         }
                     };
                     break;
+                case "h":
+                    H = new Worker("hash.js");
+                    H.postMessage({
+                        c: document.getElementById("c").value,
+                        h: document.getElementById("k").value,
+                        e: false
+                    });
+                    H.onmessage = function(e) {
+                        var data = e.data;
+                        if(data=="END"){
+                            H.terminate();
+                        }else{
+                            res.innerHTML+=data;
+                        }
+                    };
+                    break;
             }
         }else{
             //darn
@@ -163,6 +179,22 @@ function run(){
                         }
                     };
                     break;
+                case "h":
+                    H = new Worker("hash.js");
+                    H.postMessage({
+                        c: document.getElementById("c").value,
+                        h: document.getElementById("k").value,
+                        e: true
+                    });
+                    H.onmessage = function(e) {
+                        var data = e.data;
+                        if(data=="END"){
+                            H.terminate();
+                        }else{
+                            res.innerHTML+=data;
+                        }
+                    };
+                    break;
             }
         }else{
             //darn
@@ -212,6 +244,11 @@ onload=function(){
                 for(var i = 0;i<XORInputs.length;i++){document.querySelector("#"+XORInputs[i]).className="visible"}
                 document.querySelector("#cipher").innerHTML = "the XOR Cipher"
                 document.querySelector("#cipherlink").href = "xor.html"
+                break;
+            case "h":
+                for(var i = 0;i<cPlusKeyInputs.length;i++){document.querySelector("#"+cPlusKeyInputs[i]).className="visible"}
+                document.querySelector("#cipher").innerHTML = "hashing"
+                document.querySelector("#cipherlink").href = "hash.html"
                 break;
             default:
                 document.querySelector("nop").className="visible"
