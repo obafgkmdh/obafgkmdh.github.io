@@ -266,4 +266,14 @@ onload=function(){
                 break;
         }
     };
+    document.getElementById("t2").oninput = function(e){
+        switch(event.currentTarget.value){
+            case "h":
+                document.querySelector("#kp").innerHTML=document.querySelector("#kp").innerHTML.replace(/key/,"hash type (sha1, sha256, sha512)");
+                break;
+            default:
+                document.querySelector("#kp").innerHTML=document.querySelector("#kp").innerHTML.replace(/hash type \(sha1, sha256, sha512\)/,"key");
+                break;
+        }
+    };
 };
