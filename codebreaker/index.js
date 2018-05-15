@@ -184,7 +184,7 @@ function run(){
                     H.postMessage({
                         c: document.getElementById("c").value,
                         h: document.getElementById("k").value,
-                        e: true
+                        e: "e"
                     });
                     H.onmessage = function(e) {
                         var data = e.data;
