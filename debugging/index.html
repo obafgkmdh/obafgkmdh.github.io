@@ -154,9 +154,9 @@ document.querySelector("body").addEventListener("click", function(e){
             document.querySelectorAll(".bug")[i].style["filter"]="blur(3px) sepia(1)";
             document.querySelectorAll(".bug")[i].style["transform"]="rotate(180deg)";
             if(Math.random()<0.1){revive[i] = setTimeout(function(q){
-				clearTimeout(revive[i]);
+				clearTimeout(revive[q]);
                 document.querySelectorAll(".bug")[q].style["-webkit-filter"]="";
-				document.querySelectorAll(".bug")[i].style["filter"]="";
+				document.querySelectorAll(".bug")[q].style["filter"]="";
                 document.querySelectorAll(".bug")[q].style["transform"]="rotate(0deg)";
                 dead[q]=false;
             },10000,i);}
