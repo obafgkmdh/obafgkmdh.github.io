@@ -65,7 +65,7 @@ h2a=a=>a.match(/.{1,2}/g).map(v=>String.fromCharCode(parseInt(v, 16))).join``;
 function write(m,e){
     document.getElementById("result").innerHTML+=e==1?m.replace(/</g,"&lt;"):m;//plz no inject
 }
-function rsa(){
+async function rsa(){
     document.getElementById("result").innerHTML=""; // clear
     try{
         var vars={
@@ -98,7 +98,56 @@ function rsa(){
         }
         //computation
         if(!vars.p&&!vars.q&&vars.n){
-            //todo: get factor tables
+            let res = await fetch(`https://cors-anywhere.herokuapp.com/http://www.factordb.com/api?query=${vars.n}`,{
+				headers:{'X-Requested-With':''}
+			});
+			let data = await res.json();
+			switch (data.status) {
+				case "FF":
+					if (data.factors.length==2 && data.factors.every(x=>x[1]==1)) {
+						vars.p = bigInt(data.factors[0][0]);
+						vars.q = bigInt(data.factors[1][0]);
+					} else {
+						let phi = vars.n;
+						for (let i = 0; i < data.factors.length; i++) {
+							phi = phi.over(bigInt(data.factors[i]))*bigInt(data.factors[i]).prev()
+						}
+						let e_arr = [3, 5, 17, 257, 65537];
+						if (vars.e) {
+							e_arr = [vars.e];
+						}
+						for (let i = 0; i < e_arr.length; i++) {
+							let e = bigInt(e_arr[i]);
+							var m = decrypt1(vars.c,e.modInv(phi),vars.n);
+							write("<br><span class='success'>Decrypted message found"+(vars.e?"":" assuming e="+e)+": "+m.toString()+"</span>");
+							write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
+							write("<br><span class='info'>converted to ASCII: ");
+							write(h2a(m.toString(16)),1);
+							write("</span><br>");
+						}
+						return;
+					}
+					break;
+				case "C":
+				case "CF":
+					break;
+				case "Prp":
+				case "P":
+					let e_arr = [3, 5, 17, 257, 65537];
+					if (vars.e) {
+						e_arr = [vars.e];
+					}
+					for (let i = 0; i < e_arr.length; i++) {
+						let e = bigInt(e_arr[i]);
+						var m = decrypt1(vars.c,e.modInv(vars.n.prev()),vars.n);
+						write("<br><span class='success'>Decrypted message found"+(vars.e?"":" assuming e="+e)+": "+m.toString()+"</span>");
+						write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
+						write("<br><span class='info'>converted to ASCII: ");
+						write(h2a(m.toString(16)),1);
+						write("</span><br>");
+					}
+					return;
+			}
         }
         if(vars.p&&vars.q){
             if(vars.d){
@@ -226,49 +275,44 @@ function rsa(){
                 write("</span><br>");
                 return;
             }
-            else if(vars.e){
-                if(nthroot(vars.c,vars.e).modPow(vars.e,vars.n)==vars.c){
-                    var m = nthroot(vars.c,vars.e);
-                    write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
-                    write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
-                    write("<br><span class='info'>converted to ASCII: ");
-                    write(h2a(m.toString(16)),1);
-                    write("</span><br>");
-                    return;
-                }
-                // wiener's attack
-                //so like this is only supposed to work if d < N^(1/3)/4
-                var w = continued2convergents(frac2continued(vars.e,vars.n));
-                w.shift();
-                for(var i = 0; i < w.length; i++){
-                    var s = vars.e.times(w[i][1]).prev();
-                    if(!s.isDivisibleBy(w[i][0])){continue;}
-                    var t = s.over(w[i][0]);
-                    var b = vars.n.minus(t).next();
-                    if(nthroot(b.square().minus(bigInt[4].times(vars.n)),2).square().eq(b.square().minus(bigInt[4].times(vars.n)))){
-                        var p = (b.plus(nthroot(b.square().minus(bigInt[4].times(vars.n)),2))).over(bigInt[2]);
-                        var q = (b.minus(nthroot(b.square().minus(bigInt[4].times(vars.n)),2))).over(bigInt[2]);
-                        if(p.times(q).neq(vars.n)){console.log("oh no something has gone horribly wrong");continue;}
-                        var m = decrypt2(p,q,vars.c,vars.e,p.times(q));
-                        write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
-                        write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
-                        write("<br><span class='info'>converted to ASCII: ");
-                        write(h2a(m.toString(16)),1);
-                        write("</span><br>");
-                        return;
-                    }else{console.log(t.toString()+" "+b.toString());continue;}
-                }
-                // boneh durfree only works when d<N^0.292
-                // basically you find roots to 1 + 2k * ((N+1)/2 + (-p-q)/2) = 0 using coppersmith's or smth
-                // http://tinyurl.com/boneh-durfree
-            }
-            else{
-                //hope and pray
+            else {
+				for (let e of (vars.e?[vars.e]:[3, 5, 17, 257, 65537].map(x=>bigInt(x)))) {
+					if(nthroot(vars.c,e).modPow(e,vars.n).equals(vars.c)){
+						var m = nthroot(vars.c,e);
+						write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+						write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
+						write("<br><span class='info'>converted to ASCII: ");
+						write(h2a(m.toString(16)),1);
+						write("</span><br>");
+						return;
+					}
+					// wiener's attack for d < N^(1/3)/4
+					var w = continued2convergents(frac2continued(e,vars.n));
+					w.shift();
+					for(var i = 0; i < w.length; i++){
+						var s = e.times(w[i][1]).prev();
+						if(!s.isDivisibleBy(w[i][0])){continue;}
+						var t = s.over(w[i][0]);
+						var b = vars.n.minus(t).next();
+						if(nthroot(b.square().minus(bigInt[4].times(vars.n)),2).square().eq(b.square().minus(bigInt[4].times(vars.n)))){
+							var p = (b.plus(nthroot(b.square().minus(bigInt[4].times(vars.n)),2))).over(bigInt[2]);
+							var q = (b.minus(nthroot(b.square().minus(bigInt[4].times(vars.n)),2))).over(bigInt[2]);
+							if(p.times(q).neq(vars.n)){console.log("oh no something has gone horribly wrong");continue;}
+							var m = decrypt2(p,q,vars.c,e,p.times(q));
+							write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
+							write("<br><span class='info'>in hex: "+m.toString(16)+" </span>");
+							write("<br><span class='info'>converted to ASCII: ");
+							write(h2a(m.toString(16)),1);
+							write("</span><br>");
+							return;
+						}else{/*console.log(t.toString()+" "+b.toString());*/continue;}
+					}
+				}
             }
         }
         else{
             if(vars.e){
-                if(vars.e.isSmall){
+                if(vars.e <= vars.c.toString(2).length){
                     if(nthroot(vars.c,vars.e).pow(vars.e)==vars.c){
                         var m = nthroot(vars.c,vars.e);
                         write("<br><span class='success'>Decrypted message found: "+m.toString()+"</span>");
@@ -279,10 +323,10 @@ function rsa(){
                         return;
                     }
                     else{
-                        //give up your hopes and dreams, all is lost
+                        throw ("No result found.");
                     }
                 }else{
-                    //heck idk
+                    throw ("No result found.");
                 }
             }
             else{
@@ -302,6 +346,6 @@ function rsa(){
         }
     }
     catch(e){
-        write("<br><span class='error'>"+e+"</span><br><span class='error'>Process terminated.</span>");
+        write("<br><span class='error'>"+e+"</span>");
     }
 }
